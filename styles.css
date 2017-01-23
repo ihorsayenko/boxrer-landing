@@ -1,4 +1,8 @@
-nav.layout{
+nav.layout {
     background-color: #DCDFE7;
     border-color: #DCDFE7;
+}
+
+.main-container {
+    margin-top: 50px;
 }

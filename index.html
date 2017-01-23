@@ -14,8 +14,9 @@
     <script src="node_modules/systemjs/dist/system.src.js"></script>
     <script src="systemjs.config.js"></script>
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js" <script>
-        System.import('app').catch(function (err) {
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script>
+        System.import('app').catch(function(err) {
             console.error(err);
         });
     </script>
@@ -23,19 +24,16 @@
 
 <body>
     <nav class="navbar navbar-default navbar-fixed-top layout">
-        <div class="container">
+        <div class="container ">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-                    aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                     </button>
-                    <a class="navbar-brand" href="#">Project name</a>
+                <a class="navbar-brand" href="#">
+                    <img alt="Brand" src="img/BOXER__0000_logo.png">
+                </a>
             </div>
             <div id="navbar" class="collapse navbar-collapse">
-                <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav navbar-right">
                     <li class="active">
                         <a href="#">Головна</a>
                     </li>
@@ -52,9 +50,10 @@
             </div>
         </div>
     </nav>
-    <div>
+    <div class="container main-container">
+        <my-app>Loading AppComponent content here ...olololol</my-app>
     </div>
-    <my-app>Loading AppComponent content here ...olololol</my-app>
+
 </body>
 
 </html>
