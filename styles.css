@@ -6,3 +6,86 @@ nav.layout {
 .main-container {
     margin-top: 50px;
 }
+
+.icon-logo-header {
+    width: 170px;
+}
+
+.icon-thermometer {
+    margin-top: 13px;
+    width: 15px;
+}
+
+.icon-humidity {
+    margin-top: 13px;
+    width: 26px;
+}
+
+.tabs-text li a,
+.color-blue {
+    color: #273279 !important;
+}
+
+.capabilities-row {
+    margin-top: 50px;
+}
+
+.background-turquoise {
+    /*background-color: #ffd15b;*/
+    background-color: #6E9489;
+}
+
+.main-container {
+    background: #ececec;
+    margin-top: 0;
+}
+
+ul.capabilities-right,
+ul.capabilities-left {
+    margin-top: 20px;
+    list-style-type: none;
+    padding-left: 0;
+}
+
+ul.capabilities-right li,
+ul.capabilities-left li {
+    margin-bottom: 10px;
+}
+
+ul.capabilities-left li div.row {
+    padding-right: 15px;
+}
+
+.capabilities-label {
+    color: #fefbf3;
+    font-size: 8pt;
+    padding: 0 0 0 0;
+}
+
+.second-logo-section {
+    margin-top: 70px;
+}
+
+.second-logo-section div.row {
+    margin-bottom: 20px;
+}
+
+.logo-second-label {
+    font-size: 12pt;
+}
+
+.logo-second-icon img {
+    width: 350px;
+}
+
+.margin-auto {
+    margin: auto;
+    display: block;
+}
+
+
+/* Four step section */
+
+.four-steps-section {
+    margin-top: 50px;
+}
