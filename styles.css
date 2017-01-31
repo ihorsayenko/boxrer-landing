@@ -3,31 +3,8 @@ nav.layout {
     border-color: #DCDFE7;
 }
 
-.main-container {
-    margin-top: 50px;
-}
-
-.icon-logo-header {
-    width: 170px;
-}
-
-.icon-thermometer {
-    margin-top: 13px;
-    width: 15px;
-}
-
-.icon-humidity {
-    margin-top: 13px;
-    width: 26px;
-}
-
-.tabs-text li a,
 .color-blue {
     color: #273279 !important;
-}
-
-.capabilities-row {
-    margin-top: 50px;
 }
 
 .background-turquoise {
@@ -35,25 +12,8 @@ nav.layout {
     background-color: #6E9489;
 }
 
-.main-container {
+section .container {
     background: #ececec;
-    margin-top: 0;
-}
-
-ul.capabilities-right,
-ul.capabilities-left {
-    margin-top: 20px;
-    list-style-type: none;
-    padding-left: 0;
-}
-
-ul.capabilities-right li,
-ul.capabilities-left li {
-    margin-bottom: 10px;
-}
-
-ul.capabilities-left li div.row {
-    padding-right: 15px;
 }
 
 .capabilities-label {
@@ -62,30 +22,78 @@ ul.capabilities-left li div.row {
     padding: 0 0 0 0;
 }
 
-.second-logo-section {
-    margin-top: 70px;
+
+/* Navigation */
+
+div.can_store .part-one {
+    background-image: url('img/office-1.png');
+    width: 50%;
+    background-repeat: no-repeat;
+    -webkit-transition: opacity 1s ease-in-out;
+    -moz-transition: opacity 1s ease-in-out;
+    -o-transition: opacity 1s ease-in-out;
+    transition: opacity 1s ease-in-out;
 }
 
-.second-logo-section div.row {
-    margin-bottom: 20px;
+div.can_store .part-two {
+    background-image: url('img/office-2.png');
+    width: 50%;
+    background-repeat: no-repeat;
 }
 
-.logo-second-label {
-    font-size: 12pt;
+div.can_store .part-one:hover {
+    background-image: url('img/home-1.png');
+    width: 50%;
+    background-repeat: no-repeat;
 }
 
-.logo-second-icon img {
-    width: 350px;
+div.can_store .part-two {
+    background-image: url('img/office-2.png');
+    width: 50%;
+    background-repeat: no-repeat;
 }
 
-.margin-auto {
-    margin: auto;
-    display: block;
+div.can_store .part-two:hover {
+    background-image: url('img/home-2.png');
+    width: 50%;
+    background-repeat: no-repeat;
+}
+
+
+/* Navigation */
+
+.img_logo_nav {
+    width: 200px;
+}
+
+.img_thermometer {
+    width: 20px;
+}
+
+.img_humidity {
+    width: 30px;
 }
 
 
 /* Four step section */
 
-.four-steps-section {
-    margin-top: 50px;
+.logo_second {
+    width: 400px;
+    margin: auto;
+}
+
+.four_steps_img {
+    margin: auto;
+}
+
+
+/* Calculator */
+
+.calculator_form {
+    background-color: #E5E3E3;
+}
+
+.from_header {
+    background-color: #495086;
+    color: white;
 }

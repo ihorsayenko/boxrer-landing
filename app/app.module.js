@@ -11,14 +11,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
 var app_component_1 = require('./app.component');
+var forms_1 = require('@angular/forms');
+var ng2_slider_component_1 = require('ng2-slider-component/ng2-slider.component');
+var slideable_directive_1 = require('ng2-slideable-directive/slideable.directive');
+var ng2_styled_directive_1 = require('ng2-styled-directive/ng2-styled.directive');
 var AppModule = (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         core_1.NgModule({
-            imports: [platform_browser_1.BrowserModule],
-            declarations: [app_component_1.AppComponent],
-            bootstrap: [app_component_1.AppComponent]
+            imports: [
+                platform_browser_1.BrowserModule,
+                forms_1.FormsModule,
+                forms_1.ReactiveFormsModule],
+            declarations: [app_component_1.AppComponent,
+                slideable_directive_1.SlideAbleDirective,
+                ng2_styled_directive_1.Ng2StyledDirective,
+                ng2_slider_component_1.Ng2SliderComponent],
+            bootstrap: [app_component_1.AppComponent],
+            exports: [
+                ng2_slider_component_1.Ng2SliderComponent,
+                ng2_styled_directive_1.Ng2StyledDirective]
         }), 
         __metadata('design:paramtypes', [])
     ], AppModule);
