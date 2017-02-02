@@ -1,5 +1,4 @@
 {
-    "typescript.check.workspaceVersion": false,
     "files.exclude": {
         "**/.git": true,
         "**/.svn": true,

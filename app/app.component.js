@@ -9,14 +9,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+// import { FormsModule } from '@angular/forms';
 var AppComponent = (function () {
     function AppComponent() {
-        this.temperatureInside = 15;
+        this.val = 15;
+        this.minSlide = 0;
+        this.maxSlide = 20;
     }
     AppComponent = __decorate([
         core_1.Component({
+            moduleId: module.id,
             selector: 'my-app',
-            template: ""
+            templateUrl: '../landing.html'
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);

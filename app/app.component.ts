@@ -1,10 +1,15 @@
+import { NgModule } from '@angular/core';
 import { Component } from '@angular/core';
+// import { FormsModule } from '@angular/forms';
 
 @Component({
+    moduleId: module.id,
     selector: 'my-app',
-    template: ``
+    templateUrl: '../landing.html'
 })
 
 export class AppComponent {
-    temperatureInside: Number = 15;
+    val: Number = 15;
+    minSlide: Number = 0;
+    maxSlide: Number = 20;
 }

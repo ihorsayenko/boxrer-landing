@@ -6,10 +6,7 @@
     System.config({
         paths: {
             // paths serve as alias
-            'npm:': 'node_modules/',
-            'ng2-slider-component': 'node_modules/ng2-slider-component/',
-            'ng2-slideable-directive': 'node_modules/ng2-slideable-directive/',
-            'ng2-styled-directive': 'node_modules/ng2-styled-directive/',
+            'npm:': 'node_modules/'
         },
         // map tells the System loader where to look for things
         map: {
@@ -28,7 +25,8 @@
 
             // other libraries
             'rxjs': 'npm:rxjs',
-            'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js'
+            'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
+            'primeng': 'npm:primeng'
         },
         // packages tells the System loader how to load when no filename and/or no extension
         packages: {
@@ -39,16 +37,7 @@
             rxjs: {
                 defaultExtension: 'js'
             },
-            'node_modules/ng2-slider-component': {
-                main: './ng2-slider.component.system.js',
-                defaultExtension: 'system.js'
-            },
-            'ng2-slideable-directive': {
-                main: './slideable.directive.js',
-                defaultExtension: 'js'
-            },
-            'ng2-styled-directive': {
-                main: './ng2-styled.directive.js',
+            primeng: {
                 defaultExtension: 'js'
             }
         }
