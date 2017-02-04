@@ -121,25 +121,39 @@ nav .nav_tabs {
 }
 
 
-/*------------------------------------------------------------*/
+/*----------------Capabilities---------------------------------*/
 
-.background-turquoise {
-    /*background-color: #ffd15b;*/
-    background-color: #6E9489;
+.can_store img {
+    height: 3em;
+    width: auto;
 }
 
-section .container {
-    background: #ececec;
+.can_store {
+    font-size: 10pt;
+    color: #ffffff;
 }
 
-.capabilities-label {
-    color: #fefbf3;
-    font-size: 8pt;
-    padding: 0 0 0 0;
+.part-one .row.store_item .col-sm-1 {
+    padding-left: 0;
 }
 
+.part-two .row.store_item .col-sm-1 {
+    padding-left: 20px;
+}
 
-/* Navigation */
+.part-two .row.store_item .col-sm-5 {
+    padding-left: 22px;
+}
+
+.part-one,
+.part-two {
+    height: 400px;
+    padding: 2em 0 2em 0;
+}
+
+.item_margin_bottom {
+    margin-bottom: 3em;
+}
 
 div.can_store .part-one {
     background-image: url('img/office-1.png');
