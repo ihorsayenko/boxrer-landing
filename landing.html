@@ -1,98 +1,108 @@
+<!-------------------------------------------------------- Header ---------------------------------------------------------------------------------->
 <header>
-    <div class="container">
+    <div class="container caviar_regular header_text_blue">
         <div class="row">
-            <div class="col-md-1 col-md-offset-10">
-                <p>пн-сб</p>
+            <div class="col-md-6">
+                <div class="row phones_section">
+                    <div class="col-md-6">
+                        <p>конт. тел. для бронювання боксів</p>
+                    </div>
+                    <div class="col-md-6 mobile_phone_1">
+                        <p>
+                            <a class='header_text_blue' href="tel:+380931234567">+38093 123 45 67</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>конт. тел. в офіс. складу</p>
+                    </div>
+                    <div class="col-md-6 mobile_phone_2">
+                        <p>
+                            <a class="header_text_blue" href="tel:+380931234567">+38093 123 45 67</a>
+                        </p>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-1">
-                <p>нд</p>
+            <div class="col-md-3 col-xs-offset-3">
+                <div class="row">
+                    <div class="col-md-4 col-md-offset-4">
+                        <p>пн-сб</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p>нд</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <p>склад</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p>08 - 20</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p>вихідний</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <p>офіс</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p>09 - 18</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p>вихідний</p>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3">
-                <p>конт. тел. для бронювання боксів</p>
-            </div>
-            <div class="col-md-3 mobile_phone_1">
-                <p>
-                    <a href="tel:+380931234567">+38093 123 45 67</a>
-                </p>
-            </div>
-            <div class="col-md-1 col-md-offset-3">
-                <p>склад</p>
-            </div>
-            <div class="col-md-1">
-                <p>08 - 20</p>
-            </div>
-            <div class="col-md-1">
-                <p>вихідний</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3">
-                <p>конт. тел. в офіс. складу</p>
-            </div>
-            <div class="col-md-3 mobile_phone_2">
-                <p>
-                    <a href="tel:+380931234567">+38093 123 45 67</a>
-                </p>
-            </div>
-            <div class="col-md-1 col-md-offset-3">
-                <p>офіс</p>
-            </div>
-            <div class="col-md-1">
-                <p>09 - 18</p>
-            </div>
-            <div class="col-md-1">
-                <p>вихідний</p>
-            </div>
+
         </div>
     </div>
 </header>
+<!-------------------------------------------------------- Navigation -------------------------------------------------------------------------------->
 <nav>
-    <div class="container">
-        <ul class="list-inline">
-            <li>
-                <a href="#"> <img class="img-responsive img_logo_nav" src="img/logo_boxer.png" alt="Logo"></a>
-            </li>
-            <li>
-                <a href="#">головна</a>
-            </li>
-            <li>
-                <a href="#">бронювання боксів</a>
-            </li>
-            <li>
-                <a href="#">галерея</a>
-            </li>
-            <li>
-                <a href="#">пакувальні матеріали</a>
-            </li>
-            <li>
-                <a href="#">контакти</a>
-            </li>
-            <li>
-                <a href="#">питання/відповідь</a>
-            </li>
-            <li>
-                <div class="temperature">
-                    <img class="img-responsive img_thermometer" src="img/thermometer.png" alt="Thermometer">
-                </div>
-            </li>
-            <li>
-                <p>20<sup>o</sup>С</p>
-            </li>
-            <li>
-                <div class="humidity">
-                    <img class="img-responsive img_humidity" src="img/humidity.png" alt="Humidity">
-
-                </div>
-            </li>
-            <li>
-                <p>10%</p>
-            </li>
-        </ul>
+    <div class="container furore_regular">
+        <div class="row">
+            <a href="#"> <img class="img-responsive img_logo_nav" src="img/logo_boxer.png" alt="Logo"></a>
+            <div class="nav_tabs">
+                <ul class="list-inline">
+                    <li>
+                        <a href="#">головна</a>
+                    </li>
+                    <li>
+                        <a href="#booking">бронювання боксів</a>
+                    </li>
+                    <li>
+                        <a href="#gallery">галерея</a>
+                    </li>
+                    <li>
+                        <a href="#booking">пакувальні матеріали</a>
+                    </li>
+                    <li>
+                        <a href="#">контакти</a>
+                    </li>
+                    <li>
+                        <a href="#">питання/відповідь</a>
+                    </li>
+                    <li>
+                        <div class="temperature">
+                            <img class="img-responsive img_thermometer" src="img/thermometer.png" alt="Thermometer"> {{temperature}}
+                            <sup>o</sup>С
+                        </div>
+                    </li>
+                    <li>
+                        <div class="humidity">
+                            <img class="img-responsive img_humidity" src="img/humidity.png" alt="Humidity"> {{humidity}}%
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
 </nav>
-<section>
+<!-------------------------------------------------------- Capabilities ------------------------------------------------------------------------------>
+<section id="capabilities">
     <div class="container">
         <div class="row can_store">
             <div class="col-md-6 part-one">
@@ -138,7 +148,8 @@
         </div>
     </div>
 </section>
-<section>
+<!-------------------------------------------------------- Choise ------------------------------------------------------------------------------------>
+<section id="choise">
     <div class="container">
         <div class="row text-center">
             <h3>рішення для зберігання вашого майна</h3>
@@ -147,7 +158,8 @@
         </div>
     </div>
 </section>
-<section>
+<!-------------------------------------------------------- Store ---------------------------------------------------------------------------------->
+<section id="store">
     <div class="container four_steps">
         <div class="row text-center">
             <h3>Чотири кроки для оренди складу</h3>
@@ -182,26 +194,160 @@
         </div>
     </div>
 </section>
-<section>
+<!-------------------------------------------------------- Booking ---------------------------------------------------------------------------------->
+<section id="booking">
     <div class="container">
         <div class="row">
-            <div class="col-md-10 col-xs-offset-1">
-                <form class="calculator_form" id="calculatorForm">
-                    <div class="row from_header text-center">
-                        <h3>КАЛЬКУЛЯТОР ВАРТОСТІ ОРЕНДИ СКЛАДУ ІНДИВІДУАЛЬНОГО ЗБЕРІГАННЯ</h3>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-5">
-                            <div class="row">
-                                <p-slider [(ngModel)]="val" [min]='minSlide' [max]='maxSlide' name='daysSlider'></p-slider>
+            <div class="calculator_section col-md-10 col-xs-offset-1">
+                <div class="row from_header text-center">
+                    <h3>КАЛЬКУЛЯТОР ВАРТОСТІ ОРЕНДИ СКЛАДУ ІНДИВІДУАЛЬНОГО ЗБЕРІГАННЯ</h3>
+                </div>
+                <div class="row">
+                    <div class="col-md-5 col-xs-offset-1">
+                        <div class="row">
+                            <div class="text-center">
+                                <h3>термін зберігання</h3>
+                                <br>
+                                <div class="slider_days">
+                                    <p-slider [(ngModel)]="val" [min]='minSlide' [max]='maxSlide' name='daysSlider'></p-slider>
+                                </div>
+                                {{val}}
                             </div>
                         </div>
-                        <div class="col-md-5">
-                            {{val}}
+                        <div class="row terms_btns">
+                            <div class="btn-toolbar">
+                                <button type="button" class="btn btn-default">1 тиж</button>
+                                <button type="button" class="btn btn-default">1 міс</button>
+                                <button type="button" class="btn btn-default">3 міс</button>
+                                <button type="button" class="btn btn-default">6 міс</button>
+                                <button type="button" class="btn btn-default">6 міс</button>
+                            </div>
+                        </div>
+                        <div class="row dates">
+                            <div class="col-sm-12">
+                                <label for="datePickerFrom">починаючи з</label>
+                                <p-calendar class="date_picker" id='datePickerFrom' [(ngModel)]="dateFrom" readonlyInput="readonlyInput"></p-calendar>
+                                <label for="datePickerTo">до</label>
+                                <p-calendar class='date_picker' id='datePickerTo' [(ngModel)]="dateTo" readonlyInput="readonlyInput"></p-calendar>
+                            </div>
+                        </div>
+
+                        <div class="row box_size">
+                            <h3>розмір боксу</h3>
+                            <br>
+                            <div class="btn-toolbar">
+                                <button type="button" class="btn btn-default">1м<sup>3</sup></button>
+                                <button type="button" class="btn btn-default">3м<sup>3</sup></button>
+                                <button type="button" class="btn btn-default">4м<sup>3</sup></button>
+                                <button type="button" class="btn btn-default">5м<sup>3</sup></button>
+                                <button type="button" class="btn btn-default">6м<sup>3</sup></button>
+                                <button type="button" class="btn btn-default">12м<sup>3</sup></button>
+                            </div>
+                        </div>
+                        <div class="row package_materials">
+                            <img src="./img/add-materials.png" alt="Add materials" /> <a href="#"><u>пакувальні матеріали</u></a>
                         </div>
                     </div>
-                </form>
+                    <div class="col-md-5 col-xs-offset-1">
+                        <div class="row text-center">
+                            <div class="box_img">
+                                <img class="img-responsive" src="./img/box-12m.png" alt="Box-12m" />
+                            </div>
+                        </div>
+                        <div class="row text-center">
+                            <h3>ціна за місяць: {{monthPay}} грн</h3>
+                            <h4>ціна за обраний період: {{periodPay}} грн</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="booking text-center">
+                        <button class="btn btn-default">забронювати</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </section>
+<!-------------------------------------------------------- Gallery ---------------------------------------------------------------------------------->
+<section id="gallery">
+    <div class="container">
+        <div id="slider">
+            <input type="radio" id="button-1" name="controls" />
+            <input type="radio" id="button-2" name="controls" checked />
+            <input type="radio" id="button-3" name="controls" />
+            <input type="radio" id="button-4" name="controls" />
+            <input type="radio" id="button-5" name="controls" />
+            <label for="button-1" class="arrows" id="arrow-1">></label>
+            <label for="button-2" class="arrows" id="arrow-2">></label>
+            <label for="button-3" class="arrows" id="arrow-3">></label>
+            <label for="button-4" class="arrows" id="arrow-4">></label>
+            <label for="button-5" class="arrows" id="arrow-5">></label>
+            <div id="slides">
+                <div class='tk-museo-sans'>
+                    <span id="image-1"></span>
+                    <span id="image-2"></span>
+                    <span id="image-3"></span>
+                    <span id="image-4"></span>
+                    <span id="image-5"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-------------------------------------------------------- Advantages -------------------------------------------------------------------------------->
+<section id="advantages">
+    <div class="container">
+        <div class="advantages">
+            <div class="row text-center">
+                <h3>переваги складу індивідуального зберіганя boxer</h3>
+            </div>
+            <div class="row text-center">
+                <div class="col-md-3">
+                    <img src="./img/advantages-1.png" alt="Advantages">
+                </div>
+                <div class="col-md-3">
+                    <img src="./img/advantages-2.png" alt="Advantages">
+                </div>
+                <div class="col-md-3">
+                    <img src="./img/advantages-3.png" alt="Advantages">
+                </div>
+                <div class="col-md-3">
+                    <img src="./img/advantages-4.png" alt="Advantages">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-------------------------------------------------------- Footer ---------------------------------------------------------------------------------->
+<footer>
+    <div class="container-fluid footer">
+        <div class="container">
+            <div class="row footer_content">
+                <div class="col-md-6">
+                    <ul class="list-unstyled pull-left">
+                        <li>
+                            <a href="#">головна</a>
+                        </li>
+                        <li>
+                            <a href="#">контакти</a>
+                        </li>
+                        <li>
+                            <a href="#">питання/відповідь</a>
+                        </li>
+                        <li>
+                            <a href="#"><img src="./img/fb.png"></a>
+                            <a href="#"><img src="./img/letter.png"></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <div class="footer_logo">
+                        <img class="img_logo_footer pull-right" src="./img/logo_footer.png" alt="Footer logo">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-------------------------------------------------------- End ------------------------------------------------------------------------------------>

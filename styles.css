@@ -1,11 +1,127 @@
-nav.layout {
-    background-color: #DCDFE7;
-    border-color: #DCDFE7;
+/* -----------------Fonts---------------*/
+
+@font-face {
+    font-family: 'Caviar_Dreams_Bold';
+    src: url('fonts/Caviar_Dreams_Bold.eot');
+    src: url('fonts/Caviar_Dreams_Bold.eot') format('embedded-opentype'), url('fonts/Caviar_Dreams_Bold.woff2') format('woff2'), url('fonts/Caviar_Dreams_Bold.woff') format('woff'), url('fonts/Caviar_Dreams_Bold.ttf') format('truetype'), url('fonts/Caviar_Dreams_Bold.svg#Caviar_Dreams_Bold') format('svg');
 }
 
-.color-blue {
-    color: #273279 !important;
+@font-face {
+    font-family: 'CaviarDreams';
+    src: url('fonts/CaviarDreams.eot');
+    src: url('fonts/CaviarDreams.eot') format('embedded-opentype'), url('fonts/CaviarDreams.woff2') format('woff2'), url('fonts/CaviarDreams.woff') format('woff'), url('fonts/CaviarDreams.ttf') format('truetype'), url('fonts/CaviarDreams.svg#CaviarDreams') format('svg');
 }
+
+@font-face {
+    font-family: 'CaviarDreams_BoldItalic';
+    src: url('fonts/CaviarDreams_BoldItalic.eot');
+    src: url('fonts/CaviarDreams_BoldItalic.eot') format('embedded-opentype'), url('fonts/CaviarDreams_BoldItalic.woff2') format('woff2'), url('fonts/CaviarDreams_BoldItalic.woff') format('woff'), url('fonts/CaviarDreams_BoldItalic.ttf') format('truetype'), url('fonts/CaviarDreams_BoldItalic.svg#CaviarDreams_BoldItalic') format('svg');
+}
+
+@font-face {
+    font-family: 'CaviarDreams_Italic';
+    src: url('fonts/CaviarDreams_Italic.eot');
+    src: url('fonts/CaviarDreams_Italic.eot') format('embedded-opentype'), url('fonts/CaviarDreams_Italic.woff2') format('woff2'), url('fonts/CaviarDreams_Italic.woff') format('woff'), url('fonts/CaviarDreams_Italic.ttf') format('truetype'), url('fonts/CaviarDreams_Italic.svg#CaviarDreams_Italic') format('svg');
+}
+
+@font-face {
+    font-family: 'Furore';
+    src: url('fonts/Furore.eot');
+    src: url('fonts/Furore.eot') format('embedded-opentype'), url('fonts/Furore.woff2') format('woff2'), url('fonts/Furore.woff') format('woff'), url('fonts/Furore.ttf') format('truetype'), url('fonts/Furore.svg#Furore') format('svg');
+}
+
+@font-face {
+    font-family: 'JuraDemiBold';
+    src: url('fonts/JuraDemiBold.eot');
+    src: url('fonts/JuraDemiBold.eot') format('embedded-opentype'), url('fonts/JuraDemiBold.woff2') format('woff2'), url('fonts/JuraDemiBold.woff') format('woff'), url('fonts/JuraDemiBold.ttf') format('truetype'), url('fonts/JuraDemiBold.svg#JuraDemiBold') format('svg');
+}
+
+@font-face {
+    font-family: 'JuraLight';
+    src: url('fonts/JuraLight.eot');
+    src: url('fonts/JuraLight.eot') format('embedded-opentype'), url('fonts/JuraLight.woff2') format('woff2'), url('fonts/JuraLight.woff') format('woff'), url('fonts/JuraLight.ttf') format('truetype'), url('fonts/JuraLight.svg#JuraLight') format('svg');
+}
+
+@font-face {
+    font-family: 'JuraMedium';
+    src: url('fonts/JuraMedium.eot');
+    src: url('fonts/JuraMedium.eot') format('embedded-opentype'), url('fonts/JuraMedium.woff2') format('woff2'), url('fonts/JuraMedium.woff') format('woff'), url('fonts/JuraMedium.ttf') format('truetype'), url('fonts/JuraMedium.svg#JuraMedium') format('svg');
+}
+
+@font-face {
+    font-family: 'JuraRegular';
+    src: url('fonts/JuraRegular.eot');
+    src: url('fonts/JuraRegular.eot') format('embedded-opentype'), url('fonts/JuraRegular.woff2') format('woff2'), url('fonts/JuraRegular.woff') format('woff'), url('fonts/JuraRegular.ttf') format('truetype'), url('fonts/JuraRegular.svg#JuraRegular') format('svg');
+}
+
+.caviar_regular {
+    font-family: 'CaviarDreams';
+}
+
+.furore_regular {
+    font-family: 'Furore';
+}
+
+
+/*------------------Header-----------------------------------*/
+
+header {
+    background-color: #ebebeb;
+}
+
+header .container {
+    font-size: 11pt;
+}
+
+header p {
+    margin: 0;
+}
+
+header .row.phones_section {
+    margin-top: 10px;
+}
+
+.header_text_blue {
+    color: #4b5286;
+}
+
+
+/*-------------------Nav-----------------------------------*/
+
+nav {
+    background-color: #dcdfe7;
+    font-size: 10pt;
+}
+
+.nav_text_blue,
+nav .furore_regular a {
+    color: #283278;
+}
+
+nav .nav_tabs {
+    margin-top: 1em;
+}
+
+.img_logo_nav {
+    height: 3.5em;
+    clear: both;
+    float: left;
+}
+
+.img_thermometer {
+    height: 1.2em;
+    clear: left;
+    float: left;
+}
+
+.img_humidity {
+    width: 0.8em;
+    clear: left;
+    float: left;
+}
+
+
+/*------------------------------------------------------------*/
 
 .background-turquoise {
     /*background-color: #ffd15b;*/
@@ -60,21 +176,6 @@ div.can_store .part-two:hover {
 }
 
 
-/* Navigation */
-
-.img_logo_nav {
-    width: 200px;
-}
-
-.img_thermometer {
-    width: 20px;
-}
-
-.img_humidity {
-    width: 30px;
-}
-
-
 /* Four step section */
 
 .logo_second {
@@ -89,11 +190,49 @@ div.can_store .part-two:hover {
 
 /* Calculator */
 
-.calculator_form {
+.calculator_section {
     background-color: #E5E3E3;
 }
 
 .from_header {
     background-color: #495086;
     color: white;
+}
+
+.terms_btns,
+.dates,
+.box_size,
+.package_materials,
+.booking {
+    margin-top: 1em;
+}
+
+.date_picker .undefined.ui-inputtext {
+    width: 115px;
+}
+
+.booking {
+    width: auto;
+}
+
+div.advantages {
+    background-color: #f4f4f4;
+    margin: 0 3em 0 3em;
+}
+
+footer .footer {
+    background-color: #b2b4b9;
+}
+
+.footer_content {
+    margin: 2em 2em 2em 2em;
+}
+
+.footer_logo {
+    margin-top: 1em;
+}
+
+.img_logo_footer {
+    top: 20%;
+    width: 40%;
 }

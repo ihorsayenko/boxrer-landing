@@ -3,8 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 
-import {InputTextModule} from 'primeng/primeng';
-import {SliderModule} from 'primeng/primeng';
+import { InputTextModule } from 'primeng/primeng';
+import { SliderModule } from 'primeng/primeng';
+import { CalendarModule } from 'primeng/primeng';
 
 
 @NgModule({
@@ -12,11 +13,12 @@ import {SliderModule} from 'primeng/primeng';
         BrowserModule,
         FormsModule,
         InputTextModule,
-        SliderModule
-        ],
+        SliderModule,
+        CalendarModule
+    ],
     declarations: [
         AppComponent
-        ],
+    ],
     bootstrap: [AppComponent],
     exports: []
 

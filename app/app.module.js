@@ -14,6 +14,7 @@ var app_component_1 = require('./app.component');
 var forms_1 = require('@angular/forms');
 var primeng_1 = require('primeng/primeng');
 var primeng_2 = require('primeng/primeng');
+var primeng_3 = require('primeng/primeng');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -23,7 +24,8 @@ var AppModule = (function () {
                 platform_browser_1.BrowserModule,
                 forms_1.FormsModule,
                 primeng_1.InputTextModule,
-                primeng_2.SliderModule
+                primeng_2.SliderModule,
+                primeng_3.CalendarModule
             ],
             declarations: [
                 app_component_1.AppComponent
