@@ -13,9 +13,9 @@ var AppComponent = (function () {
     function AppComponent() {
         this.humidity = 50;
         this.temperature = 25;
-        this.val = 15;
+        this.val = 0;
         this.minSlide = 0;
-        this.maxSlide = 20;
+        this.maxSlide = 365;
         this.monthPay = 1000;
         this.periodPay = 800;
     }

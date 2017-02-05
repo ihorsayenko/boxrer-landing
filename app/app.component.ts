@@ -11,9 +11,9 @@ import { Component } from '@angular/core';
 export class AppComponent {
     humidity: Number = 50;
     temperature: Number = 25;
-    val: Number = 15;
+    val: Number = 0;
     minSlide: Number = 0;
-    maxSlide: Number = 20;
+    maxSlide: Number = 365;
 
     monthPay: number = 1000;
     periodPay: number = 800;

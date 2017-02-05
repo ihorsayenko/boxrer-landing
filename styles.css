@@ -62,6 +62,22 @@
     font-family: 'Furore';
 }
 
+.jura_medium {
+    font-family: 'JuraMedium';
+}
+
+.jura_bold {
+    font-family: 'JuraDemiBold';
+}
+
+
+/*------------------Main-------------------------------------*/
+
+section .container {
+    background-color: #ececec;
+    padding-bottom: 6em;
+}
+
 
 /*------------------Header-----------------------------------*/
 
@@ -89,7 +105,7 @@ header .row.phones_section {
 /*-------------------Nav-----------------------------------*/
 
 nav {
-    background-color: #dcdfe7;
+    background-color: #dcdfe7 !important;
     font-size: 10pt;
 }
 
@@ -123,14 +139,20 @@ nav .nav_tabs {
 
 /*----------------Capabilities---------------------------------*/
 
+section .container-fluid {
+    background-color: #6E9489;
+    height: 397px;
+}
+
 .can_store img {
     height: 3em;
     width: auto;
 }
 
-.can_store {
-    font-size: 10pt;
+.can_store p {
+    font-size: 8pt;
     color: #ffffff;
+    margin: 0;
 }
 
 .part-one .row.store_item .col-sm-1 {
@@ -152,7 +174,7 @@ nav .nav_tabs {
 }
 
 .item_margin_bottom {
-    margin-bottom: 3em;
+    margin-bottom: 3.7em;
 }
 
 div.can_store .part-one {
@@ -190,32 +212,135 @@ div.can_store .part-two:hover {
 }
 
 
-/* Four step section */
+/*----------------Choice---------------------------------*/
+
+.container.choice {
+    padding-top: 6em;
+    font-size: 14pt;
+    color: #253072;
+}
 
 .logo_second {
     width: 400px;
     margin: auto;
 }
 
+
+/* Four step section */
+
+.four_steps p {
+    color: #818387;
+    font-size: 11px;
+    margin-bottom: 0;
+}
+
+.container .header_text,
+.allowed,
+.prohibited {
+    color: #253072;
+}
+
 .four_steps_img {
     margin: auto;
+}
+
+.select_size_text {
+    padding-top: 15px;
+}
+
+.find_us_text {
+    padding-left: 5px;
+    padding-bottom: 15px;
+}
+
+.booking_box_text {
+    padding-right: 40px;
 }
 
 
 /* Calculator */
 
-.calculator_section {
+.calculator {
     background-color: #E5E3E3;
+    padding-bottom: 2em;
 }
 
 .from_header {
-    background-color: #495086;
-    color: white;
+    background-color: #4b5286;
+    color: #ffffff;
+}
+
+.tersm_text {
+    padding-top: 2em;
+    color: #253072;
+    font-size: 20px;
+}
+
+.ui-slider-horizontal {
+    height: 4px !important;
+    background-color: #b2b4b9 !important;
+    border-color: #b2b4b9 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    margin-bottom: 2em;
+}
+
+.ui-slider .ui-slider-handle {
+    background: none !important;
+    top: -6px !important;
+}
+
+span.ui-slider-handle.ui-state-default.ui-corner-all {
+    top: -13px !important;
+    width: 30px !important;
+    height: 30px !important;
+    background-color: #f3a216 !important;
+    -moz-transition: #f3a216 0.3s !important;
+    -o-transition: #f3a216 0.3s !important;
+    -webkit-transition: #f3a216 0.3s !important;
+    transition: #f3a216 0.3s !important;
+    -moz-border-radius: 100% !important;
+    -webkit-border-radius: 100% !important;
+    border-radius: 100% !important;
+    border: 5px solid #4b5286 !important;
+}
+
+input.undefined.ui-inputtext.ui-corner-all.ui-state-default.ui-widget.ui-state-filled {
+    font-family: 'JuraDemiBold';
+}
+
+.terms_btns button {
+    width: 71px;
+}
+
+.box_size_btns button {
+    width: 50px;
+}
+
+.terms_btns button,
+.box_size_btns button {
+    color: #ffffff;
+    background-color: #b2b4b9;
+    border: 0;
+    outline: none !important;
+    border-radius: 10px !important;
+}
+
+.terms_btns button:hover,
+.box_size_btns button:hover {
+    background-color: #7e818a;
+    color: #ffffff;
+}
+
+.active_btn {
+    background-color: #4b5286 !important;
+    color: #ffffff !important;
 }
 
 .terms_btns,
 .dates,
-.box_size,
+.box_size_btns,
 .package_materials,
 .booking {
     margin-top: 1em;
@@ -225,8 +350,38 @@ div.can_store .part-two:hover {
     width: 115px;
 }
 
-.booking {
-    width: auto;
+.box_size_text {
+    color: #253072;
+    font-size: 20px;
+}
+
+.package_materials_link {
+    color: #253072;
+    font-size: 14px;
+}
+
+.prices_text {
+    color: #253072;
+}
+
+.booking_btn_wrapper {
+    margin: auto;
+}
+
+.booking_btn_wrapper button {
+    border: 0;
+    outline: none !important;
+    border-radius: 10px !important;
+    color: #ffffff;
+    background-color: #f3a216;
+    width: 250px;
+    font-size: 20px;
+}
+
+.booking_btn_wrapper button:hover {
+    color: #ffffff;
+    background-color: #f3a216;
+    opacity: 0.8;
 }
 
 div.advantages {
