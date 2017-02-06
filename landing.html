@@ -269,20 +269,20 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row ">
+                        <div class="row">
                             <div id="termsBtns" class="btn-toolbar terms_btns">
                                 <button type="button" class="btn btn-default active_btn">1 тиж</button>
                                 <button type="button" class="btn btn-default">1 міс</button>
                                 <button type="button" class="btn btn-default">3 міс</button>
                                 <button type="button" class="btn btn-default">6 міс</button>
-                                <button type="button" class="btn btn-default">6 міс</button>
+                                <button type="button" class="btn btn-default">1 рік</button>
                             </div>
                         </div>
                         <div class="row dates">
                             <div class="col-sm-12">
-                                <label for="datePickerFrom">починаючи з</label>
+                                <label class="calculator_text_color_blue" for="datePickerFrom">починаючи з</label>
                                 <p-calendar class="date_picker" id='datePickerFrom' [(ngModel)]="dateFrom" readonlyInput="readonlyInput"></p-calendar>
-                                <label for="datePickerTo">до</label>
+                                <label class='calculator_text_color_blue' for="datePickerTo">до</label>
                                 <p-calendar class='date_picker' id='datePickerTo' [(ngModel)]="dateTo" readonlyInput="readonlyInput"></p-calendar>
                             </div>
                         </div>
@@ -355,12 +355,13 @@
 </section>
 <!-------------------------------------------------------- Advantages -------------------------------------------------------------------------------->
 <section id="advantages">
-    <div class="container">
+    <div class="container furore_regular">
         <div class="advantages">
-            <div class="row text-center">
-                <h3>переваги складу індивідуального зберіганя boxer</h3>
+            <div class="row text-center prices_text ">
+                <h4>переваги складу індивідуального зберіганя boxer</h4>
+                <hr style='height: 2px; background-color: #ffffff; margin: 0 18em 0 18em;'>
             </div>
-            <div class="row text-center">
+            <div class="row text-center advantages_items">
                 <div class="col-md-3">
                     <img src="./img/advantages-1.png" alt="Advantages">
                 </div>
@@ -381,17 +382,17 @@
 <footer>
     <div class="container-fluid footer">
         <div class="container">
-            <div class="row footer_content">
+            <div class="row footer_content jura_medium">
                 <div class="col-md-6">
                     <ul class="list-unstyled pull-left">
                         <li>
-                            <a href="#">головна</a>
+                            <a class='footer_text' href="#">головна</a>
                         </li>
                         <li>
-                            <a href="#">контакти</a>
+                            <a class='footer_text' href="#">контакти</a>
                         </li>
                         <li>
-                            <a href="#">питання/відповідь</a>
+                            <a class='footer_text' href="#">питання/відповідь</a>
                         </li>
                         <li>
                             <a href="#"><img src="./img/fb.png"></a>
