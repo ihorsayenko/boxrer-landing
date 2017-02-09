@@ -10,8 +10,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
-var app_component_1 = require('./app.component');
 var forms_1 = require('@angular/forms');
+var router_1 = require('@angular/router');
+var app_component_1 = require('./app.component');
+var contacts_component_1 = require('./contacts.component');
+var main_component_1 = require('./main.component');
+var package_gallery_component_1 = require('./package-gallery.component');
 var primeng_1 = require('primeng/primeng');
 var primeng_2 = require('primeng/primeng');
 var primeng_3 = require('primeng/primeng');
@@ -25,10 +29,31 @@ var AppModule = (function () {
                 forms_1.FormsModule,
                 primeng_1.InputTextModule,
                 primeng_2.SliderModule,
-                primeng_3.CalendarModule
+                primeng_3.CalendarModule,
+                router_1.RouterModule.forRoot([
+                    {
+                        path: 'boxer',
+                        component: main_component_1.MainComponent
+                    },
+                    {
+                        path: 'contacts',
+                        component: contacts_component_1.ContactsComponent
+                    },
+                    {
+                        path: 'gallery',
+                        component: package_gallery_component_1.PackageGalleryComponent
+                    },
+                    {
+                        path: '',
+                        redirectTo: '/boxer',
+                        pathMatch: 'full'
+                    }])
             ],
             declarations: [
-                app_component_1.AppComponent
+                app_component_1.AppComponent,
+                contacts_component_1.ContactsComponent,
+                main_component_1.MainComponent,
+                package_gallery_component_1.PackageGalleryComponent
             ],
             bootstrap: [app_component_1.AppComponent],
             exports: []

@@ -1,11 +1,17 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+
+import { AppComponent } from './app.component';
+import { ContactsComponent } from './contacts.component';
+import { MainComponent } from './main.component';
+import { PackageGalleryComponent } from './package-gallery.component';
 
 import { InputTextModule } from 'primeng/primeng';
 import { SliderModule } from 'primeng/primeng';
 import { CalendarModule } from 'primeng/primeng';
+
 
 
 @NgModule({
@@ -14,10 +20,32 @@ import { CalendarModule } from 'primeng/primeng';
         FormsModule,
         InputTextModule,
         SliderModule,
-        CalendarModule
+        CalendarModule,
+        RouterModule.forRoot([
+            {
+                path: 'boxer',
+                component: MainComponent
+            },
+            {
+                path: 'contacts',
+                component: ContactsComponent
+            },
+            {
+                path: 'gallery',
+                component: PackageGalleryComponent
+
+            },
+            {
+                path: '',
+                redirectTo: '/boxer',
+                pathMatch: 'full'
+            }])
     ],
     declarations: [
-        AppComponent
+        AppComponent,
+        ContactsComponent,
+        MainComponent,
+        PackageGalleryComponent
     ],
     bootstrap: [AppComponent],
     exports: []

@@ -81,16 +81,21 @@ section .container {
 
 /*------------------Header-----------------------------------*/
 
-header {
+header .container {
+    font-size: 10pt;
     background-color: #ebebeb;
 }
 
-header .container {
-    font-size: 11pt;
+.header_main_row {
+    margin-bottom: 3px;
 }
 
 header p {
     margin: 0;
+}
+
+header .container .row {
+    line-height: 15px;
 }
 
 header .row.phones_section {
@@ -128,12 +133,14 @@ nav .nav_tabs {
     height: 1.2em;
     clear: left;
     float: left;
+    margin-right: 3px;
 }
 
 .img_humidity {
     width: 0.8em;
     clear: left;
     float: left;
+    margin-right: 3px;
 }
 
 
@@ -392,6 +399,9 @@ input.undefined.ui-inputtext.ui-corner-all.ui-state-default.ui-widget.ui-state-f
     color: #3b437b;
 }
 
+
+/*Advanteges*/
+
 div.advantages {
     background-color: #f4f4f4;
     margin: 0 3em 0 3em;
@@ -401,6 +411,9 @@ div.advantages {
 .advantages_items {
     margin-top: 3em;
 }
+
+
+/*Footer*/
 
 footer .footer {
     background-color: #b2b4b9;
@@ -422,4 +435,9 @@ footer .footer {
 .footer_text {
     color: #ffffff;
     font-size: 14pt;
+}
+
+.fb_icon,
+.letter_icon {
+    margin: 0.5em 0.5em 0 0;
 }

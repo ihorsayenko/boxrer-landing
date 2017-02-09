@@ -9,20 +9,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var AppComponent = (function () {
-    function AppComponent() {
+var MainComponent = (function () {
+    function MainComponent() {
         this.humidity = 50;
         this.temperature = 25;
+        this.val = 0;
+        this.minSlide = 0;
+        this.maxSlide = 365;
+        this.monthPay = 1000;
+        this.periodPay = 800;
     }
-    AppComponent = __decorate([
+    MainComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
-            selector: 'my-app',
-            templateUrl: '../landing.html'
+            selector: 'landing',
+            templateUrl: '../content.html'
         }), 
         __metadata('design:paramtypes', [])
-    ], AppComponent);
-    return AppComponent;
+    ], MainComponent);
+    return MainComponent;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.MainComponent = MainComponent;
+//# sourceMappingURL=main.component.js.map
