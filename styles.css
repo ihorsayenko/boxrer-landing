@@ -441,3 +441,12 @@ footer .footer {
 .letter_icon {
     margin: 0.5em 0.5em 0 0;
 }
+
+
+/*Contacts*/
+
+.contacts .contacts_info {
+    padding: 10em 0 0 0;
+    color: #283379;
+    font-size: 12px;
+}
