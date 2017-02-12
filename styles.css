@@ -111,7 +111,7 @@ header .row.phones_section {
 
 nav {
     background-color: #dcdfe7 !important;
-    font-size: 10pt;
+    font-size: 8pt;
 }
 
 .nav_text_blue,
@@ -445,8 +445,57 @@ footer .footer {
 
 /*Contacts*/
 
+.map_section {
+    padding-top: 2em;
+}
+
+.map_section .nav-tabs li {
+    width: 95px;
+    height: 22px;
+}
+
+.map_section .nav-tabs li a,
+map_section .nav-tabs li a:hover {
+    border: none;
+    border-radius: 0;
+    font-size: 12px;
+    padding: 0 15px 0 15px;
+    background-color: #ffffff;
+    color: #283379;
+}
+
+.map_section li.active a,
+.map_section li.active a:hover,
+.map_section li.active a:focus {
+    background-color: #4b5286;
+    color: #ffffff;
+    border: none;
+    border-radius: 0;
+    padding: 0 15px 0 15px;
+}
+
+.map_section .tab-content {
+    border: 1px solid #000000;
+}
+
 .contacts .contacts_info {
-    padding: 10em 0 0 0;
+    padding-top: 8em;
     color: #283379;
     font-size: 12px;
+}
+
+.working_time {
+    padding-right: 7px;
+}
+
+.sunday_time {
+    padding-right: 17px;
+}
+
+.working_time_section .row {
+    line-height: 6px;
+}
+
+.cconntact_with_us {
+    font-size: 14px;
 }
