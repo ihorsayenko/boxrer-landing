@@ -12,6 +12,7 @@ var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
 var forms_1 = require('@angular/forms');
 var router_1 = require('@angular/router');
+var http_1 = require('@angular/http');
 var app_component_1 = require('./app.component');
 var contacts_component_1 = require('./contacts.component');
 var main_component_1 = require('./main.component');
@@ -19,6 +20,7 @@ var package_gallery_component_1 = require('./package-gallery.component');
 var primeng_1 = require('primeng/primeng');
 var primeng_2 = require('primeng/primeng');
 var primeng_3 = require('primeng/primeng');
+var common_service_1 = require('./common.service');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -30,6 +32,7 @@ var AppModule = (function () {
                 primeng_1.InputTextModule,
                 primeng_2.SliderModule,
                 primeng_3.CalendarModule,
+                http_1.HttpModule,
                 router_1.RouterModule.forRoot([
                     {
                         path: 'boxer',
@@ -56,7 +59,7 @@ var AppModule = (function () {
                 package_gallery_component_1.PackageGalleryComponent
             ],
             bootstrap: [app_component_1.AppComponent],
-            exports: []
+            providers: [common_service_1.CommonService]
         }), 
         __metadata('design:paramtypes', [])
     ], AppModule);

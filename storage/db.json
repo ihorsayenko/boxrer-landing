@@ -1,0 +1,20 @@
+{
+    "Temprature": 55,
+    "Humidity": 71,
+    "QuestionItems": [{
+            "Id": 0,
+            "Question": "Hellou",
+            "Answer": "Yes!"
+        },
+        {
+            "Id": 1,
+            "Question": "Hellou",
+            "Answer": "No!"
+        },
+        {
+            "Id": 2,
+            "Question": "Hellou",
+            "Answer": "Maybe!"
+        }
+    ]
+}

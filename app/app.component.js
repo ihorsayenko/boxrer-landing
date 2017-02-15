@@ -9,18 +9,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var common_service_1 = require('./common.service');
 var AppComponent = (function () {
-    function AppComponent() {
-        this.humidity = 50;
-        this.temperature = 25;
+    function AppComponent(storage) {
+        this.storage = storage;
     }
+    AppComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.storage.getData().then(function (item) { return _this.initVariables(item); });
+        debugger;
+    };
+    AppComponent.prototype.initVariables = function (item) {
+        this.data = item;
+        this.humidity = this.data.Humidity;
+        this.temperature = this.data.Temprature;
+    };
     AppComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
             selector: 'my-app',
-            templateUrl: '../landing.html'
+            templateUrl: '../landing.html',
+            providers: [common_service_1.CommonService]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [common_service_1.CommonService])
     ], AppComponent);
     return AppComponent;
 }());
