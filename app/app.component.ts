@@ -13,9 +13,7 @@ import { CommonModal } from './common.model'
 })
 
 export class AppComponent implements OnInit {
-    data: CommonModal;
-    constructor(private storage: CommonService) {
-    }
+    constructor(private storage: CommonService) { }
 
     humidity: Number;
     temperature: Number;
@@ -23,12 +21,10 @@ export class AppComponent implements OnInit {
 
     ngOnInit(): void {
         this.storage.getData().then(item => this.initVariables(item));
-        debugger;
     }
 
     initVariables(item: CommonModal) {
-        this.data = item;
-        this.humidity = this.data.Humidity;
-        this.temperature = this.data.Temprature;
+        this.humidity = item.Humidity;
+        this.temperature = item.Temprature;
     }
 }

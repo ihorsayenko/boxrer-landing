@@ -16,8 +16,6 @@ import { CalendarModule } from 'primeng/primeng';
 
 import { CommonService } from './common.service';
 
-
-
 @NgModule({
     imports: [
         BrowserModule,
@@ -34,6 +32,10 @@ import { CommonService } from './common.service';
             {
                 path: 'contacts',
                 component: ContactsComponent
+            },
+            {
+                path: 'question',
+                component: QuestionAnswerComponnent
             },
             {
                 path: 'gallery',
@@ -57,4 +59,4 @@ import { CommonService } from './common.service';
     providers: [CommonService]
 
 })
-export class AppModule {}
+export class AppModule { }

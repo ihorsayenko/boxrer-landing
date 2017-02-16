@@ -1,0 +1,19 @@
+<section id='questionAnswerId'>
+    <div class="container">
+        <div class="row text-center title_text furore_regular">Питання та відповіді щодо зберігання та оренди боксів на складі КОМОРА</div>
+        <div class="row table_secton">
+            <ul class="list-group">
+                <li class="list-group-item" *ngFor='let item of Items'>
+                    <div class="row">
+                        <div class="col-md-1 text-center">
+                            <span class="badge">{{item.Id}}</span>
+                        </div>
+                        <div class="col-md-10">
+                            <span>{{item.Question}}</span>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>

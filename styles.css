@@ -112,6 +112,7 @@ header .row.phones_section {
 nav {
     background-color: #dcdfe7 !important;
     font-size: 8pt;
+    box-shadow: 1px 2px 3px 0px rgba(0, 0, 0, 0.35);
 }
 
 .nav_text_blue,
@@ -498,4 +499,30 @@ map_section .nav-tabs li a:hover {
 
 .cconntact_with_us {
     font-size: 14px;
+}
+
+
+/*Question section*/
+
+.title_text {
+    margin-top: 3em;
+    font-size: 14px;
+    transform: scaleX(1.1728);
+    color: #293379;
+}
+
+.table_secton {
+    margin: 2em 1em 0 1em;
+}
+
+.table_secton li {
+    margin-bottom: 0.5em;
+}
+
+.table_secton li .col-md-1 {
+    padding: 0 30px 0 30px;
+}
+
+.box_shadow {
+    box-shadow: 1px 3px 6px 0px rgba(0, 0, 0, 0.39);
 }

@@ -17,6 +17,7 @@ var app_component_1 = require('./app.component');
 var contacts_component_1 = require('./contacts.component');
 var main_component_1 = require('./main.component');
 var package_gallery_component_1 = require('./package-gallery.component');
+var question_answer_component_1 = require('./question-answer.component');
 var primeng_1 = require('primeng/primeng');
 var primeng_2 = require('primeng/primeng');
 var primeng_3 = require('primeng/primeng');
@@ -43,6 +44,10 @@ var AppModule = (function () {
                         component: contacts_component_1.ContactsComponent
                     },
                     {
+                        path: 'question',
+                        component: question_answer_component_1.QuestionAnswerComponnent
+                    },
+                    {
                         path: 'gallery',
                         component: package_gallery_component_1.PackageGalleryComponent
                     },
@@ -56,7 +61,8 @@ var AppModule = (function () {
                 app_component_1.AppComponent,
                 contacts_component_1.ContactsComponent,
                 main_component_1.MainComponent,
-                package_gallery_component_1.PackageGalleryComponent
+                package_gallery_component_1.PackageGalleryComponent,
+                question_answer_component_1.QuestionAnswerComponnent
             ],
             bootstrap: [app_component_1.AppComponent],
             providers: [common_service_1.CommonService]

@@ -10,28 +10,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var common_service_1 = require('./common.service');
-var AppComponent = (function () {
-    function AppComponent(storage) {
+var QuestionAnswerComponnent = (function () {
+    function QuestionAnswerComponnent(storage) {
         this.storage = storage;
     }
-    AppComponent.prototype.ngOnInit = function () {
+    QuestionAnswerComponnent.prototype.ngOnInit = function () {
         var _this = this;
-        this.storage.getData().then(function (item) { return _this.initVariables(item); });
+        this.storage.getData().then(function (item) { return _this.Items = item.QuestionItems; });
     };
-    AppComponent.prototype.initVariables = function (item) {
-        this.humidity = item.Humidity;
-        this.temperature = item.Temprature;
-    };
-    AppComponent = __decorate([
+    QuestionAnswerComponnent = __decorate([
         core_1.Component({
             moduleId: module.id,
-            selector: 'my-app',
-            templateUrl: '../landing.html',
-            providers: [common_service_1.CommonService]
+            selector: 'qiestion-answer',
+            templateUrl: '../question-answer.html'
         }), 
         __metadata('design:paramtypes', [common_service_1.CommonService])
-    ], AppComponent);
-    return AppComponent;
+    ], QuestionAnswerComponnent);
+    return QuestionAnswerComponnent;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.QuestionAnswerComponnent = QuestionAnswerComponnent;
+//# sourceMappingURL=question-answer.component.js.map
