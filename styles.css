@@ -512,17 +512,22 @@ map_section .nav-tabs li a:hover {
 }
 
 .table_secton {
-    margin: 2em 1em 0 1em;
+    margin-top: 2.5em;
 }
 
 .table_secton li {
-    margin-bottom: 0.5em;
+    margin: 0.5em 3em 0 3em;
 }
 
 .table_secton li .col-md-1 {
     padding: 0 30px 0 30px;
 }
 
-.box_shadow {
+.full_box {
     box-shadow: 1px 3px 6px 0px rgba(0, 0, 0, 0.39);
+    margin: 0.5em 2em 0 2em !important;
+}
+
+.answer {
+    margin-top: 0.5em;
 }

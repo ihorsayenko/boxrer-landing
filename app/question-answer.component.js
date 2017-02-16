@@ -13,10 +13,15 @@ var common_service_1 = require('./common.service');
 var QuestionAnswerComponnent = (function () {
     function QuestionAnswerComponnent(storage) {
         this.storage = storage;
+        this.isOpen = false;
     }
     QuestionAnswerComponnent.prototype.ngOnInit = function () {
         var _this = this;
         this.storage.getData().then(function (item) { return _this.Items = item.QuestionItems; });
+    };
+    QuestionAnswerComponnent.prototype.toggle = function (id) {
+        this.openItemId = id;
+        this.isOpen = !this.isOpen;
     };
     QuestionAnswerComponnent = __decorate([
         core_1.Component({

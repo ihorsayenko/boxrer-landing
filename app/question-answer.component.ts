@@ -11,10 +11,17 @@ import { CommonService } from './common.service';
 export class QuestionAnswerComponnent implements OnInit {
 
     Items: any[];
+    isOpen: Boolean = false;
+    openItemId: Number;
     constructor(private storage: CommonService) {
     }
 
     ngOnInit(): void {
         this.storage.getData().then(item => this.Items = item.QuestionItems as any);
+    }
+
+    toggle(id: Number): void{
+        this.openItemId = id;
+        this.isOpen = !this.isOpen;
     }
 }

@@ -1,15 +1,27 @@
 <section id='questionAnswerId'>
     <div class="container">
-        <div class="row text-center title_text furore_regular">Питання та відповіді щодо зберігання та оренди боксів на складі КОМОРА</div>
+        <div class="row text-center title_text furore_regular">
+            Питання та відповіді щодо зберігання та оренди боксів на складі КОМОРА
+        </div>
         <div class="row table_secton">
             <ul class="list-group">
-                <li class="list-group-item" *ngFor='let item of Items'>
+                <li [id]='i' class="list-group-item" [ngClass]="openItemId == i && isOpen ? 'full_box': ''" *ngFor='let item of Items; let i = index;'>
                     <div class="row">
                         <div class="col-md-1 text-center">
                             <span class="badge">{{item.Id}}</span>
                         </div>
                         <div class="col-md-10">
-                            <span>{{item.Question}}</span>
+                            <div class="row">
+                                <span>{{item.Question}}</span>
+                            </div>
+                            <div class="row">
+                                <div [id]='i' class="answer" [ngClass]="openItemId == i  && isOpen ? '': 'hide'">
+                                    {{item.Answer}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+                            <span (click)="toggle(i)" [ngClass]="openItemId == i  && isOpen ? 'glyphicon glyphicon-chevron-up' : 'glyphicon glyphicon-chevron-down'"> </span>
                         </div>
                     </div>
                 </li>
