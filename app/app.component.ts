@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 
 import { CommonService } from './common.service';
 

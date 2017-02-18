@@ -12,6 +12,30 @@ var core_1 = require('@angular/core');
 var ContactsComponent = (function () {
     function ContactsComponent() {
     }
+    ContactsComponent.prototype.ngOnInit = function () {
+        this.initGoogleMap();
+    };
+    ContactsComponent.prototype.initGoogleMap = function () {
+        var directionsService = new google.maps.DirectionsService;
+        var directionsDisplay = new google.maps.DirectionsRenderer;
+        var boxerCoordinates = { lat: 49.813583, lng: 24.056690 };
+        var map = new google.maps.Map(document.getElementById('map'), {
+            scaleControl: true,
+            zoom: 17,
+            center: boxerCoordinates
+        });
+        var infowindow = new google.maps.InfoWindow;
+        infowindow.setContent('Boxer');
+        directionsDisplay.setMap(map);
+        var marker = new google.maps.Marker({
+            map: map,
+            icon: '../img/logo_boxer.png',
+            position: boxerCoordinates
+        });
+        marker.addListener('click', function () {
+            infowindow.open(map, marker);
+        });
+    };
     ContactsComponent = __decorate([
         core_1.Component({
             moduleId: module.id,

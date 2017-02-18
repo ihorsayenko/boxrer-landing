@@ -477,6 +477,8 @@ map_section .nav-tabs li a:hover {
 
 .map_section .tab-content {
     border: 1px solid #000000;
+    width: 30em;
+    height: 20em;
 }
 
 .contacts .contacts_info {
@@ -497,8 +499,13 @@ map_section .nav-tabs li a:hover {
     line-height: 6px;
 }
 
-.cconntact_with_us {
+.conntact_with_us {
     font-size: 14px;
+}
+
+.map {
+    height: 100%;
+    width: 100%;
 }
 
 
