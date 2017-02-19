@@ -18,22 +18,29 @@ export class ContactsComponent implements OnInit {
         let directionsService = new google.maps.DirectionsService;
         let directionsDisplay = new google.maps.DirectionsRenderer;
 
-        let boxerCoordinates = { lat: 49.813583, lng: 24.056690 }
+        let boxerCoordinates = { lat: 49.813486, lng: 24.056196 }
 
-        var map = new google.maps.Map(document.getElementById('map'), {
+        let map = new google.maps.Map(document.getElementById('map'), {
             scaleControl: true,
-            zoom: 17,
+            zoom: 16,
             center: boxerCoordinates
         });
 
-        var infowindow = new google.maps.InfoWindow;
+        let infowindow = new google.maps.InfoWindow;
         infowindow.setContent('Boxer')
 
         directionsDisplay.setMap(map);
 
-        var marker = new google.maps.Marker({
+        let icon = {
+            url: "../img/box.png", // url
+            scaledSize: new google.maps.Size(40, 20), // scaled size
+            origin: new google.maps.Point(0, 0), // origin
+            anchor: new google.maps.Point(0, 0) // anchor
+        };
+
+        let marker = new google.maps.Marker({
             map: map,
-            icon: '../img/logo_boxer.png',
+            icon: icon,
             position: boxerCoordinates
         });
 

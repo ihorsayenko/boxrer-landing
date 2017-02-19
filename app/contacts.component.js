@@ -18,18 +18,24 @@ var ContactsComponent = (function () {
     ContactsComponent.prototype.initGoogleMap = function () {
         var directionsService = new google.maps.DirectionsService;
         var directionsDisplay = new google.maps.DirectionsRenderer;
-        var boxerCoordinates = { lat: 49.813583, lng: 24.056690 };
+        var boxerCoordinates = { lat: 49.813486, lng: 24.056196 };
         var map = new google.maps.Map(document.getElementById('map'), {
             scaleControl: true,
-            zoom: 17,
+            zoom: 16,
             center: boxerCoordinates
         });
         var infowindow = new google.maps.InfoWindow;
         infowindow.setContent('Boxer');
         directionsDisplay.setMap(map);
+        var icon = {
+            url: "../img/box.png",
+            scaledSize: new google.maps.Size(40, 20),
+            origin: new google.maps.Point(0, 0),
+            anchor: new google.maps.Point(0, 0) // anchor
+        };
         var marker = new google.maps.Marker({
             map: map,
-            icon: '../img/logo_boxer.png',
+            icon: icon,
             position: boxerCoordinates
         });
         marker.addListener('click', function () {
