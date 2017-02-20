@@ -452,7 +452,6 @@ footer .footer {
 
 .map_section .nav-tabs li {
     width: 95px;
-    height: 22px;
 }
 
 .map_section .nav-tabs li a,
@@ -482,9 +481,13 @@ map_section .nav-tabs li a:hover {
 }
 
 .contacts .contacts_info {
-    padding-top: 8em;
+    padding-top: 6em;
     color: #283379;
     font-size: 12px;
+}
+
+.contacts_info a {
+    color: #283379;
 }
 
 .working_time {
@@ -500,6 +503,7 @@ map_section .nav-tabs li a:hover {
 }
 
 .conntact_with_us {
+    padding-top: 2em;
     font-size: 14px;
 }
 

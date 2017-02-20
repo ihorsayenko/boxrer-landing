@@ -29,9 +29,9 @@ var ContactsComponent = (function () {
         directionsDisplay.setMap(map);
         var icon = {
             url: "../img/box.png",
-            scaledSize: new google.maps.Size(40, 20),
+            scaledSize: new google.maps.Size(60, 55),
             origin: new google.maps.Point(0, 0),
-            anchor: new google.maps.Point(0, 0) // anchor
+            anchor: new google.maps.Point(5, 50) // anchor
         };
         var marker = new google.maps.Marker({
             map: map,

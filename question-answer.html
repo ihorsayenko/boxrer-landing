@@ -8,7 +8,7 @@
                 <li [id]='i' class="list-group-item" [ngClass]="openItemId == i && isOpen ? 'full_box': ''" *ngFor='let item of Items; let i = index;'>
                     <div class="row">
                         <div class="col-md-1 text-center">
-                            <span class="badge">{{item.Id}}</span>
+                            <span class="badge"><span>{{item.Id}}</span></span>
                         </div>
                         <div class="col-md-10">
                             <div class="row">

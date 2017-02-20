@@ -33,9 +33,9 @@ export class ContactsComponent implements OnInit {
 
         let icon = {
             url: "../img/box.png", // url
-            scaledSize: new google.maps.Size(40, 20), // scaled size
+            scaledSize: new google.maps.Size(60, 55), // scaled size
             origin: new google.maps.Point(0, 0), // origin
-            anchor: new google.maps.Point(0, 0) // anchor
+            anchor: new google.maps.Point(5, 50) // anchor
         };
 
         let marker = new google.maps.Marker({
