@@ -23,20 +23,6 @@
         System.import('app').catch(function(err) {
             console.error(err);
         });
-
-        $(document).on('click', '.terms_btns button, .box_size_btns button', function(e, data) {
-            var parElemId = e.target.parentElement.id;
-            var arrButtons = $('#' + parElemId).find('.btn');
-            arrButtons.each(function(index, item) {
-                if (item.classList.contains('active_btn')) {
-                    $(item).removeClass('active_btn');
-                }
-            });
-
-            $(e.target).addClass('active_btn');
-
-            return true;
-        })
     </script>
 </head>
 

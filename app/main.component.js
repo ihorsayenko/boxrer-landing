@@ -11,8 +11,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var MainComponent = (function () {
     function MainComponent() {
-        this.humidity = 50;
-        this.temperature = 25;
         this.val = 0;
         this.minSlide = 0;
         this.maxSlide = 365;

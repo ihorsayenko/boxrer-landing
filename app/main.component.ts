@@ -9,8 +9,6 @@ import { Component } from '@angular/core';
 })
 
 export class MainComponent {
-    humidity: Number = 50;
-    temperature: Number = 25;
     val: Number = 0;
     minSlide: Number = 0;
     maxSlide: Number = 365;

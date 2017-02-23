@@ -83,7 +83,11 @@ section .container {
 
 header .container {
     font-size: 10pt;
-    background-color: #ebebeb;
+    background-color: #E5E5E5;
+}
+
+header .container-fluid.full_header {
+    background-color: #EAEAEA !important;
 }
 
 .header_main_row {
@@ -324,8 +328,9 @@ input.undefined.ui-inputtext.ui-corner-all.ui-state-default.ui-widget.ui-state-f
 }
 
 .box_size_btns button {
-    width: 50px;
-    margin-left: 17px !important;
+    width: 40px;
+    margin-left: 0;
+    font-size: 12px;
 }
 
 .terms_btns button,

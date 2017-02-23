@@ -1,58 +1,60 @@
 <!-------------------------------------------------------- Header ---------------------------------------------------------------------------------->
 <header>
-    <div class="container caviar_regular header_text_blue">
-        <div class="row header_main_row">
-            <div class="col-md-6">
-                <div class="row phones_section">
-                    <div class="col-md-5">
-                        <p>конт. тел. для бронювання боксів</p>
+    <div class="container-fluid full_header">
+        <div class="container caviar_regular header_text_blue">
+            <div class="row header_main_row">
+                <div class="col-md-6">
+                    <div class="row phones_section">
+                        <div class="col-md-5">
+                            <p>конт. тел. для бронювання боксів</p>
+                        </div>
+                        <div class="col-md-6 mobile_phone_1">
+                            <p>
+                                <a class='header_text_blue' href="tel:+380931234567">+38093 123 45 67</a>
+                            </p>
+                        </div>
                     </div>
-                    <div class="col-md-6 mobile_phone_1">
-                        <p>
-                            <a class='header_text_blue' href="tel:+380931234567">+38093 123 45 67</a>
-                        </p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-5">
-                        <p>конт. тел. в офіс. складу</p>
-                    </div>
-                    <div class="col-md-6 mobile_phone_2">
-                        <p>
-                            <a class="header_text_blue" href="tel:+380931234567">+38093 123 45 67</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-xs-offset-3">
-                <div class="row">
-                    <div class="col-md-4 col-md-offset-4">
-                        <p>пн-сб</p>
-                    </div>
-                    <div class="col-md-4">
-                        <p>нд</p>
+                    <div class="row">
+                        <div class="col-md-5">
+                            <p>конт. тел. в офіс. складу</p>
+                        </div>
+                        <div class="col-md-6 mobile_phone_2">
+                            <p>
+                                <a class="header_text_blue" href="tel:+380931234567">+38093 123 45 67</a>
+                            </p>
+                        </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-4">
-                        <p>склад</p>
+                <div class="col-md-3 col-xs-offset-3">
+                    <div class="row">
+                        <div class="col-md-4 col-md-offset-4">
+                            <p>пн-сб</p>
+                        </div>
+                        <div class="col-md-4">
+                            <p>нд</p>
+                        </div>
                     </div>
-                    <div class="col-md-4">
-                        <p>08 - 20</p>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <p>склад</p>
+                        </div>
+                        <div class="col-md-4">
+                            <p>08 - 20</p>
+                        </div>
+                        <div class="col-md-4">
+                            <p>вихідний</p>
+                        </div>
                     </div>
-                    <div class="col-md-4">
-                        <p>вихідний</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4">
-                        <p>офіс</p>
-                    </div>
-                    <div class="col-md-4">
-                        <p>09 - 18</p>
-                    </div>
-                    <div class="col-md-4">
-                        <p>вихідний</p>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <p>офіс</p>
+                        </div>
+                        <div class="col-md-4">
+                            <p>09 - 18</p>
+                        </div>
+                        <div class="col-md-4">
+                            <p>вихідний</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -61,41 +63,43 @@
 </header>
 <!-------------------------------------------------------- Navigation -------------------------------------------------------------------------------->
 <nav>
-    <div class="container furore_regular">
-        <div class="row">
-            <a routerLink="/"> <img class="img-responsive img_logo_nav" src="img/logo_boxer.png" alt="Logo"></a>
-            <div class="nav_tabs">
-                <ul class="list-inline">
-                    <li>
-                        <a routerLink="/">головна</a>
-                    </li>
-                    <li>
-                        <a routerLink="#booking">бронювання боксів</a>
-                    </li>
-                    <li>
-                        <a routerLink="#gallery">галерея</a>
-                    </li>
-                    <li>
-                        <a routerLink="/gallery">пакувальні матеріали</a>
-                    </li>
-                    <li>
-                        <a routerLink="/contacts">контакти</a>
-                    </li>
-                    <li>
-                        <a routerLink="/question">питання/відповідь</a>
-                    </li>
-                    <li>
-                        <div class="temperature">
-                            <img class="img-responsive img_thermometer" src="img/thermometer.png" alt="Thermometer"> {{temperature}}
-                            <sup>o</sup>С
-                        </div>
-                    </li>
-                    <li>
-                        <div class="humidity">
-                            <img class="img-responsive img_humidity" src="img/humidity.png" alt="Humidity"> {{humidity}}%
-                        </div>
-                    </li>
-                </ul>
+    <div class="container-fluid">
+        <div class="container furore_regular">
+            <div class="row">
+                <a routerLink="/"> <img class="img-responsive img_logo_nav" src="img/logo_boxer.png" alt="Logo"></a>
+                <div class="nav_tabs">
+                    <ul class="list-inline">
+                        <li>
+                            <a routerLink="/">головна</a>
+                        </li>
+                        <li>
+                            <a routerLink="#booking">бронювання боксів</a>
+                        </li>
+                        <li>
+                            <a routerLink="#gallery">галерея</a>
+                        </li>
+                        <li>
+                            <a routerLink="/gallery">пакувальні матеріали</a>
+                        </li>
+                        <li>
+                            <a routerLink="/contacts">контакти</a>
+                        </li>
+                        <li>
+                            <a routerLink="/question">питання/відповідь</a>
+                        </li>
+                        <li>
+                            <div class="temperature">
+                                <img class="img-responsive img_thermometer" src="img/thermometer.png" alt="Thermometer"> {{temperature}}
+                                <sup>o</sup>С
+                            </div>
+                        </li>
+                        <li>
+                            <div class="humidity">
+                                <img class="img-responsive img_humidity" src="img/humidity.png" alt="Humidity"> {{humidity}}%
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
@@ -110,13 +114,13 @@
                 <div class="col-md-6">
                     <ul class="list-unstyled pull-left">
                         <li>
-                            <a class='footer_text' href="#">головна</a>
+                            <a class='footer_text' href="#">Головна</a>
                         </li>
                         <li>
-                            <a class='footer_text' href="#">контакти</a>
+                            <a class='footer_text' href="#">Контакти</a>
                         </li>
                         <li>
-                            <a class='footer_text' href="#">питання/відповідь</a>
+                            <a class='footer_text' href="#">Питання/відповідь</a>
                         </li>
                         <li>
                             <a href="#"><img class="fb_icon" src="./img/fb.png" alt="facebook"></a>
