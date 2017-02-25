@@ -20,6 +20,9 @@ var QuestionAnswerComponnent = (function () {
         this.storage.getData().then(function (item) { return _this.Items = item.QuestionItems; });
     };
     QuestionAnswerComponnent.prototype.toggle = function (id) {
+        if (this.openItemId !== undefined && this.openItemId !== id && this.isOpen) {
+            this.isOpen = !this.isOpen;
+        }
         this.openItemId = id;
         this.isOpen = !this.isOpen;
     };

@@ -161,15 +161,15 @@
                         <div class="row text-center">
                             <br>
                             <p class="box_size_text">розмір боксу</p>
-                            <div id='boxSizeBtns text-center' class="btn-toolbar box_size_btns">
-                                <button type="button" class="btn btn-default 1m" id='1m_btn'>1м<sup>3</sup></button>
-                                <button type="button" class="btn btn-default 2_5m_btm" id='2_5m_btm'>2.5м<sup>3</sup></button>
-                                <button type="button" class="btn btn-default 3m_btn" id='3m_btn'>3м<sup>3</sup></button>
-                                <button type="button" class="btn btn-default 4m_btn" id='4m_btn'>4м<sup>3</sup></button>
-                                <button type="button" class="btn btn-default 5m_btn" id='5m_btn'>5м<sup>3</sup></button>
-                                <button type="button" class="btn btn-default 6m_btn" id='6m_btn'>6м<sup>3</sup></button>
-                                <button type="button" class="btn btn-default 7m_btn" id='7m_btn'>7м<sup>3</sup></button>
-                                <button type="button" class="btn btn-default 12m_btn" id='12m_btn'>12м<sup>3</sup></button>
+                            <div #sizeBtns id='boxSizeBtns text-center' class="btn-toolbar box_size_btns">
+                                <button type="button" (click)='onBtnSizeClick($event.currentTarget)' class="btn btn-default 1m active_btn" id='1m_btn' imgSrc='1m.png'>1м<sup>3</sup></button>
+                                <button type="button" (click)='onBtnSizeClick($event.currentTarget)' class="btn btn-default 2_5m_btm" id='2_5m_btm' imgSrc='2,5m.png'>2.5м<sup>3</sup></button>
+                                <button type="button" (click)='onBtnSizeClick($event.currentTarget)' class="btn btn-default 3m_btn" id='3m_btn' imgSrc='3m.png'>3м<sup>3</sup></button>
+                                <button type="button" (click)='onBtnSizeClick($event.currentTarget)' class="btn btn-default 4m_btn" id='4m_btn' imgSrc='4m.png'>4м<sup>3</sup></button>
+                                <button type="button" (click)='onBtnSizeClick($event.currentTarget)' class="btn btn-default 5m_btn" id='5m_btn' imgSrc='5m.png'>5м<sup>3</sup></button>
+                                <button type="button" (click)='onBtnSizeClick($event.currentTarget)' class="btn btn-default 6m_btn" id='6m_btn' imgSrc='6m.png'>6м<sup>3</sup></button>
+                                <button type="button" (click)='onBtnSizeClick($event.currentTarget)' class="btn btn-default 7m_btn" id='7m_btn' imgSrc='7m.png'>7м<sup>3</sup></button>
+                                <button type="button" (click)='onBtnSizeClick($event.currentTarget)' class="btn btn-default 12m_btn" id='12m_btn' imgSrc='12m.png'>12м<sup>3</sup></button>
                             </div>
                             <br>
                         </div>
@@ -212,7 +212,7 @@
                     <div class="col-md-5 col-xs-offset-1">
                         <div class="row text-center">
                             <div class="box_img">
-                                <img class="img-responsive" src="./img/box-12m.png" alt="Box-12m" />
+                                <img class="img-responsive" [src]="boxImgSrcFull" alt="Box-12m" />
                             </div>
                         </div>
                         <div class="row text-center prices_text">

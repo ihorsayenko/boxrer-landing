@@ -13,6 +13,7 @@ export class QuestionAnswerComponnent implements OnInit {
     Items: any[];
     isOpen: Boolean = false;
     openItemId: Number;
+    previousId: Number;
     constructor(private storage: CommonService) {
     }
 
@@ -20,7 +21,10 @@ export class QuestionAnswerComponnent implements OnInit {
         this.storage.getData().then(item => this.Items = item.QuestionItems as any);
     }
 
-    toggle(id: Number): void{
+    toggle(id: Number): void {
+        if (this.openItemId !== undefined && this.openItemId !== id && this.isOpen) {
+            this.isOpen = !this.isOpen;
+        }
         this.openItemId = id;
         this.isOpen = !this.isOpen;
     }
