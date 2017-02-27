@@ -322,15 +322,30 @@ input.undefined.ui-inputtext.ui-corner-all.ui-state-default.ui-widget.ui-state-f
     font-family: 'JuraDemiBold';
 }
 
+.box_size_btns button {
+    width: 45px;
+    margin-left: 0;
+    font-size: 14px;
+}
+
+.one_m_btn {
+    padding-left: 14px;
+    padding-right: 10px;
+}
+
+.two_m_btn {
+    padding-left: 6px;
+    padding-right: 6px;
+}
+
+.twelve_m_btn {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
 .terms_btns button {
     width: 71px;
     margin-left: 10px !important;
-}
-
-.box_size_btns button {
-    width: 40px;
-    margin-left: 0;
-    font-size: 12px;
 }
 
 .terms_btns button,
@@ -405,7 +420,7 @@ input.undefined.ui-inputtext.ui-corner-all.ui-state-default.ui-widget.ui-state-f
     color: #3b437b;
 }
 
-.box_img{
+.box_img {
     width: 400px;
     height: 400px;
 }
@@ -552,3 +567,33 @@ map_section .nav-tabs li a:hover {
 .answer {
     margin-top: 0.5em;
 }
+
+
+/*--------------Modals---------------------*/
+
+
+/*Booking modal*/
+
+.booking_modal {
+    top: 20%;
+}
+
+.booking_modal .close_btn {
+    color: #ffffff;
+}
+
+.booking_modal .modal-content {
+    border-radius: 0;
+}
+
+.booking_modal .modal-header {
+    border: none;
+    background-color: #4a5187;
+    height: 30px;
+    color: #ffffff;
+    font-size: 14px;
+    padding: 5px 15px 0 25px;
+}
+
+
+/*Packages modal*/

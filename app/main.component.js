@@ -31,14 +31,32 @@ var MainComponent = (function () {
         var btns = this.boxSizeBtns._results[0].nativeElement.children;
         for (var _i = 0, btns_1 = btns; _i < btns_1.length; _i++) {
             var element = btns_1[_i];
-            if (element.classList.contains('active_btn')) {
+            if (element.classList.contains('active_btn') && element.id !== id) {
                 element.classList.remove('active_btn');
             }
+            else {
+                if (element.id === id) {
+                    element.classList.add('active_btn');
+                }
+            }
         }
-        debugger;
-        btns.find(function (e) { return e.id === id; }).classList.add('active_btn');
         this.boxImgSrcFull = this.imgs.find(function (x) { return x.btnId === id; }).imgsrc;
         this.isBtnActive = !this.isBtnActive;
+    };
+    MainComponent.prototype.onBtnTermClick = function (elem) {
+        var id = elem.id;
+        var btns = this.termsBtns._results[0].nativeElement.children;
+        for (var _i = 0, btns_2 = btns; _i < btns_2.length; _i++) {
+            var element = btns_2[_i];
+            if (element.classList.contains('active_btn') && element.id !== id) {
+                element.classList.remove('active_btn');
+            }
+            else {
+                if (element.id === id) {
+                    element.classList.add('active_btn');
+                }
+            }
+        }
     };
     MainComponent.prototype.ngOnInit = function () {
         this.boxImgSrcFull = this.imgs[0].imgsrc;
@@ -49,6 +67,10 @@ var MainComponent = (function () {
         core_1.ViewChildren('sizeBtns'), 
         __metadata('design:type', core_1.ElementRef)
     ], MainComponent.prototype, "boxSizeBtns", void 0);
+    __decorate([
+        core_1.ViewChildren('termsBtns'), 
+        __metadata('design:type', core_1.ElementRef)
+    ], MainComponent.prototype, "termsBtns", void 0);
     MainComponent = __decorate([
         core_2.Component({
             moduleId: module.id,

@@ -32,20 +32,37 @@ export class MainComponent implements OnInit {
     { 'btnId': '12m_btn', 'imgsrc': '../img/Boxes/12m.png' }]
 
     @ViewChildren('sizeBtns') boxSizeBtns: ElementRef;
+    @ViewChildren('termsBtns') termsBtns: ElementRef;
 
     onBtnSizeClick(elem: ElementRef): void {
         let id = elem.id;
         let btns = this.boxSizeBtns._results[0].nativeElement.children;
         for (let element of btns) {
-            if (element.classList.contains('active_btn')) {
+            if (element.classList.contains('active_btn') && element.id !== id) {
                 element.classList.remove('active_btn')
+            } else {
+                if (element.id === id) {
+                    element.classList.add('active_btn');
+                }
             }
         }
-        debugger;
-        btns.find(e => e.id === id).classList.add('active_btn');
+
         this.boxImgSrcFull = this.imgs.find(x => x.btnId === id).imgsrc;
         this.isBtnActive = !this.isBtnActive;
+    }
 
+    onBtnTermClick(elem: ElementRef): void {
+        let id = elem.id;
+        let btns = this.termsBtns._results[0].nativeElement.children;
+        for (let element of btns) {
+            if (element.classList.contains('active_btn') && element.id !== id) {
+                element.classList.remove('active_btn')
+            } else {
+                if (element.id === id) {
+                    element.classList.add('active_btn');
+                }
+            }
+        }
     }
 
     ngOnInit() {
