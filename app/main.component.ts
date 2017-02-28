@@ -22,6 +22,12 @@ export class MainComponent implements OnInit {
     boxImgSrcFull: string;
     isBtnActive: Boolean;
 
+    Name: String;
+    surname: String;
+    mobileNumber: String;
+    email: String;
+    comments: String;
+
     imgs = [{ 'btnId': '1m_btn', 'imgsrc': '../img/Boxes/1m.png' },
     { 'btnId': '2_5m_btn', 'imgsrc': '../img/Boxes/2,5m.png' },
     { 'btnId': '3m_btn', 'imgsrc': '../img/Boxes/3m.png' },

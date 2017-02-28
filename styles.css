@@ -595,5 +595,43 @@ map_section .nav-tabs li a:hover {
     padding: 5px 15px 0 25px;
 }
 
+.modal-body  div[class*=field],
+.modal-body .comment_textarea {
+    padding-bottom: 10px;
+}
+
+.modal-body  div[class*=field] input,
+.modal-body .comment_textarea textarea{
+    border-radius: 0;
+    background-color: #e7e5e5;
+}
+
+.modal-body .left_part div[class*=field] {
+    padding-left: 20px;
+    padding-right: 5px;
+}
+
+.modal-body .right_part div[class*=field] {
+    padding-right: 20px;
+    padding-left: 5px;
+}
+
+.modal-body .left_part .title {
+    padding-left: 25px;
+}
+
+.modal-body .right_part .title {
+    padding-left: 10px;
+}
+
+.modal-body .comment_title{
+    padding-left: 25px;
+}
+
+.modal-body .comment_textarea {
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
 
 /*Packages modal*/
