@@ -13,8 +13,8 @@ var core_2 = require('@angular/core');
 var MainComponent = (function () {
     function MainComponent() {
         this.daysCount = 0;
-        this.minSlide = 0;
-        this.maxSlide = 365;
+        this.minSlide = 7;
+        this.maxSlide = 360;
         this.monthPay = 0;
         this.periodPay = 0;
         this.boxSize = 0;
@@ -56,6 +56,7 @@ var MainComponent = (function () {
             else {
                 if (element.id === id) {
                     element.classList.add('active_btn');
+                    this.activeTermBtb = element;
                 }
             }
         }
@@ -78,11 +79,34 @@ var MainComponent = (function () {
         }
         this.calculatePrice();
     };
+    MainComponent.prototype.onSlideEnd = function () {
+        this.activeTermBtb.classList.remove('active_btn');
+        this.calculatePrice();
+    };
     MainComponent.prototype.ngOnInit = function () {
         this.boxImgSrcFull = this.imgs[0].imgsrc;
     };
     MainComponent.prototype.calculatePrice = function () {
-        if (this.boxSize && this.daysCount) {
+        if (this.boxSize > 1 && this.daysCount >= 7) {
+            var price = void 0;
+            if (this.daysCount <= 30) {
+                price = 12;
+            }
+            else if (this.daysCount <= 90) {
+                price = 10.5;
+            }
+            else if (this.daysCount <= 180) {
+                price = 9.5;
+            }
+            else if (this.daysCount <= 360) {
+                price = 8.5;
+            }
+            this.periodPay = Math.round(price * this.boxSize * this.daysCount);
+            this.monthPay = Math.round(30 * this.periodPay / this.daysCount);
+        }
+        else if (this.boxSize == 1 && this.daysCount >= 7) {
+            this.periodPay = Math.round(12 * this.boxSize * this.daysCount);
+            this.monthPay = Math.round(30 * this.periodPay / this.daysCount);
         }
     };
     __decorate([

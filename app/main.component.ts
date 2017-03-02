@@ -10,23 +10,25 @@ import { Component } from '@angular/core';
 })
 
 export class MainComponent implements OnInit {
-    daysCount: Number = 0;
-    minSlide: Number = 0;
-    maxSlide: Number = 365;
+    daysCount: number = 0;
+    minSlide: number = 7;
+    maxSlide: number = 360;
 
     monthPay: number = 0;
     periodPay: number = 0;
-    boxSize: Number = 0;
+    boxSize: number = 0;
 
     dateFrom: Date;
 
     boxImgSrcFull: string;
 
-    Name: String;
-    surname: String;
-    mobileNumber: String;
-    email: String;
-    comments: String;
+    Name: string;
+    surname: string;
+    mobileNumber: string;
+    email: string;
+    comments: string;
+
+    activeTermBtb : ElementRef;
 
     imgs = [{ 'btnId': '1m_btn', 'imgsrc': '../img/Boxes/1m.png' },
     { 'btnId': '2.5m_btn', 'imgsrc': '../img/Boxes/2,5m.png' },
@@ -67,6 +69,7 @@ export class MainComponent implements OnInit {
             } else {
                 if (element.id === id) {
                     element.classList.add('active_btn');
+                    this.activeTermBtb = element;
                 }
             }
         }
@@ -91,13 +94,33 @@ export class MainComponent implements OnInit {
         this.calculatePrice();
     }
 
+    onSlideEnd(): void{
+        this.activeTermBtb.classList.remove('active_btn');
+        this.calculatePrice();
+    }
+
     ngOnInit() {
         this.boxImgSrcFull = this.imgs[0].imgsrc;
     }
 
-    calculatePrice(): void{
-        if(this.boxSize && this.daysCount){
+    calculatePrice(): void {
+        if (this.boxSize > 1 && this.daysCount >= 7) {
+            let price;
+            if (this.daysCount <= 30) {
+                price = 12;
+            } else if (this.daysCount <= 90) {
+                price = 10.5;
+            } else if (this.daysCount <= 180) {
+                price = 9.5;
+            } else if (this.daysCount <= 360) {
+                price = 8.5;
+            }
 
+            this.periodPay = Math.round(price * this.boxSize * this.daysCount);
+            this.monthPay = Math.round(30 * this.periodPay / this.daysCount);
+        } else if (this.boxSize == 1 && this.daysCount >= 7) {
+            this.periodPay = Math.round(12 * this.boxSize * this.daysCount);
+            this.monthPay = Math.round(30 * this.periodPay / this.daysCount);
         }
     }
 }

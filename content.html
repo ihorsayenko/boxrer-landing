@@ -186,16 +186,17 @@
                         </div>
                         <div class="row">
                             <div class="text-center">
-                                <p class='tersm_text'>{{daysCount ? 'кількість днів: ' + daysCount: 'кількість днів'}}</p>
+                                <p class='tersm_text'>{{daysCount >= 7 ? 'кількість днів: ' + daysCount: 'кількість днів'}}</p>
                                 <br>
                                 <div class="slider_days">
-                                    <p-slider [(ngModel)]="daysCount" [min]='minSlide' [max]='maxSlide' [animate]="true" name='daysSlider'></p-slider>
+                                    <p-slider [(ngModel)]="daysCount" [min]='minSlide' [max]='maxSlide' name='daysSlider'
+                                     (onSlideEnd)='onSlideEnd()'></p-slider>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div #termsBtns id="termsBtns" class="btn-toolbar terms_btns">
-                                <button type="button" (click)='onBtnTermClick($event.currentTarget)' id='1w' class="btn btn-default active_btn">1 тиж</button>
+                                <button type="button" (click)='onBtnTermClick($event.currentTarget)' id='1w' class="btn btn-default">1 тиж</button>
                                 <button type="button" (click)='onBtnTermClick($event.currentTarget)' id='1m' class="btn btn-default">1 міс</button>
                                 <button type="button" (click)='onBtnTermClick($event.currentTarget)' id='3m' class="btn btn-default">3 міс</button>
                                 <button type="button" (click)='onBtnTermClick($event.currentTarget)' id='6m' class="btn btn-default">6 міс</button>
@@ -216,8 +217,8 @@
                             </div>
                         </div>
                         <div class="row text-center prices_text">
-                            <h3>ціна за місяць: {{monthPrice}} грн</h3>
-                            <h4>ціна за обраний період: {{periodPrice}} грн</h4>
+                            <h3>ціна за місяць: {{monthPay}} грн</h3>
+                            <h4>ціна за обраний період: {{periodPay}} грн</h4>
                         </div>
                     </div>
                 </div>
