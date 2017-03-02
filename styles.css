@@ -595,13 +595,13 @@ map_section .nav-tabs li a:hover {
     padding: 5px 15px 0 25px;
 }
 
-.modal-body  div[class*=field],
+.modal-body div[class*=field],
 .modal-body .comment_textarea {
     padding-bottom: 10px;
 }
 
-.modal-body  div[class*=field] input,
-.modal-body .comment_textarea textarea{
+.modal-body div[class*=field] input,
+.modal-body .comment_textarea textarea {
     border-radius: 0;
     background-color: #e7e5e5;
 }
@@ -624,13 +624,17 @@ map_section .nav-tabs li a:hover {
     padding-left: 10px;
 }
 
-.modal-body .comment_title{
+.modal-body .comment_title {
     padding-left: 25px;
 }
 
 .modal-body .comment_textarea {
     padding-right: 20px;
     padding-left: 20px;
+}
+
+.alert_input {
+    border: 1px solid red;
 }
 
 

@@ -162,8 +162,8 @@
                             <br>
                             <p class="box_size_text">розмір боксу</p>
                             <div #sizeBtns id='boxSizeBtns' class="btn-toolbar text-center box_size_btns">
-                                <button type="button" id='1m_btn' (click)='onBtnSizeClick($event.currentTarget)' class="btn btn-default one_m_btn active_btn">1м<sup>3</sup></button>
-                                <button type="button" id='2_5m_btn' (click)='onBtnSizeClick($event.currentTarget)' class="btn btn-default two_m_btn">2.5м<sup>3</sup></button>
+                                <button type="button" id='1m_btn' (click)='onBtnSizeClick($event.currentTarget)' class="btn btn-default one_m_btn">1м<sup>3</sup></button>
+                                <button type="button" id='2.5m_btn' (click)='onBtnSizeClick($event.currentTarget)' class="btn btn-default two_m_btn">2.5м<sup>3</sup></button>
                                 <button type="button" id='3m_btn' (click)='onBtnSizeClick($event.currentTarget)' class="btn btn-default">3м<sup>3</sup></button>
                                 <button type="button" id='4m_btn' (click)='onBtnSizeClick($event.currentTarget)' class="btn btn-default">4м<sup>3</sup></button>
                                 <button type="button" id='5m_btn' (click)='onBtnSizeClick($event.currentTarget)' class="btn btn-default">5м<sup>3</sup></button>
@@ -186,10 +186,10 @@
                         </div>
                         <div class="row">
                             <div class="text-center">
-                                <p class='tersm_text'>{{val ? 'кількість днів: ' + val: 'кількість днів'}}</p>
+                                <p class='tersm_text'>{{daysCount ? 'кількість днів: ' + daysCount: 'кількість днів'}}</p>
                                 <br>
                                 <div class="slider_days">
-                                    <p-slider [(ngModel)]="val" [min]='minSlide' [max]='maxSlide' [animate]="true" name='daysSlider'></p-slider>
+                                    <p-slider [(ngModel)]="daysCount" [min]='minSlide' [max]='maxSlide' [animate]="true" name='daysSlider'></p-slider>
                                 </div>
                             </div>
                         </div>
@@ -216,8 +216,8 @@
                             </div>
                         </div>
                         <div class="row text-center prices_text">
-                            <h3>ціна за місяць: {{monthPay}} грн</h3>
-                            <h4>ціна за обраний період: {{periodPay}} грн</h4>
+                            <h3>ціна за місяць: {{monthPrice}} грн</h3>
+                            <h4>ціна за обраний період: {{periodPrice}} грн</h4>
                         </div>
                     </div>
                 </div>
@@ -299,26 +299,13 @@
                         <div class="row title">ІМ’Я</div>
                         <div class="row">
                             <div class="name_field">
-                                <input type="text" class="form-control" id="name" name="name" 
-                                required minlength="4" maxlength="24" 
-                                [(ngModel)]="Name" #name="ngModel">
-                                <div *ngIf="name.errors && (name.dirty || name.touched)" class="alert alert-danger">
-                                    <div [hidden]="!name.errors.required">
-                                        Name is required
-                                    </div>
-                                    <div [hidden]="!name.errors.minlength">
-                                        Name must be at least 4 characters long.
-                                    </div>
-                                    <div [hidden]="!name.errors.maxlength">
-                                        Name cannot be more than 24 characters long.
-                                    </div>
-                                </div>
+                                <input type="text" class="form-control" id="name" name="name" required [(ngModel)]="Name" #name='ngModel' [ngClass]="!name.valid ? 'alert_input' : ''">
                             </div>
                         </div>
                         <div class="row title">ТЕЛЕФОН</div>
                         <div class="row">
                             <div class="tel_field">
-                                <input class="form-control" [(ngModel)]='name' type="text" />
+                                <input class="form-control" [(ngModel)]='mobileNumber' type="text" />
                             </div>
                         </div>
                     </div>

@@ -12,13 +12,14 @@ var core_1 = require('@angular/core');
 var core_2 = require('@angular/core');
 var MainComponent = (function () {
     function MainComponent() {
-        this.val = 0;
+        this.daysCount = 0;
         this.minSlide = 0;
         this.maxSlide = 365;
-        this.monthPay = 1000;
-        this.periodPay = 800;
+        this.monthPay = 0;
+        this.periodPay = 0;
+        this.boxSize = 0;
         this.imgs = [{ 'btnId': '1m_btn', 'imgsrc': '../img/Boxes/1m.png' },
-            { 'btnId': '2_5m_btn', 'imgsrc': '../img/Boxes/2,5m.png' },
+            { 'btnId': '2.5m_btn', 'imgsrc': '../img/Boxes/2,5m.png' },
             { 'btnId': '3m_btn', 'imgsrc': '../img/Boxes/3m.png' },
             { 'btnId': '4m_btn', 'imgsrc': '../img/Boxes/4m.png' },
             { 'btnId': '5m_btn', 'imgsrc': '../img/Boxes/5m.png' },
@@ -37,11 +38,12 @@ var MainComponent = (function () {
             else {
                 if (element.id === id) {
                     element.classList.add('active_btn');
+                    this.boxSize = id.split('m')[0];
                 }
             }
         }
         this.boxImgSrcFull = this.imgs.find(function (x) { return x.btnId === id; }).imgsrc;
-        this.isBtnActive = !this.isBtnActive;
+        this.calculatePrice();
     };
     MainComponent.prototype.onBtnTermClick = function (elem) {
         var id = elem.id;
@@ -57,12 +59,32 @@ var MainComponent = (function () {
                 }
             }
         }
+        switch (id) {
+            case '1w':
+                this.daysCount = 7;
+                break;
+            case '1m':
+                this.daysCount = 30;
+                break;
+            case '3m':
+                this.daysCount = 90;
+                break;
+            case '6m':
+                this.daysCount = 180;
+                break;
+            case '1y':
+                this.daysCount = 360;
+                break;
+        }
+        this.calculatePrice();
     };
     MainComponent.prototype.ngOnInit = function () {
         this.boxImgSrcFull = this.imgs[0].imgsrc;
     };
-    MainComponent.prototype.changeMonthPrice = function () { };
-    MainComponent.prototype.changePeriodPrice = function () { };
+    MainComponent.prototype.calculatePrice = function () {
+        if (this.boxSize && this.daysCount) {
+        }
+    };
     __decorate([
         core_1.ViewChildren('sizeBtns'), 
         __metadata('design:type', core_1.ElementRef)
