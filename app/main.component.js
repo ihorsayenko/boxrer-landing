@@ -10,14 +10,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var core_2 = require('@angular/core');
+var http_1 = require('@angular/http');
 var MainComponent = (function () {
-    function MainComponent() {
+    function MainComponent(http) {
         this.daysCount = 0;
         this.minSlide = 7;
         this.maxSlide = 360;
         this.monthPay = 0;
         this.periodPay = 0;
         this.boxSize = 0;
+        this.dateFrom = new Date();
         this.imgs = [{ 'btnId': '1m_btn', 'imgsrc': '../img/Boxes/1m.png' },
             { 'btnId': '2.5m_btn', 'imgsrc': '../img/Boxes/2,5m.png' },
             { 'btnId': '3m_btn', 'imgsrc': '../img/Boxes/3m.png' },
@@ -26,6 +28,7 @@ var MainComponent = (function () {
             { 'btnId': '6m_btn', 'imgsrc': '../img/Boxes/6m.png' },
             { 'btnId': '7m_btn', 'imgsrc': '../img/Boxes/7m.png' },
             { 'btnId': '12m_btn', 'imgsrc': '../img/Boxes/12m.png' }];
+        this.http = http;
     }
     MainComponent.prototype.onBtnSizeClick = function (elem) {
         var id = elem.id;
@@ -80,8 +83,10 @@ var MainComponent = (function () {
         this.calculatePrice();
     };
     MainComponent.prototype.onSlideEnd = function () {
-        this.activeTermBtb.classList.remove('active_btn');
-        this.calculatePrice();
+        if (this.activeTermBtb) {
+            this.activeTermBtb.classList.remove('active_btn');
+            this.calculatePrice();
+        }
     };
     MainComponent.prototype.ngOnInit = function () {
         this.boxImgSrcFull = this.imgs[0].imgsrc;
@@ -109,6 +114,23 @@ var MainComponent = (function () {
             this.monthPay = Math.round(30 * this.periodPay / this.daysCount);
         }
     };
+    MainComponent.prototype.sendMail = function () {
+        debugger;
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        var options = new http_1.RequestOptions({ headers: headers });
+        var url = "https://api:key-5056082441537401ce1f171a73494777@api.mailgun.net/v3/boxer.com.ua";
+        var parameters = {
+            "parameters": {
+                "from": "Mailgun Sandbox <postmaster@sandbox224f28ae45a8499d84184fd4c48e62ee.mailgun.org>",
+                "to": "Jordi <qwertyihor11@gmail.com>",
+                "subject": "Hello Jordi",
+                "text": "Congratulations Jordi, you just sent an email with Mailgun!  You are truly awesome!  You can see a record of this email in your logs: https://mailgun.com/cp/log .  You can send up to 300 emails/day from this sandbox server.  Next, you should add your own domain so you can send 10,000 emails/month for free."
+            }
+        };
+        var result = this.http
+            .post(url, parameters, options);
+        return true;
+    };
     __decorate([
         core_1.ViewChildren('sizeBtns'), 
         __metadata('design:type', core_1.ElementRef)
@@ -123,7 +145,7 @@ var MainComponent = (function () {
             selector: 'landing',
             templateUrl: '../content.html'
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [http_1.Http])
     ], MainComponent);
     return MainComponent;
 }());

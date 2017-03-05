@@ -179,18 +179,17 @@
                             </div>
                         </div>
                         <div class="row dates">
-                            <div class="col-sm-12">
+                            <div class="text-left">
                                 <label class="calculator_text_color_blue" for="datePickerFrom">перший день оренди</label>
-                                <p-calendar class="date_picker" id='datePickerFrom' [(ngModel)]="dateFrom" readonlyInput="readonlyInput"></p-calendar>
+                                <p-calendar class="date_picker" id='datePickerFrom' [(ngModel)]="dateFrom" readonlyInput="readonlyInput" dateFormat="dd/mm/yy" inputStyleClass='calendar_input'></p-calendar>
                             </div>
                         </div>
                         <div class="row">
                             <div class="text-center">
-                                <p class='tersm_text'>{{daysCount >= 7 ? 'кількість днів: ' + daysCount: 'кількість днів'}}</p>
+                                <p class='days_count'>{{daysCount >= 7 ? 'кількість днів: ' + daysCount: 'кількість днів'}}</p>
                                 <br>
                                 <div class="slider_days">
-                                    <p-slider [(ngModel)]="daysCount" [min]='minSlide' [max]='maxSlide' name='daysSlider'
-                                     (onSlideEnd)='onSlideEnd()'></p-slider>
+                                    <p-slider [(ngModel)]="daysCount" [min]='minSlide' [max]='maxSlide' [animate]='true' name='daysSlider' (onSlideEnd)='onSlideEnd()'></p-slider>
                                 </div>
                             </div>
                         </div>
@@ -203,7 +202,7 @@
                                 <button type="button" (click)='onBtnTermClick($event.currentTarget)' id='1y' class="btn btn-default">1 рік</button>
                             </div>
                         </div>
-                        <div class="row package_materials">
+                        <div class="row package_materials text-left">
                             <img src="./img/add-materials.png" alt="Add materials" />
                             <a class='package_materials_link' href="#" data-toggle="modal" data-target="#packagesModal">
                                 <u>пакувальні матеріали</u>
@@ -217,14 +216,16 @@
                             </div>
                         </div>
                         <div class="row text-center prices_text">
-                            <h3>ціна за місяць: {{monthPay}} грн</h3>
-                            <h4>ціна за обраний період: {{periodPay}} грн</h4>
+                            <p class="month_pay">ціна за місяць: {{monthPay}} грн</p>
+                            <p class="period_pay">ціна за обраний період: {{periodPay}} грн</p>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="booking_btn_wrapper text-center">
-                        <button class="btn btn-default" data-toggle="modal" data-target="#bookingModal"><label>забронювати</label></button>
+                        <button class="btn btn-default" [ngClass]="this.boxSize >= 1 && this.daysCount >= 7 ? '' : 'hide'" data-toggle="modal" ata-target="#bookingModal" (click)='sendMail()'>
+                                <label>забронювати</label>
+                        </button>
                     </div>
                 </div>
             </div>

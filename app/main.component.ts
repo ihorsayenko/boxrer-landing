@@ -1,7 +1,7 @@
 import { NgModule, OnInit, ViewChildren, ElementRef } from '@angular/core';
 import { NgModel, FormsModule } from '@angular/forms';
 import { Component } from '@angular/core';
-
+import { Http, Headers, RequestOptions } from '@angular/http';
 
 @Component({
     moduleId: module.id,
@@ -18,7 +18,7 @@ export class MainComponent implements OnInit {
     periodPay: number = 0;
     boxSize: number = 0;
 
-    dateFrom: Date;
+    dateFrom: Date = new Date();
 
     boxImgSrcFull: string;
 
@@ -28,8 +28,9 @@ export class MainComponent implements OnInit {
     email: string;
     comments: string;
 
-    activeTermBtb : ElementRef;
+    activeTermBtb: ElementRef;
 
+    http: Http;
     imgs = [{ 'btnId': '1m_btn', 'imgsrc': '../img/Boxes/1m.png' },
     { 'btnId': '2.5m_btn', 'imgsrc': '../img/Boxes/2,5m.png' },
     { 'btnId': '3m_btn', 'imgsrc': '../img/Boxes/3m.png' },
@@ -41,6 +42,10 @@ export class MainComponent implements OnInit {
 
     @ViewChildren('sizeBtns') boxSizeBtns: ElementRef;
     @ViewChildren('termsBtns') termsBtns: ElementRef;
+
+    constructor(http: Http) {
+        this.http = http;
+    }
 
     onBtnSizeClick(elem: ElementRef): void {
         let id = elem.id;
@@ -94,9 +99,11 @@ export class MainComponent implements OnInit {
         this.calculatePrice();
     }
 
-    onSlideEnd(): void{
-        this.activeTermBtb.classList.remove('active_btn');
-        this.calculatePrice();
+    onSlideEnd(): void {
+        if (this.activeTermBtb) {
+            this.activeTermBtb.classList.remove('active_btn');
+            this.calculatePrice();
+        }
     }
 
     ngOnInit() {
@@ -122,5 +129,25 @@ export class MainComponent implements OnInit {
             this.periodPay = Math.round(12 * this.boxSize * this.daysCount);
             this.monthPay = Math.round(30 * this.periodPay / this.daysCount);
         }
+    }
+
+    sendMail(): boolean {
+        debugger;
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+
+        let url = "https://api:key-5056082441537401ce1f171a73494777@api.mailgun.net/v3/boxer.com.ua";
+        let parameters = {
+                          "parameters": {
+                            "from": "Mailgun Sandbox <postmaster@sandbox224f28ae45a8499d84184fd4c48e62ee.mailgun.org>",
+                            "to": "Jordi <qwertyihor11@gmail.com>",
+                            "subject": "Hello Jordi",
+                            "text": "Congratulations Jordi, you just sent an email with Mailgun!  You are truly awesome!  You can see a record of this email in your logs: https://mailgun.com/cp/log .  You can send up to 300 emails/day from this sandbox server.  Next, you should add your own domain so you can send 10,000 emails/month for free."
+                          }
+                        };
+        let result = this.http
+            .post(url, parameters, options);
+        return true;
+
     }
 }

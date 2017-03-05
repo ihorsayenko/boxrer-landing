@@ -34,6 +34,7 @@ var AppModule = (function () {
                 primeng_2.SliderModule,
                 primeng_3.CalendarModule,
                 http_1.HttpModule,
+                http_1.JsonpModule,
                 router_1.RouterModule.forRoot([
                     {
                         path: 'boxer',

@@ -283,7 +283,7 @@ div.can_store .part-two:hover {
 }
 
 .tersm_text {
-    padding-top: 2em;
+    padding-top: 1em;
     color: #253072;
     font-size: 20px;
 }
@@ -369,15 +369,41 @@ input.undefined.ui-inputtext.ui-corner-all.ui-state-default.ui-widget.ui-state-f
 }
 
 .terms_btns,
-.dates,
-.box_size_btns,
-.package_materials,
 .booking {
+    margin-top: 0.4em;
+}
+
+.dates {
+    margin: 1em 0 0 0.5em;
+}
+
+.calendar_input {
+    text-align: center;
+    margin-left: 2em !important;
+    width: 115px;
+}
+
+.slider_days {
+    margin: 0 15px 0 15px;
+}
+
+.package_materials {
+    margin-top: 1.5em;
+    padding-left: 0.5em;
+}
+
+.days_count {
+    font-size: 14px;
     margin-top: 1em;
+}
+
+.box_size_btns {
+    margin-top: 0.5em;
 }
 
 .date_picker .undefined.ui-inputtext {
     width: 115px;
+    margin-left: 2em;
 }
 
 .box_size_text {
@@ -396,6 +422,7 @@ input.undefined.ui-inputtext.ui-corner-all.ui-state-default.ui-widget.ui-state-f
 
 .booking_btn_wrapper {
     margin: auto;
+    margin-top: 30px;
 }
 
 .booking_btn_wrapper button,
@@ -421,8 +448,17 @@ input.undefined.ui-inputtext.ui-corner-all.ui-state-default.ui-widget.ui-state-f
 }
 
 .box_img {
-    width: 400px;
-    height: 400px;
+    width: 330px;
+    height: 330px;
+    margin-left: 50px;
+}
+
+.month_pay {
+    font-size: 20px;
+}
+
+.period_pay {
+    font-size: 14px;
 }
 
 

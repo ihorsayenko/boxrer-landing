@@ -6,5 +6,8 @@
         "**/.DS_Store": true,
         "**/*.map": true,
         "**/*.js": true
-    }
+    },
+    "editor.minimap.enabled": true,
+    "workbench.iconTheme": "vscode-icons",
+    "editor.formatOnSave": false
 }
