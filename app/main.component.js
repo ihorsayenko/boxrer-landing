@@ -11,6 +11,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var core_2 = require('@angular/core');
 var http_1 = require('@angular/http');
+require('../node_modules/mailgun-js/lib/mailgun.js');
+require('../node_modules/mailgun-js/lib/attachment.js');
+require('../node_modules/mailgun-js/lib/build.js');
+require('../node_modules/mailgun-js/lib/request.js');
+require('../node_modules/mailgun-js/lib/schema.js');
 var MainComponent = (function () {
     function MainComponent(http) {
         this.daysCount = 0;
@@ -116,19 +121,37 @@ var MainComponent = (function () {
     };
     MainComponent.prototype.sendMail = function () {
         debugger;
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        var options = new http_1.RequestOptions({ headers: headers });
-        var url = "https://api:key-5056082441537401ce1f171a73494777@api.mailgun.net/v3/boxer.com.ua";
-        var parameters = {
-            "parameters": {
-                "from": "Mailgun Sandbox <postmaster@sandbox224f28ae45a8499d84184fd4c48e62ee.mailgun.org>",
-                "to": "Jordi <qwertyihor11@gmail.com>",
-                "subject": "Hello Jordi",
-                "text": "Congratulations Jordi, you just sent an email with Mailgun!  You are truly awesome!  You can see a record of this email in your logs: https://mailgun.com/cp/log .  You can send up to 300 emails/day from this sandbox server.  Next, you should add your own domain so you can send 10,000 emails/month for free."
-            }
+        var username = 'postmaster@sandboxe0f06647b24846eb876f59315f3dc6a2.mailgun.org';
+        var password = 'd8054c0d6641495730824892a93018dc';
+        var apiKey = 'key-5056082441537401ce1f171a73494777';
+        var domain = 'sandboxe0f06647b24846eb876f59315f3dc6a2.mailgun.org';
+        var mailgun = require('mailgun-js')({ apiKey: apiKey, domain: domain });
+        var data = {
+            from: 'Excited User <me@samples.mailgun.org>',
+            to: 'qwertyihor11@mail.ru',
+            subject: 'Hello',
+            text: 'Testing some Mailgun awesomness!'
         };
-        var result = this.http
-            .post(url, parameters, options);
+        var headers = new http_1.Headers({
+            'Authorization': 'Basic' + btoa('api' + ':' + apiKey)
+        });
+        mailgun.messages().send(data, function (error, body) {
+            console.log(body);
+        });
+        // let options = new RequestOptions({ headers: headers });
+        // let url = "https://api.mailgun.net/v3/" + domain;
+        // let parameters = {
+        //     "domain": domain,
+        //     "parameters": {
+        //         "from": "Mailgun Sandbox <postmaster@sandbox224f28ae45a8499d84184fd4c48e62ee.mailgun.org>",
+        //         "to": "Jordi <qwertyihor11@gmail.com>",
+        //         "subject": "Hello Jordi",
+        //         "text": "Congratulations Jordi, you just sent an email with Mailgun!  You are truly awesome!  You can see a record of this email in your logs: https://mailgun.com/cp/log .  You can send up to 300 emails/day from this sandbox server.  Next, you should add your own domain so you can send 10,000 emails/month for free."
+        //     }
+        // };
+        // let result = this.http
+        //     .post(url, parameters, options)
+        //     .subscribe(resp => { console.log(resp) });
         return true;
     };
     __decorate([
