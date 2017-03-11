@@ -11,13 +11,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var core_2 = require('@angular/core');
 var http_1 = require('@angular/http');
-require('../node_modules/mailgun-js/lib/mailgun.js');
-require('../node_modules/mailgun-js/lib/attachment.js');
-require('../node_modules/mailgun-js/lib/build.js');
-require('../node_modules/mailgun-js/lib/request.js');
-require('../node_modules/mailgun-js/lib/schema.js');
+var storage_service_1 = require('./storage.service');
 var MainComponent = (function () {
-    function MainComponent(http) {
+    function MainComponent(http, storage) {
         this.daysCount = 0;
         this.minSlide = 7;
         this.maxSlide = 360;
@@ -25,15 +21,8 @@ var MainComponent = (function () {
         this.periodPay = 0;
         this.boxSize = 0;
         this.dateFrom = new Date();
-        this.imgs = [{ 'btnId': '1m_btn', 'imgsrc': '../img/Boxes/1m.png' },
-            { 'btnId': '2.5m_btn', 'imgsrc': '../img/Boxes/2,5m.png' },
-            { 'btnId': '3m_btn', 'imgsrc': '../img/Boxes/3m.png' },
-            { 'btnId': '4m_btn', 'imgsrc': '../img/Boxes/4m.png' },
-            { 'btnId': '5m_btn', 'imgsrc': '../img/Boxes/5m.png' },
-            { 'btnId': '6m_btn', 'imgsrc': '../img/Boxes/6m.png' },
-            { 'btnId': '7m_btn', 'imgsrc': '../img/Boxes/7m.png' },
-            { 'btnId': '12m_btn', 'imgsrc': '../img/Boxes/12m.png' }];
         this.http = http;
+        this.imgs = storage.Imgs;
     }
     MainComponent.prototype.onBtnSizeClick = function (elem) {
         var id = elem.id;
@@ -120,38 +109,20 @@ var MainComponent = (function () {
         }
     };
     MainComponent.prototype.sendMail = function () {
-        debugger;
-        var username = 'postmaster@sandboxe0f06647b24846eb876f59315f3dc6a2.mailgun.org';
-        var password = 'd8054c0d6641495730824892a93018dc';
-        var apiKey = 'key-5056082441537401ce1f171a73494777';
-        var domain = 'sandboxe0f06647b24846eb876f59315f3dc6a2.mailgun.org';
-        var mailgun = require('mailgun-js')({ apiKey: apiKey, domain: domain });
-        var data = {
-            from: 'Excited User <me@samples.mailgun.org>',
-            to: 'qwertyihor11@mail.ru',
-            subject: 'Hello',
-            text: 'Testing some Mailgun awesomness!'
-        };
-        var headers = new http_1.Headers({
-            'Authorization': 'Basic' + btoa('api' + ':' + apiKey)
-        });
-        mailgun.messages().send(data, function (error, body) {
-            console.log(body);
-        });
-        // let options = new RequestOptions({ headers: headers });
-        // let url = "https://api.mailgun.net/v3/" + domain;
-        // let parameters = {
-        //     "domain": domain,
-        //     "parameters": {
-        //         "from": "Mailgun Sandbox <postmaster@sandbox224f28ae45a8499d84184fd4c48e62ee.mailgun.org>",
-        //         "to": "Jordi <qwertyihor11@gmail.com>",
-        //         "subject": "Hello Jordi",
-        //         "text": "Congratulations Jordi, you just sent an email with Mailgun!  You are truly awesome!  You can see a record of this email in your logs: https://mailgun.com/cp/log .  You can send up to 300 emails/day from this sandbox server.  Next, you should add your own domain so you can send 10,000 emails/month for free."
-        //     }
-        // };
-        // let result = this.http
-        //     .post(url, parameters, options)
-        //     .subscribe(resp => { console.log(resp) });
+        var url = "https://api.elasticemail.com/v2/email/send";
+        var api = "27bf6e11-fe44-45ed-b8c4-e291737221fc";
+        var to = "qwertyihor11@gmail.com";
+        var from = "boxer.co.ua@gmail.com";
+        var subject = "Бронювання боксу (" + Date.now + ")";
+        var bodyHtml = "from angular <br/>";
+        var isTransactional = false;
+        url = url.concat("?apikey=" + api);
+        url = url.concat("&subject=" + subject);
+        url = url.concat("&from=" + from);
+        url = url.concat("&to=" + to);
+        url = url.concat("&bodyHtml=" + bodyHtml);
+        url = url.concat("&isTransactional=" + isTransactional);
+        this.http.post(url, null, null).subscribe(function (i) { console.log(i); });
         return true;
     };
     __decorate([
@@ -168,7 +139,7 @@ var MainComponent = (function () {
             selector: 'landing',
             templateUrl: '../content.html'
         }), 
-        __metadata('design:paramtypes', [http_1.Http])
+        __metadata('design:paramtypes', [http_1.Http, storage_service_1.StorageService])
     ], MainComponent);
     return MainComponent;
 }());

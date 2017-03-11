@@ -22,6 +22,7 @@ var primeng_1 = require('primeng/primeng');
 var primeng_2 = require('primeng/primeng');
 var primeng_3 = require('primeng/primeng');
 var common_service_1 = require('./common.service');
+var storage_service_1 = require('./storage.service');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -66,7 +67,7 @@ var AppModule = (function () {
                 question_answer_component_1.QuestionAnswerComponnent
             ],
             bootstrap: [app_component_1.AppComponent],
-            providers: [common_service_1.CommonService]
+            providers: [common_service_1.CommonService, storage_service_1.StorageService]
         }), 
         __metadata('design:paramtypes', [])
     ], AppModule);

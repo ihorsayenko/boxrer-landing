@@ -1,13 +1,9 @@
 import { NgModule, OnInit, ViewChildren, ElementRef } from '@angular/core';
 import { NgModel, FormsModule } from '@angular/forms';
 import { Component } from '@angular/core';
-import { Http, Headers, RequestOptions } from '@angular/http';
+import { Http } from '@angular/http';
 
-import '../node_modules/mailgun-js/lib/mailgun.js'
-import '../node_modules/mailgun-js/lib/attachment.js'
-import '../node_modules/mailgun-js/lib/build.js'
-import '../node_modules/mailgun-js/lib/request.js'
-import '../node_modules/mailgun-js/lib/schema.js'
+import { StorageService } from './storage.service'
 
 @Component({
     moduleId: module.id,
@@ -37,20 +33,14 @@ export class MainComponent implements OnInit {
     activeTermBtb: ElementRef;
 
     http: Http;
-    imgs = [{ 'btnId': '1m_btn', 'imgsrc': '../img/Boxes/1m.png' },
-    { 'btnId': '2.5m_btn', 'imgsrc': '../img/Boxes/2,5m.png' },
-    { 'btnId': '3m_btn', 'imgsrc': '../img/Boxes/3m.png' },
-    { 'btnId': '4m_btn', 'imgsrc': '../img/Boxes/4m.png' },
-    { 'btnId': '5m_btn', 'imgsrc': '../img/Boxes/5m.png' },
-    { 'btnId': '6m_btn', 'imgsrc': '../img/Boxes/6m.png' },
-    { 'btnId': '7m_btn', 'imgsrc': '../img/Boxes/7m.png' },
-    { 'btnId': '12m_btn', 'imgsrc': '../img/Boxes/12m.png' }]
+    imgs: any;
 
     @ViewChildren('sizeBtns') boxSizeBtns: ElementRef;
     @ViewChildren('termsBtns') termsBtns: ElementRef;
 
-    constructor(http: Http) {
+    constructor(http: Http, storage: StorageService) {
         this.http = http;
+        this.imgs = storage.Imgs;
     }
 
     onBtnSizeClick(elem: ElementRef): void {
@@ -138,47 +128,23 @@ export class MainComponent implements OnInit {
     }
 
     sendMail(): boolean {
-        debugger;
 
-        let username = 'postmaster@sandboxe0f06647b24846eb876f59315f3dc6a2.mailgun.org';
-        let password = 'd8054c0d6641495730824892a93018dc';
-        let apiKey = 'key-5056082441537401ce1f171a73494777';
-        let domain = 'sandboxe0f06647b24846eb876f59315f3dc6a2.mailgun.org';
+        let url = "https://api.elasticemail.com/v2/email/send";
+        let api = "27bf6e11-fe44-45ed-b8c4-e291737221fc";
+        let to = "qwertyihor11@gmail.com";
+        let from = "boxer.co.ua@gmail.com";
+        let subject = "Бронювання боксу (" + Date.now + ")";
+        let bodyHtml = "from angular <br/>";
+        let isTransactional = false;
 
-        let mailgun = require('mailgun-js')({ apiKey: apiKey, domain: domain });
+        url = url.concat("?apikey=" + api);
+        url = url.concat("&subject=" + subject);
+        url = url.concat("&from=" + from);
+        url = url.concat("&to=" + to);
+        url = url.concat("&bodyHtml=" + bodyHtml);
+        url = url.concat("&isTransactional=" + isTransactional);
 
-        let data = {
-            from: 'Excited User <me@samples.mailgun.org>',
-            to: 'qwertyihor11@mail.ru',
-            subject: 'Hello',
-            text: 'Testing some Mailgun awesomness!'
-        };
-
-        let headers = new Headers({
-            'Authorization': 'Basic' + btoa('api' + ':' + apiKey)
-        });
-
-        mailgun.messages().send(data, function (error, body) {
-            console.log(body);
-        });
-
-        // let options = new RequestOptions({ headers: headers });
-
-        // let url = "https://api.mailgun.net/v3/" + domain;
-
-        // let parameters = {
-        //     "domain": domain,
-        //     "parameters": {
-        //         "from": "Mailgun Sandbox <postmaster@sandbox224f28ae45a8499d84184fd4c48e62ee.mailgun.org>",
-        //         "to": "Jordi <qwertyihor11@gmail.com>",
-        //         "subject": "Hello Jordi",
-        //         "text": "Congratulations Jordi, you just sent an email with Mailgun!  You are truly awesome!  You can see a record of this email in your logs: https://mailgun.com/cp/log .  You can send up to 300 emails/day from this sandbox server.  Next, you should add your own domain so you can send 10,000 emails/month for free."
-        //     }
-        // };
-        // let result = this.http
-        //     .post(url, parameters, options)
-        //     .subscribe(resp => { console.log(resp) });
-         return true;
-
+        this.http.post(url, null, null ).subscribe(i =>{console.log(i)})
+        return true;
     }
 }
