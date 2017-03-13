@@ -346,23 +346,43 @@
     </div>
 </div>
 
-<!-- Package Modal -->
-<div id="packagesModal" class="modal fade" role="dialog">
+<!-- Packages Modal -->
+<div id="packagesModal" class="modal fade packages_modal" role="dialog">
     <div class="modal-dialog">
 
         <!-- Modal content-->
         <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Modal Header</h4>
+            <div class="modal-header furore_regular">
+                <span>пакувальні матеріали</span>
+                <button type="button" class="close" data-dismiss="modal"><span class="close_btn">&times;</span></button>
             </div>
-            <div class="modal-body">
-                <p>Some text in the modal.</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <div class="modal-body caviar_regular">
+                <div class="row">
+                    <div class="package_tabs">
+                        <ul class="nav nav-tabs">
+                            <li role="presentation" class="active"><a class="" href="#boxes" data-toggle="tab">коробки</a></li>
+                            <li role="presentation" class=""><a class="" href="#locksAndShelves" data-toggle="tab">замки/стелажі</a></li>
+                            <li role="presentation" class=""><a class="" href="#packages" data-toggle="tab">плівки/пакети</a></li>
+                            <li role="presentation" class=""><a class="" href="#others" data-toggle="tab">інші матеріали</a></li>
+                        </ul>
+
+                        <div class="tab-content clearfix">
+                            <div class="tab-pane active" id='boxes'>
+                                boxes
+                            </div>
+                            <div class="tab-pane" id='locksAndShelves'>
+                                locksAndShelves
+                            </div>
+                            <div class="tab-pane" id='packages'>
+                                packages
+                            </div>
+                            <div class="tab-pane" id='others'>
+                                others
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-
     </div>
 </div>
