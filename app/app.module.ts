@@ -15,7 +15,6 @@ import { SliderModule } from 'primeng/primeng';
 import { CalendarModule } from 'primeng/primeng';
 
 import { CommonService } from './common.service';
-import { StorageService } from './storage.service';
 
 @NgModule({
     imports: [
@@ -58,7 +57,7 @@ import { StorageService } from './storage.service';
         QuestionAnswerComponnent
     ],
     bootstrap: [AppComponent],
-    providers: [CommonService, StorageService]
+    providers: [CommonService]
 
 })
 export class AppModule { }

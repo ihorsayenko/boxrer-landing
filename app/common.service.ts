@@ -1,12 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 
-// import { Observable } from 'rxjs/';
-// import 'rxjs/add/Operator/catch';
-// import 'rxjs/add/Operator/map';
 import 'rxjs/add/Operator/toPromise';
 
-import {CommonModal} from './common.model'
+import { CommonModal } from './common.model'
 
 @Injectable()
 export class CommonService {
@@ -21,14 +18,48 @@ export class CommonService {
             .catch(this.handleError);
     }
 
+    getBoxImgs(): Promise<JSON> {
+        return this.http.get(this.storageFileUrl)
+            .toPromise()
+            .then(resp => { return resp.json().BoxImgs })
+            .catch(this.handleError);
+    }
+
+    getPackageBoxes(): Promise<JSON> {
+        return this.http.get(this.storageFileUrl)
+            .toPromise()
+            .then(resp => { return resp.json().PackageMaterials.Boxes })
+            .catch(this.handleError);
+    }
+    getPackageLocksAndShelves(): Promise<JSON> {
+        return this.http.get(this.storageFileUrl)
+            .toPromise()
+            .then(resp => { return resp.json().PackageMaterials.LocksAndShelves })
+            .catch(this.handleError);
+    }
+    getPackagePackages(): Promise<JSON> {
+        return this.http.get(this.storageFileUrl)
+            .toPromise()
+            .then(resp => { return resp.json().PackageMaterials.Packages })
+            .catch(this.handleError);
+    }
+    getPackageOthers(): Promise<JSON> {
+        return this.http.get(this.storageFileUrl)
+            .toPromise()
+            .then(resp => { return resp.json().PackageMaterials.Others })
+            .catch(this.handleError);
+    }
+
     private extractData(res: Response) {
         let body = res.json();
+
         return body as CommonModal;
     }
-    
+
     private handleError(error: Response | any) {
         // In a real world app, we might use a remote logging infrastructure
         let errMsg: string;
+
         if (error instanceof Response) {
             const body = error.json() || '';
             const err = body.error || JSON.stringify(body);
@@ -36,7 +67,9 @@ export class CommonService {
         } else {
             errMsg = error.message ? error.message : error.toString();
         }
+
         console.error(errMsg);
+
         return Observable.throw(errMsg);
     }
 }

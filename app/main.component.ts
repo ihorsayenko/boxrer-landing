@@ -3,7 +3,7 @@ import { NgModel, FormsModule } from '@angular/forms';
 import { Component } from '@angular/core';
 import { Http } from '@angular/http';
 
-import { StorageService } from './storage.service'
+import { CommonService } from './common.service'
 
 @Component({
     moduleId: module.id,
@@ -11,7 +11,7 @@ import { StorageService } from './storage.service'
     templateUrl: '../content.html'
 })
 
-export class MainComponent implements OnInit {
+export class MainComponent {
     daysCount: number = 0;
     minSlide: number = 7;
     maxSlide: number = 360;
@@ -34,13 +34,30 @@ export class MainComponent implements OnInit {
 
     http: Http;
     imgs: any;
+    
+    boxes: any;
+    lokcsAndShelves: any;
+    packages: any;
+    others: any;
+
+    //common: CommonService;
 
     @ViewChildren('sizeBtns') boxSizeBtns: ElementRef;
     @ViewChildren('termsBtns') termsBtns: ElementRef;
 
-    constructor(http: Http, storage: StorageService) {
+    constructor(http: Http, common: CommonService) {
         this.http = http;
-        this.imgs = storage.Imgs;
+        this.boxes = common.getPackageBoxes();
+        this.lokcsAndShelves = common.getPackageLocksAndShelves();
+        this.packages = common.getPackagePackages();
+        this.others = common.getPackageOthers();
+
+        common.getBoxImgs().then(items => this.initVariables(items));
+    }
+
+    initVariables(items: any) {
+        this.imgs = items;
+        this.boxImgSrcFull = this.imgs[0].imgsrc;
     }
 
     onBtnSizeClick(elem: ElementRef): void {
@@ -102,10 +119,6 @@ export class MainComponent implements OnInit {
         }
     }
 
-    ngOnInit() {
-        this.boxImgSrcFull = this.imgs[0].imgsrc;
-    }
-
     calculatePrice(): void {
         if (this.boxSize > 1 && this.daysCount >= 7) {
             let price;
@@ -128,7 +141,6 @@ export class MainComponent implements OnInit {
     }
 
     sendMail(): boolean {
-
         let url = "https://api.elasticemail.com/v2/email/send";
         let api = "27bf6e11-fe44-45ed-b8c4-e291737221fc";
         let to = "qwertyihor11@gmail.com";
@@ -144,7 +156,7 @@ export class MainComponent implements OnInit {
         url = url.concat("&bodyHtml=" + bodyHtml);
         url = url.concat("&isTransactional=" + isTransactional);
 
-        this.http.post(url, null, null ).subscribe(i =>{console.log(i)})
+        this.http.post(url, null, null).subscribe(i => { console.log(i) })
         return true;
     }
 }

@@ -10,9 +10,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
-// import { Observable } from 'rxjs/';
-// import 'rxjs/add/Operator/catch';
-// import 'rxjs/add/Operator/map';
 require('rxjs/add/Operator/toPromise');
 var CommonService = (function () {
     function CommonService(http) {
@@ -23,6 +20,36 @@ var CommonService = (function () {
         return this.http.get(this.storageFileUrl)
             .toPromise()
             .then(this.extractData)
+            .catch(this.handleError);
+    };
+    CommonService.prototype.getBoxImgs = function () {
+        return this.http.get(this.storageFileUrl)
+            .toPromise()
+            .then(function (resp) { return resp.json().BoxImgs; })
+            .catch(this.handleError);
+    };
+    CommonService.prototype.getPackageBoxes = function () {
+        return this.http.get(this.storageFileUrl)
+            .toPromise()
+            .then(function (resp) { return resp.json().PackageMaterials.Boxes; })
+            .catch(this.handleError);
+    };
+    CommonService.prototype.getPackageLocksAndShelves = function () {
+        return this.http.get(this.storageFileUrl)
+            .toPromise()
+            .then(function (resp) { return resp.json().PackageMaterials.LocksAndShelves; })
+            .catch(this.handleError);
+    };
+    CommonService.prototype.getPackagePackages = function () {
+        return this.http.get(this.storageFileUrl)
+            .toPromise()
+            .then(function (resp) { return resp.json().PackageMaterials.Packages; })
+            .catch(this.handleError);
+    };
+    CommonService.prototype.getPackageOthers = function () {
+        return this.http.get(this.storageFileUrl)
+            .toPromise()
+            .then(function (resp) { return resp.json().PackageMaterials.Others; })
             .catch(this.handleError);
     };
     CommonService.prototype.extractData = function (res) {

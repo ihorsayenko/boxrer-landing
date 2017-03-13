@@ -11,9 +11,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var core_2 = require('@angular/core');
 var http_1 = require('@angular/http');
-var storage_service_1 = require('./storage.service');
+var common_service_1 = require('./common.service');
 var MainComponent = (function () {
-    function MainComponent(http, storage) {
+    function MainComponent(http, common) {
+        var _this = this;
         this.daysCount = 0;
         this.minSlide = 7;
         this.maxSlide = 360;
@@ -22,8 +23,16 @@ var MainComponent = (function () {
         this.boxSize = 0;
         this.dateFrom = new Date();
         this.http = http;
-        this.imgs = storage.Imgs;
+        this.boxes = common.getPackageBoxes();
+        this.lokcsAndShelves = common.getPackageLocksAndShelves();
+        this.packages = common.getPackagePackages();
+        this.others = common.getPackageOthers();
+        common.getBoxImgs().then(function (items) { return _this.initVariables(items); });
     }
+    MainComponent.prototype.initVariables = function (items) {
+        this.imgs = items;
+        this.boxImgSrcFull = this.imgs[0].imgsrc;
+    };
     MainComponent.prototype.onBtnSizeClick = function (elem) {
         var id = elem.id;
         var btns = this.boxSizeBtns._results[0].nativeElement.children;
@@ -82,9 +91,6 @@ var MainComponent = (function () {
             this.calculatePrice();
         }
     };
-    MainComponent.prototype.ngOnInit = function () {
-        this.boxImgSrcFull = this.imgs[0].imgsrc;
-    };
     MainComponent.prototype.calculatePrice = function () {
         if (this.boxSize > 1 && this.daysCount >= 7) {
             var price = void 0;
@@ -139,7 +145,7 @@ var MainComponent = (function () {
             selector: 'landing',
             templateUrl: '../content.html'
         }), 
-        __metadata('design:paramtypes', [http_1.Http, storage_service_1.StorageService])
+        __metadata('design:paramtypes', [http_1.Http, common_service_1.CommonService])
     ], MainComponent);
     return MainComponent;
 }());
