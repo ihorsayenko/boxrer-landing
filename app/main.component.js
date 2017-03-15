@@ -23,12 +23,18 @@ var MainComponent = (function () {
         this.boxSize = 0;
         this.dateFrom = new Date();
         this.http = http;
-        this.boxes = common.getPackageBoxes();
+        this.common = common;
+        //common.getPackageBoxes().then(i =>  this.boxes = i);
         this.lokcsAndShelves = common.getPackageLocksAndShelves();
         this.packages = common.getPackagePackages();
         this.others = common.getPackageOthers();
         common.getBoxImgs().then(function (items) { return _this.initVariables(items); });
     }
+    MainComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        //this.storage.getData().then(item => this.Items = item.QuestionItems as any);
+        this.common.getPackageBoxes().then(function (i) { _this.boxes = i; });
+    };
     MainComponent.prototype.initVariables = function (items) {
         this.imgs = items;
         this.boxImgSrcFull = this.imgs[0].imgsrc;
@@ -52,6 +58,7 @@ var MainComponent = (function () {
         this.calculatePrice();
     };
     MainComponent.prototype.onBtnTermClick = function (elem) {
+        debugger;
         var id = elem.id;
         var btns = this.termsBtns._results[0].nativeElement.children;
         for (var _i = 0, btns_2 = btns; _i < btns_2.length; _i++) {

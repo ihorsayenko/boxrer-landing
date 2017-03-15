@@ -5,5 +5,6 @@ export class CommonModal {
         ID: Number,
         Question: String,
         Answer: String
-    }
+    };
+
 }

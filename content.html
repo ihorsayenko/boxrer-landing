@@ -368,7 +368,29 @@
 
                         <div class="tab-content clearfix">
                             <div class="tab-pane active" id='boxes'>
-                                boxes
+                                <ul class="list-group">
+                                    <li [id]='item.id' class="list-group-item" *ngFor="let item of boxes">
+                                        <div class="row">
+                                            <div class="col-md-3 text-center">
+                                                <img class="package-img" [src]="item.imgSrc" alt="">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <ul class="list-group">
+                                                    <li [id]="'desc_' + i" class="list-group-item" *ngFor='let desc of item.description; let i = index;'>
+                                                        {{desc}}
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-md-3 text-center">
+                                                <button class="btn btn-default btn_minus">-</button>
+                                                <div></div>
+                                                <button class="btn btn-default btn_plus">+</button>
+                                                <br /> ціна: {{item.price}}грн
+                                            </div>
+
+                                        </div>
+                                    </li>
+                                </ul>
                             </div>
                             <div class="tab-pane" id='locksAndShelves'>
                                 locksAndShelves

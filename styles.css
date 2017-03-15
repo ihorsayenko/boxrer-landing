@@ -677,7 +677,7 @@ map_section .nav-tabs li a:hover {
 /*Packages modal*/
 
 .packages_modal {
-    top: 20%;
+    top: 5%;
 }
 
 .packages_modal .close_btn {
@@ -695,4 +695,18 @@ map_section .nav-tabs li a:hover {
     color: #ffffff;
     font-size: 14px;
     padding: 5px 15px 0 25px;
+}
+
+.package_tabs .nav-tabs {
+    border-bottom: 2px solid #e7e5e5;
+}
+
+.package_tabs .nav-tabs li.active a,
+.package_tabs .nav-tabs li a {
+    border: none;
+    color: #7e818a;
+}
+
+.package_tabs .nav-tabs li.active {
+    border-bottom: 2px solid #4a5187;
 }

@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
 import { Http } from '@angular/http';
 
 import { CommonService } from './common.service'
+import { PackageModel } from './package.model'
 
 @Component({
     moduleId: module.id,
@@ -11,7 +12,7 @@ import { CommonService } from './common.service'
     templateUrl: '../content.html'
 })
 
-export class MainComponent {
+export class MainComponent implements OnInit {
     daysCount: number = 0;
     minSlide: number = 7;
     maxSlide: number = 360;
@@ -34,25 +35,31 @@ export class MainComponent {
 
     http: Http;
     imgs: any;
-    
-    boxes: any;
+
+    boxes: JSON;
     lokcsAndShelves: any;
     packages: any;
     others: any;
 
-    //common: CommonService;
+    common: CommonService;
 
     @ViewChildren('sizeBtns') boxSizeBtns: ElementRef;
     @ViewChildren('termsBtns') termsBtns: ElementRef;
 
     constructor(http: Http, common: CommonService) {
         this.http = http;
-        this.boxes = common.getPackageBoxes();
+        this.common = common;
+        //common.getPackageBoxes().then(i =>  this.boxes = i);
         this.lokcsAndShelves = common.getPackageLocksAndShelves();
         this.packages = common.getPackagePackages();
         this.others = common.getPackageOthers();
 
         common.getBoxImgs().then(items => this.initVariables(items));
+    }
+
+    ngOnInit(): void {
+        //this.storage.getData().then(item => this.Items = item.QuestionItems as any);
+        this.common.getPackageBoxes().then(i => { this.boxes = i});
     }
 
     initVariables(items: any) {
@@ -79,6 +86,7 @@ export class MainComponent {
     }
 
     onBtnTermClick(elem: ElementRef): void {
+        debugger;
         let id = elem.id;
         let btns = this.termsBtns._results[0].nativeElement.children;
         for (let element of btns) {

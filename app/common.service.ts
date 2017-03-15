@@ -4,6 +4,7 @@ import { Http, Response } from '@angular/http';
 import 'rxjs/add/Operator/toPromise';
 
 import { CommonModal } from './common.model'
+import { PackageModel} from './package.model'
 
 @Injectable()
 export class CommonService {
@@ -28,7 +29,7 @@ export class CommonService {
     getPackageBoxes(): Promise<JSON> {
         return this.http.get(this.storageFileUrl)
             .toPromise()
-            .then(resp => { return resp.json().PackageMaterials.Boxes })
+            .then(resp => {return resp.json().PackageMaterials.Boxes })
             .catch(this.handleError);
     }
     getPackageLocksAndShelves(): Promise<JSON> {
@@ -54,6 +55,12 @@ export class CommonService {
         let body = res.json();
 
         return body as CommonModal;
+    }
+    private mapPackageNodel(res: Response) {
+
+        res.json().PackageMaterials.Boxes
+
+       return 
     }
 
     private handleError(error: Response | any) {
