@@ -26,28 +26,28 @@ export class CommonService {
             .catch(this.handleError);
     }
 
-    getPackageBoxes(): Promise<JSON> {
+    getPackageBoxes(): Promise<PackageModel> {
         return this.http.get(this.storageFileUrl)
             .toPromise()
-            .then(resp => {return resp.json().PackageMaterials.Boxes })
+            .then(resp => {return resp.json().PackageMaterials.Boxes as PackageModel})
             .catch(this.handleError);
     }
-    getPackageLocksAndShelves(): Promise<JSON> {
+    getPackageLocksAndShelves(): Promise<PackageModel> {
         return this.http.get(this.storageFileUrl)
             .toPromise()
-            .then(resp => { return resp.json().PackageMaterials.LocksAndShelves })
+            .then(resp => { return resp.json().PackageMaterials.LocksAndShelves as PackageModel})
             .catch(this.handleError);
     }
-    getPackagePackages(): Promise<JSON> {
+    getPackagePackages(): Promise<PackageModel> {
         return this.http.get(this.storageFileUrl)
             .toPromise()
-            .then(resp => { return resp.json().PackageMaterials.Packages })
+            .then(resp => { return resp.json().PackageMaterials.Packages as PackageModel})
             .catch(this.handleError);
     }
-    getPackageOthers(): Promise<JSON> {
+    getPackageOthers(): Promise<PackageModel> {
         return this.http.get(this.storageFileUrl)
             .toPromise()
-            .then(resp => { return resp.json().PackageMaterials.Others })
+            .then(resp => { return resp.json().PackageMaterials.Others as PackageModel})
             .catch(this.handleError);
     }
 

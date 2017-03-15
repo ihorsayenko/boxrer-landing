@@ -181,7 +181,8 @@
                         <div class="row dates">
                             <div class="text-left">
                                 <label class="calculator_text_color_blue" for="datePickerFrom">перший день оренди</label>
-                                <p-calendar class="date_picker" id='datePickerFrom' [(ngModel)]="dateFrom" readonlyInput="readonlyInput" dateFormat="dd/mm/yy" inputStyleClass='calendar_input'></p-calendar>
+                                <p-calendar class="date_picker" id='datePickerFrom' [(ngModel)]="dateFrom" readonlyInput="readonlyInput" dateFormat="dd/mm/yy"
+                                    inputStyleClass='calendar_input'></p-calendar>
                             </div>
                         </div>
                         <div class="row">
@@ -223,7 +224,8 @@
                 </div>
                 <div class="row">
                     <div class="booking_btn_wrapper text-center">
-                        <button class="btn btn-default" [ngClass]="this.boxSize >= 1 && this.daysCount >= 7 ? '' : 'hide'" data-toggle="modal" ata-target="#bookingModal" (click)='sendMail()'>
+                        <button class="btn btn-default" [ngClass]="this.boxSize >= 1 && this.daysCount >= 7 ? '' : 'hide'" data-toggle="modal" ata-target="#bookingModal"
+                            (click)='sendMail()'>
                                 <label>забронювати</label>
                         </button>
                     </div>
@@ -374,32 +376,118 @@
                                             <div class="col-md-3 text-center">
                                                 <img class="package-img" [src]="item.imgSrc" alt="">
                                             </div>
-                                            <div class="col-md-6">
-                                                <ul class="list-group">
-                                                    <li [id]="'desc_' + i" class="list-group-item" *ngFor='let desc of item.description; let i = index;'>
+                                            <div class="col-md-6 text-left">
+                                                <ul class="package_desc">
+                                                    <li [id]="'desc_' + i" class="" *ngFor='let desc of item.description; let i = index;'>
                                                         {{desc}}
                                                     </li>
                                                 </ul>
                                             </div>
                                             <div class="col-md-3 text-center">
-                                                <button class="btn btn-default btn_minus">-</button>
-                                                <div></div>
-                                                <button class="btn btn-default btn_plus">+</button>
-                                                <br /> ціна: {{item.price}}грн
+                                                <div class="counters input-group">
+                                                    <span class="input-group-btn">   
+                                                        <button type="button" [disabled]="item.count <= 0 ? true: null" class="btn btn_minus" (click)="onCountMinus(item)">&#45;</button>
+                                                    </span>
+                                                    <input type="text" class="form-control text-center" [value]="item.count" readonly>
+                                                    <span class="input-group-btn">
+                                                        <button tepe="button" [disabled]="item.count >= maxPackageCount ? true: null" class="btn btn_plus" (click)="onCountPlus(item)">&#43;</button>
+                                                    </span>
+                                                </div>
+                                                ціна: {{item.price}}&nbsp;грн
                                             </div>
-
                                         </div>
                                     </li>
                                 </ul>
                             </div>
                             <div class="tab-pane" id='locksAndShelves'>
-                                locksAndShelves
+                                <ul class="list-group">
+                                    <li [id]='item.id' class="list-group-item" *ngFor="let item of locksAndShelves">
+                                        <div class="row">
+                                            <div class="col-md-3 text-center">
+                                                <img class="package-img" [src]="item.imgSrc" alt="">
+                                            </div>
+                                            <div class="col-md-6 text-left">
+                                                <ul class="package_desc">
+                                                    <li [id]="'desc_' + i" class="" *ngFor='let desc of item.description; let i = index;'>
+                                                        {{desc}}
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-md-3 text-center">
+                                                <div class="counters input-group">
+                                                    <span class="input-group-btn">   
+                                                        <button type="button" [disabled]="item.count <= 0 ? true: null" class="btn btn_minus" (click)="onCountMinus(item)">&#45;</button>
+                                                    </span>
+                                                    <input type="text" class="form-control text-center" [value]="item.count" readonly>
+                                                    <span class="input-group-btn">
+                                                        <button tepe="button" [disabled]="item.count >= maxPackageCount ? true: null" class="btn btn_plus" (click)="onCountPlus(item)">&#43;</button>
+                                                    </span>
+                                                </div>
+                                                ціна: {{item.price}}&nbsp;грн
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
                             </div>
                             <div class="tab-pane" id='packages'>
-                                packages
+                                <ul class="list-group">
+                                    <li [id]='item.id' class="list-group-item" *ngFor="let item of packages">
+                                        <div class="row">
+                                            <div class="col-md-3 text-center">
+                                                <img class="package-img" [src]="item.imgSrc" alt="">
+                                            </div>
+                                            <div class="col-md-6 text-left">
+                                                <ul class="package_desc">
+                                                    <li [id]="'desc_' + i" class="" *ngFor='let desc of item.description; let i = index;'>
+                                                        {{desc}}
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-md-3 text-center">
+                                                <div class="counters input-group">
+                                                    <span class="input-group-btn">   
+                                                        <button type="button" [disabled]="item.count <= 0 ? true: null" class="btn btn_minus" (click)="onCountMinus(item)">&#45;</button>
+                                                    </span>
+                                                    <input type="text" class="form-control text-center" [value]="item.count" readonly>
+                                                    <span class="input-group-btn">
+                                                        <button tepe="button" [disabled]="item.count >= maxPackageCount ? true: null" class="btn btn_plus" (click)="onCountPlus(item)">&#43;</button>
+                                                    </span>
+                                                </div>
+                                                ціна: {{item.price}}&nbsp;грн
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
                             </div>
                             <div class="tab-pane" id='others'>
-                                others
+                                <ul class="list-group">
+                                    <li [id]='item.id' class="list-group-item" *ngFor="let item of others">
+                                        <div class="row">
+                                            <div class="col-md-3 text-center">
+                                                <img class="package-img" [src]="item.imgSrc" alt="">
+                                            </div>
+                                            <div class="col-md-6 text-left">
+                                                <ul class="package_desc">
+                                                    <li [id]="'desc_' + i" class="" *ngFor='let desc of item.description; let i = index;'>
+                                                        {{desc}}
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-md-3 text-center">
+                                                <div class="counters input-group">
+                                                    <span class="input-group-btn">   
+                                                        <button type="button" [disabled]="item.count <= 0 ? true: null" class="btn btn_minus" (click)="onCountMinus(item)">&#45;</button>
+                                                    </span>
+                                                    <input type="text" class="form-control text-center" [value]="item.count" readonly>
+                                                    <span class="input-group-btn">
+                                                        <button tepe="button" [disabled]="item.count >= maxPackageCount ? true: null" class="btn btn_plus" (click)="onCountPlus(item)">&#43;</button>
+                                                    </span>
+                                                </div>
+                                                ціна: {{item.price}}&nbsp;грн
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>

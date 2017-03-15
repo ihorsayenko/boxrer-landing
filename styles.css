@@ -1,3 +1,4 @@
+
 /* -----------------Fonts---------------*/
 
 @font-face {
@@ -709,4 +710,53 @@ map_section .nav-tabs li a:hover {
 
 .package_tabs .nav-tabs li.active {
     border-bottom: 2px solid #4a5187;
+}
+
+.package-img {
+    border: 1px solid #b3b4b9;
+    background-color: #ffffff;
+}
+
+.package_desc {
+    list-style-type: none;
+    padding: 0;
+}
+
+.counters.input-group {
+    padding: 0;
+    margin: 30px 0 10px 0;
+}
+
+.counters div.package_count {
+    margin: 0;
+    width: 45px;
+    display: inline-block;
+    font-size: 12px;
+}
+
+.counters div.package_count package_count_text {
+    padding-top: 5px
+}
+
+.counters .input-group-btn button {
+    background-color: #b3b4b9;
+    width: 35px;
+    height: 25px;
+    color: #ffffff;
+    border-radius: 0;
+    border: none;
+    padding-top: 0;
+    font-size: 18px;
+}
+
+.counters input.form-control{
+    height: 25px;
+    background-color: #ececec;
+    border: none;
+    font-size: 12px;
+    padding-top: 5px;
+}
+
+.desc{
+    height: 100%;
 }

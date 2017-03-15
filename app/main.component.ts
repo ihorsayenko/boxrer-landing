@@ -16,6 +16,7 @@ export class MainComponent implements OnInit {
     daysCount: number = 0;
     minSlide: number = 7;
     maxSlide: number = 360;
+    maxPackageCount = 20;
 
     monthPay: number = 0;
     periodPay: number = 0;
@@ -36,10 +37,10 @@ export class MainComponent implements OnInit {
     http: Http;
     imgs: any;
 
-    boxes: JSON;
-    lokcsAndShelves: any;
-    packages: any;
-    others: any;
+    boxes: PackageModel;
+    locksAndShelves: PackageModel;
+    packages: PackageModel;
+    others: PackageModel;
 
     common: CommonService;
 
@@ -49,17 +50,15 @@ export class MainComponent implements OnInit {
     constructor(http: Http, common: CommonService) {
         this.http = http;
         this.common = common;
-        //common.getPackageBoxes().then(i =>  this.boxes = i);
-        this.lokcsAndShelves = common.getPackageLocksAndShelves();
-        this.packages = common.getPackagePackages();
-        this.others = common.getPackageOthers();
-
         common.getBoxImgs().then(items => this.initVariables(items));
     }
 
     ngOnInit(): void {
         //this.storage.getData().then(item => this.Items = item.QuestionItems as any);
-        this.common.getPackageBoxes().then(i => { this.boxes = i});
+        this.common.getPackageBoxes().then(i => { this.boxes = i });
+        this.common.getPackageLocksAndShelves().then(i => { this.locksAndShelves = i });
+        this.common.getPackagePackages().then(i => { this.packages = i });
+        this.common.getPackageOthers().then(i => { this.others = i });
     }
 
     initVariables(items: any) {
@@ -126,6 +125,11 @@ export class MainComponent implements OnInit {
             this.calculatePrice();
         }
     }
+
+    onCountPlus(item: Object): void { item.count++; }
+
+    onCountMinus(item: Object): void { item.count--; }
+
 
     calculatePrice(): void {
         if (this.boxSize > 1 && this.daysCount >= 7) {

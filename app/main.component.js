@@ -18,22 +18,22 @@ var MainComponent = (function () {
         this.daysCount = 0;
         this.minSlide = 7;
         this.maxSlide = 360;
+        this.maxPackageCount = 20;
         this.monthPay = 0;
         this.periodPay = 0;
         this.boxSize = 0;
         this.dateFrom = new Date();
         this.http = http;
         this.common = common;
-        //common.getPackageBoxes().then(i =>  this.boxes = i);
-        this.lokcsAndShelves = common.getPackageLocksAndShelves();
-        this.packages = common.getPackagePackages();
-        this.others = common.getPackageOthers();
         common.getBoxImgs().then(function (items) { return _this.initVariables(items); });
     }
     MainComponent.prototype.ngOnInit = function () {
         var _this = this;
         //this.storage.getData().then(item => this.Items = item.QuestionItems as any);
         this.common.getPackageBoxes().then(function (i) { _this.boxes = i; });
+        this.common.getPackageLocksAndShelves().then(function (i) { _this.locksAndShelves = i; });
+        this.common.getPackagePackages().then(function (i) { _this.packages = i; });
+        this.common.getPackageOthers().then(function (i) { _this.others = i; });
     };
     MainComponent.prototype.initVariables = function (items) {
         this.imgs = items;
@@ -98,6 +98,8 @@ var MainComponent = (function () {
             this.calculatePrice();
         }
     };
+    MainComponent.prototype.onCountPlus = function (item) { item.count++; };
+    MainComponent.prototype.onCountMinus = function (item) { item.count--; };
     MainComponent.prototype.calculatePrice = function () {
         if (this.boxSize > 1 && this.daysCount >= 7) {
             var price = void 0;
