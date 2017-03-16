@@ -30,10 +30,10 @@ var MainComponent = (function () {
     MainComponent.prototype.ngOnInit = function () {
         var _this = this;
         //this.storage.getData().then(item => this.Items = item.QuestionItems as any);
-        this.common.getPackageBoxes().then(function (i) { _this.boxes = i; });
-        this.common.getPackageLocksAndShelves().then(function (i) { _this.locksAndShelves = i; });
-        this.common.getPackagePackages().then(function (i) { _this.packages = i; });
-        this.common.getPackageOthers().then(function (i) { _this.others = i; });
+        this.common.getPackageBoxes().then(function (i) { _this.boxes = i; _this.boxesEtalon = (JSON.parse(JSON.stringify(i))); });
+        this.common.getPackageLocksAndShelves().then(function (i) { _this.locksAndShelves = i; _this.locksAndShelvesEtalon = i; });
+        this.common.getPackagePackages().then(function (i) { _this.packages = i; _this.packagesEtalon = i; });
+        this.common.getPackageOthers().then(function (i) { _this.others = i; _this.othersEtalon = i; });
     };
     MainComponent.prototype.initVariables = function (items) {
         this.imgs = items;
@@ -100,6 +100,12 @@ var MainComponent = (function () {
     };
     MainComponent.prototype.onCountPlus = function (item) { item.count++; };
     MainComponent.prototype.onCountMinus = function (item) { item.count--; };
+    MainComponent.prototype.bookPackages = function () {
+        if (this.boxes.find(function (i) { return i.count > 0; })) {
+            debugger;
+            this.boxes = this.boxesEtalon;
+        }
+    };
     MainComponent.prototype.calculatePrice = function () {
         if (this.boxSize > 1 && this.daysCount >= 7) {
             var price = void 0;

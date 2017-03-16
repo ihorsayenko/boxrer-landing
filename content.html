@@ -181,8 +181,7 @@
                         <div class="row dates">
                             <div class="text-left">
                                 <label class="calculator_text_color_blue" for="datePickerFrom">перший день оренди</label>
-                                <p-calendar class="date_picker" id='datePickerFrom' [(ngModel)]="dateFrom" readonlyInput="readonlyInput" dateFormat="dd/mm/yy"
-                                    inputStyleClass='calendar_input'></p-calendar>
+                                <p-calendar class="date_picker" id='datePickerFrom' [(ngModel)]="dateFrom" readonlyInput="readonlyInput" dateFormat="dd/mm/yy" inputStyleClass='calendar_input'></p-calendar>
                             </div>
                         </div>
                         <div class="row">
@@ -224,8 +223,7 @@
                 </div>
                 <div class="row">
                     <div class="booking_btn_wrapper text-center">
-                        <button class="btn btn-default" [ngClass]="this.boxSize >= 1 && this.daysCount >= 7 ? '' : 'hide'" data-toggle="modal" ata-target="#bookingModal"
-                            (click)='sendMail()'>
+                        <button class="btn btn-default" [ngClass]="this.boxSize >= 1 && this.daysCount >= 7 ? '' : 'hide'" data-toggle="modal" ata-target="#bookingModal" (click)='sendMail()'>
                                 <label>забронювати</label>
                         </button>
                     </div>
@@ -490,6 +488,11 @@
                                 </ul>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="booking_btn_wrapper text-center">
+                        <button type="button" class="btn btn-default" (click)="bookPackages()" data-dismiss="modal"><label>замовити</label></button>
                     </div>
                 </div>
             </div>

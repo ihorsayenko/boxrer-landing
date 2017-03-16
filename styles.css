@@ -1,4 +1,3 @@
-
 /* -----------------Fonts---------------*/
 
 @font-face {
@@ -424,6 +423,7 @@ input.undefined.ui-inputtext.ui-corner-all.ui-state-default.ui-widget.ui-state-f
 .booking_btn_wrapper {
     margin: auto;
     margin-top: 30px;
+    cursor: pointer;
 }
 
 .booking_btn_wrapper button,
@@ -749,7 +749,7 @@ map_section .nav-tabs li a:hover {
     font-size: 18px;
 }
 
-.counters input.form-control{
+.counters input.form-control {
     height: 25px;
     background-color: #ececec;
     border: none;
@@ -757,6 +757,6 @@ map_section .nav-tabs li a:hover {
     padding-top: 5px;
 }
 
-.desc{
+.desc {
     height: 100%;
 }

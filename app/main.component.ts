@@ -37,10 +37,14 @@ export class MainComponent implements OnInit {
     http: Http;
     imgs: any;
 
-    boxes: PackageModel;
-    locksAndShelves: PackageModel;
-    packages: PackageModel;
-    others: PackageModel;
+    boxes: PackageModel[];
+    boxesEtalon: PackageModel[];
+    locksAndShelves: PackageModel[];
+    locksAndShelvesEtalon: PackageModel[];
+    packages: PackageModel[];
+    packagesEtalon: PackageModel[];
+    others: PackageModel[];
+    othersEtalon: PackageModel[];
 
     common: CommonService;
 
@@ -55,10 +59,10 @@ export class MainComponent implements OnInit {
 
     ngOnInit(): void {
         //this.storage.getData().then(item => this.Items = item.QuestionItems as any);
-        this.common.getPackageBoxes().then(i => { this.boxes = i });
-        this.common.getPackageLocksAndShelves().then(i => { this.locksAndShelves = i });
-        this.common.getPackagePackages().then(i => { this.packages = i });
-        this.common.getPackageOthers().then(i => { this.others = i });
+        this.common.getPackageBoxes().then(i => { this.boxes = i; this.boxesEtalon = (JSON.parse(JSON.stringify(i))) as PackageModel[]; });
+        this.common.getPackageLocksAndShelves().then(i => { this.locksAndShelves = i; this.locksAndShelvesEtalon = i; });
+        this.common.getPackagePackages().then(i => { this.packages = i; this.packagesEtalon = i; });
+        this.common.getPackageOthers().then(i => { this.others = i; this.othersEtalon = i; });
     }
 
     initVariables(items: any) {
@@ -130,6 +134,12 @@ export class MainComponent implements OnInit {
 
     onCountMinus(item: Object): void { item.count--; }
 
+    bookPackages():void{
+        if(this.boxes.find(i => i.count > 0)){
+            debugger;
+            this.boxes = this.boxesEtalon;
+        }
+    }
 
     calculatePrice(): void {
         if (this.boxSize > 1 && this.daysCount >= 7) {
