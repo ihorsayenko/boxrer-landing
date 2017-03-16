@@ -181,7 +181,8 @@
                         <div class="row dates">
                             <div class="text-left">
                                 <label class="calculator_text_color_blue" for="datePickerFrom">перший день оренди</label>
-                                <p-calendar class="date_picker" id='datePickerFrom' [(ngModel)]="dateFrom" readonlyInput="readonlyInput" dateFormat="dd/mm/yy" inputStyleClass='calendar_input'></p-calendar>
+                                <p-calendar class="date_picker" id='datePickerFrom' [(ngModel)]="dateFrom" readonlyInput="readonlyInput" dateFormat="dd/mm/yy"
+                                    inputStyleClass='calendar_input'></p-calendar>
                             </div>
                         </div>
                         <div class="row">
@@ -223,7 +224,8 @@
                 </div>
                 <div class="row">
                     <div class="booking_btn_wrapper text-center">
-                        <button class="btn btn-default" [ngClass]="this.boxSize >= 1 && this.daysCount >= 7 ? '' : 'hide'" data-toggle="modal" ata-target="#bookingModal" (click)='sendMail()'>
+                        <button class="btn btn-default" [ngClass]="this.boxSize >= 1 && this.daysCount >= 7 ? '' : 'hide'" data-toggle="modal" data-target="#bookingModal"
+                            (click)='openBookingModal()'>
                                 <label>забронювати</label>
                         </button>
                     </div>
@@ -286,7 +288,7 @@
 
 <!-------------------------------------------------------- Modals -------------------------------------------------------------------------------->
 <!-- Booking Modal -->
-<div id="bookingModal" class="modal fade booking_modal" role="dialog">
+<div id="bookingModal" class="modal fade booking_modal" role="dialog" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog">
 
         <!-- Modal content-->
@@ -301,7 +303,8 @@
                         <div class="row title">ІМ’Я</div>
                         <div class="row">
                             <div class="name_field">
-                                <input type="text" class="form-control" id="name" name="name" required [(ngModel)]="Name" #name='ngModel' [ngClass]="!name.valid ? 'alert_input' : ''">
+                                <input type="text" class="form-control" id="name" name="name" [(ngModel)]="name">
+                                <!--<input type="text" class="form-control" id="name" name="name" required [(ngModel)]="Name" #name='ngModel' [ngClass]="!name.valid ? 'alert_input' : ''">-->
                             </div>
                         </div>
                         <div class="row title">ТЕЛЕФОН</div>
@@ -335,8 +338,53 @@
                     </div>
                 </div>
                 <div class="row">
+                    <span class="your_booking_text">Ваше замовлення</span>
+                    <div class="order_details">
+                        <span>Термін зберігання</span>
+                        <span>Починаючи з до</span>
+                        <span>Розмір боксу</span>                 
+                        <div *ngIf="showPackageMaterialsOnBooking" class="row package_matirials_info">
+                             <div>Пакувальі матеріали:</div>
+                             <div *ngIf="countBoxes > 0">
+                                 <span>
+                                     Коробки &nbsp;
+                                 </span>
+                                 <div class="circle_count badge">{{countBoxes}}</div>
+                             </div>
+                             <div *ngIf="countLocksAndShelves > 0">
+                                 <span>
+                                     Замки/стелажі &nbsp;
+                                 </span>
+                                 <div class="circle_count badge">{{countLocksAndShelves}}</div>
+                             </div>
+                             <div *ngIf="countPackages > 0">
+                                 <span>
+                                     Плівки/пакети &nbsp;
+                                 </span>
+                                 <div class="circle_count badge">{{countPackages}}</div>
+                             </div>
+                             <div *ngIf="countOthers > 0">
+                                 <span>
+                                     Інші матеріали &nbsp;
+                                 </span>
+                                 <div class="circle_count badge">{{countOthers}}</div>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row text-right">
+                    <div class="col-md-12 final_price">
+                        Загальна сума
+                    </div>
+                </div>
+                <div class="row text-right">
+                    <div class="col-md-12 final_price">
+                       {{finalPrice}}&nbsp;грн
+                    </div>
+                </div>
+                <div class="row">
                     <div class="booking_btn_wrapper text-center">
-                        <button class="btn btn-default"><label>забронювати</label></button>
+                        <button (click)="sendMail()" class="btn btn-default" data-dismiss="modal"><label>забронювати</label></button>
                     </div>
                 </div>
 
@@ -347,14 +395,14 @@
 </div>
 
 <!-- Packages Modal -->
-<div id="packagesModal" class="modal fade packages_modal" role="dialog">
+<div id="packagesModal" class="modal fade packages_modal" role="dialog" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog">
 
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header furore_regular">
                 <span>пакувальні матеріали</span>
-                <button type="button" class="close" data-dismiss="modal"><span class="close_btn">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" (click)="closePackageModal()"><span class="close_btn">&times;</span></button>
             </div>
             <div class="modal-body caviar_regular">
                 <div class="row">

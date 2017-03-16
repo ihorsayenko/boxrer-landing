@@ -674,6 +674,20 @@ map_section .nav-tabs li a:hover {
     border: 1px solid red;
 }
 
+.circle_count{
+    background-color: #4a5187;
+    display: inline-block;
+    width: 35px;
+    font-size: 10px;
+}
+
+.order_details{
+    margin-left: 20px; 
+}
+.package_matirials_info{
+    margin-left: 20px; 
+}
+
 
 /*Packages modal*/
 

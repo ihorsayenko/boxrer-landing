@@ -26,7 +26,7 @@ export class MainComponent implements OnInit {
 
     boxImgSrcFull: string;
 
-    Name: string;
+    name: string;
     surname: string;
     mobileNumber: string;
     email: string;
@@ -36,6 +36,7 @@ export class MainComponent implements OnInit {
 
     http: Http;
     imgs: any;
+    common: CommonService;
 
     boxes: PackageModel[];
     boxesEtalon: PackageModel[];
@@ -46,7 +47,20 @@ export class MainComponent implements OnInit {
     others: PackageModel[];
     othersEtalon: PackageModel[];
 
-    common: CommonService;
+    showPackageMaterialsOnBooking: boolean = false;
+    showBoxes: boolean = false;
+    showLocksAndShelves: boolean = false;
+    showPackages: boolean = false;
+    showOthers: boolean = false;
+
+    countBoxes: number;
+    countLocksAndShelves: number;
+    countPackages: number;
+    countOthers: number;
+
+    packagesPrice: number;
+    finalPrice: number = 0;
+
 
     @ViewChildren('sizeBtns') boxSizeBtns: ElementRef;
     @ViewChildren('termsBtns') termsBtns: ElementRef;
@@ -89,7 +103,6 @@ export class MainComponent implements OnInit {
     }
 
     onBtnTermClick(elem: ElementRef): void {
-        debugger;
         let id = elem.id;
         let btns = this.termsBtns._results[0].nativeElement.children;
         for (let element of btns) {
@@ -130,14 +143,91 @@ export class MainComponent implements OnInit {
         }
     }
 
+    resetPackageFlags(): void {
+        this.countBoxes = 0;
+        this.countLocksAndShelves = 0;
+        this.countPackages = 0;
+        this.countOthers = 0;
+        this.packagesPrice = 0;
+
+        this.showBoxes = false;
+        this.showLocksAndShelves = false;
+        this.showOthers = false;
+        this.showPackages = false;
+    }
+
+    openBookingModal(): void {
+        this.resetPackageFlags()
+
+        if (this.boxes.find(i => i.count > 0)) {
+            let array = this.boxes.filter(i => i.count > 0);
+
+            array.forEach(i => {
+                this.countBoxes += i.count;
+                this.packagesPrice += (i.count * i.price);
+            });
+
+            this.showBoxes = true;
+        }
+        if (this.locksAndShelves.find(i => i.count > 0)) {
+
+            let array = this.locksAndShelves.filter(i => i.count > 0);
+
+            array.forEach(i => {
+                this.countLocksAndShelves += i.count;
+                this.packagesPrice += (i.count * i.price);
+            });
+
+            this.showLocksAndShelves = true;
+        }
+        if (this.packages.find(i => i.count > 0)) {
+            let array = this.packages.filter(i => i.count > 0);
+
+            array.forEach(i => {
+                this.countPackages += i.count;
+                this.packagesPrice += (i.count * i.price);
+            });
+
+            this.showPackages = true;
+        }
+        if (this.others.find(i => i.count > 0)) {
+            let array = this.others.filter(i => i.count > 0);
+
+            array.forEach(i => {
+                this.countOthers += i.count;
+                this.packagesPrice += (i.count * i.price);
+            });
+
+            this.showOthers = true;
+        }
+
+        this.showPackageMaterialsOnBooking = this.showBoxes ||
+            this.showLocksAndShelves ||
+            this.showOthers ||
+            this.showPackages;
+        this.finalPrice = this.periodPay + this.packagesPrice;
+    }
+
     onCountPlus(item: Object): void { item.count++; }
 
     onCountMinus(item: Object): void { item.count--; }
 
-    bookPackages():void{
-        if(this.boxes.find(i => i.count > 0)){
-            debugger;
+    bookPackages(): void {
+
+    }
+
+    closePackageModal(): void {
+        if (this.boxes.find(i => i.count > 0)) {
             this.boxes = this.boxesEtalon;
+        }
+        if (this.locksAndShelves.find(i => i.count > 0)) {
+            this.locksAndShelves = this.locksAndShelvesEtalon;
+        }
+        if (this.packages.find(i => i.count > 0)) {
+            this.packages = this.packagesEtalon;
+        }
+        if (this.others.find(i => i.count > 0)) {
+            this.others = this.othersEtalon;
         }
     }
 
@@ -162,23 +252,77 @@ export class MainComponent implements OnInit {
         }
     }
 
+    collectBodyForEmail(): string {
+        let emailBody = "";
+        emailBody = emailBody.concat("Ім'я - " + this.name);
+        emailBody = emailBody.concat("<br>Прізвище - " + this.surname);
+        emailBody = emailBody.concat("<br>Телефон - " + this.mobileNumber);
+        emailBody = emailBody.concat("<br>Email - " + this.email);
+        emailBody = emailBody.concat("<br>Коментар - " + this.comments);
+        emailBody = emailBody.concat("<br><br>Замовлення:");
+        emailBody = emailBody.concat("<br> - термін зберігання - ");
+        emailBody = emailBody.concat("<br> - починаючи з [" + this.dateFrom + "]  до [" + this.dateFrom + this.daysCount + "]");
+        emailBody = emailBody.concat("<br> - розмір боксу - ");
+        emailBody = emailBody.concat("<br><br>Пакувальні матеріали:");
+        if (this.showPackageMaterialsOnBooking) {
+            this.boxes.filter(i => i.count > 0).forEach(i => {
+                emailBody = emailBody.concat("<br>" +
+                    i.description.join(" ") + " - " +
+                    i.count + " шт //" +
+                    i.price + " грн//шт // " +
+                    i.count * i.price + " грн");
+            });
+            this.locksAndShelves.filter(i => i.count > 0).forEach(i => {
+                emailBody = emailBody.concat("<br>&nbsp;&nbsp;" +
+                    i.description.join(" ") + " - " +
+                    i.count + " шт / " +
+                    i.price + " грн/шт / " +
+                    i.count * i.price + " грн");
+            });
+            this.packages.filter(i => i.count > 0).forEach(i => {
+                emailBody = emailBody.concat("<br>&nbsp;&nbsp;" +
+                    i.description.join(" ") + " - " +
+                    i.count + " шт / " +
+                    i.price + " грн/шт / " +
+                    i.count * i.price + " грн");
+            });
+            this.others.filter(i => i.count > 0).forEach(i => {
+                emailBody = emailBody.concat("<br>&nbsp;&nbsp;" +
+                    i.description.join(" ") + " - " +
+                    i.count + " шт / " +
+                    i.price + " грн/шт / " +
+                    i.count * i.price + " грн");
+            });
+        }
+        emailBody = emailBody.concat("<br><br>Ціна за пакувальеі матеріали: " + this.packagesPrice + " грн");
+        emailBody = emailBody.concat("<br>Ціна за місяць: " + this.monthPay + " грн <br><br><br>");
+        emailBody = emailBody.concat("<br>Ціна загальна: " + this.finalPrice + " грн");
+
+        return emailBody;
+    }
+
     sendMail(): boolean {
         let url = "https://api.elasticemail.com/v2/email/send";
         let api = "27bf6e11-fe44-45ed-b8c4-e291737221fc";
         let to = "qwertyihor11@gmail.com";
         let from = "boxer.co.ua@gmail.com";
         let subject = "Бронювання боксу (" + Date.now + ")";
-        let bodyHtml = "from angular <br/>";
+        //let bodyHtml = "from angular <br/>";
+        let bodyHtml = this.collectBodyForEmail();
         let isTransactional = false;
-
+        debugger;
         url = url.concat("?apikey=" + api);
         url = url.concat("&subject=" + subject);
         url = url.concat("&from=" + from);
         url = url.concat("&to=" + to);
-        url = url.concat("&bodyHtml=" + bodyHtml);
+        //url = url.concat("&bodyHTML=" + bodyHtml.toString());
         url = url.concat("&isTransactional=" + isTransactional);
 
-        this.http.post(url, null, null).subscribe(i => { console.log(i) })
+        let data = {
+            "bodyHTML" : bodyHtml
+        };
+
+        this.http.post(url, data, null).subscribe(i => { console.log(i) })
         return true;
     }
 }

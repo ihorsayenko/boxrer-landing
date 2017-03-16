@@ -23,6 +23,12 @@ var MainComponent = (function () {
         this.periodPay = 0;
         this.boxSize = 0;
         this.dateFrom = new Date();
+        this.showPackageMaterialsOnBooking = false;
+        this.showBoxes = false;
+        this.showLocksAndShelves = false;
+        this.showPackages = false;
+        this.showOthers = false;
+        this.finalPrice = 0;
         this.http = http;
         this.common = common;
         common.getBoxImgs().then(function (items) { return _this.initVariables(items); });
@@ -58,7 +64,6 @@ var MainComponent = (function () {
         this.calculatePrice();
     };
     MainComponent.prototype.onBtnTermClick = function (elem) {
-        debugger;
         var id = elem.id;
         var btns = this.termsBtns._results[0].nativeElement.children;
         for (var _i = 0, btns_2 = btns; _i < btns_2.length; _i++) {
@@ -98,12 +103,74 @@ var MainComponent = (function () {
             this.calculatePrice();
         }
     };
+    MainComponent.prototype.resetPackageFlags = function () {
+        this.countBoxes = 0;
+        this.countLocksAndShelves = 0;
+        this.countPackages = 0;
+        this.countOthers = 0;
+        this.packagesPrice = 0;
+        this.showBoxes = false;
+        this.showLocksAndShelves = false;
+        this.showOthers = false;
+        this.showPackages = false;
+    };
+    MainComponent.prototype.openBookingModal = function () {
+        var _this = this;
+        this.resetPackageFlags();
+        if (this.boxes.find(function (i) { return i.count > 0; })) {
+            var array = this.boxes.filter(function (i) { return i.count > 0; });
+            array.forEach(function (i) {
+                _this.countBoxes += i.count;
+                _this.packagesPrice += (i.count * i.price);
+            });
+            this.showBoxes = true;
+        }
+        if (this.locksAndShelves.find(function (i) { return i.count > 0; })) {
+            var array = this.locksAndShelves.filter(function (i) { return i.count > 0; });
+            array.forEach(function (i) {
+                _this.countLocksAndShelves += i.count;
+                _this.packagesPrice += (i.count * i.price);
+            });
+            this.showLocksAndShelves = true;
+        }
+        if (this.packages.find(function (i) { return i.count > 0; })) {
+            var array = this.packages.filter(function (i) { return i.count > 0; });
+            array.forEach(function (i) {
+                _this.countPackages += i.count;
+                _this.packagesPrice += (i.count * i.price);
+            });
+            this.showPackages = true;
+        }
+        if (this.others.find(function (i) { return i.count > 0; })) {
+            var array = this.others.filter(function (i) { return i.count > 0; });
+            array.forEach(function (i) {
+                _this.countOthers += i.count;
+                _this.packagesPrice += (i.count * i.price);
+            });
+            this.showOthers = true;
+        }
+        this.showPackageMaterialsOnBooking = this.showBoxes ||
+            this.showLocksAndShelves ||
+            this.showOthers ||
+            this.showPackages;
+        this.finalPrice = this.periodPay + this.packagesPrice;
+    };
     MainComponent.prototype.onCountPlus = function (item) { item.count++; };
     MainComponent.prototype.onCountMinus = function (item) { item.count--; };
     MainComponent.prototype.bookPackages = function () {
+    };
+    MainComponent.prototype.closePackageModal = function () {
         if (this.boxes.find(function (i) { return i.count > 0; })) {
-            debugger;
             this.boxes = this.boxesEtalon;
+        }
+        if (this.locksAndShelves.find(function (i) { return i.count > 0; })) {
+            this.locksAndShelves = this.locksAndShelvesEtalon;
+        }
+        if (this.packages.find(function (i) { return i.count > 0; })) {
+            this.packages = this.packagesEtalon;
+        }
+        if (this.others.find(function (i) { return i.count > 0; })) {
+            this.others = this.othersEtalon;
         }
     };
     MainComponent.prototype.calculatePrice = function () {
@@ -129,21 +196,73 @@ var MainComponent = (function () {
             this.monthPay = Math.round(30 * this.periodPay / this.daysCount);
         }
     };
+    MainComponent.prototype.collectBodyForEmail = function () {
+        var emailBody = "";
+        emailBody = emailBody.concat("Ім'я - " + this.name);
+        emailBody = emailBody.concat("<br>Прізвище - " + this.surname);
+        emailBody = emailBody.concat("<br>Телефон - " + this.mobileNumber);
+        emailBody = emailBody.concat("<br>Email - " + this.email);
+        emailBody = emailBody.concat("<br>Коментар - " + this.comments);
+        emailBody = emailBody.concat("<br><br>Замовлення:");
+        emailBody = emailBody.concat("<br> - термін зберігання - ");
+        emailBody = emailBody.concat("<br> - починаючи з [" + this.dateFrom + "]  до [" + this.dateFrom + this.daysCount + "]");
+        emailBody = emailBody.concat("<br> - розмір боксу - ");
+        emailBody = emailBody.concat("<br><br>Пакувальні матеріали:");
+        if (this.showPackageMaterialsOnBooking) {
+            this.boxes.filter(function (i) { return i.count > 0; }).forEach(function (i) {
+                emailBody = emailBody.concat("<br>" +
+                    i.description.join(" ") + " - " +
+                    i.count + " шт //" +
+                    i.price + " грн//шт // " +
+                    i.count * i.price + " грн");
+            });
+            this.locksAndShelves.filter(function (i) { return i.count > 0; }).forEach(function (i) {
+                emailBody = emailBody.concat("<br>&nbsp;&nbsp;" +
+                    i.description.join(" ") + " - " +
+                    i.count + " шт / " +
+                    i.price + " грн/шт / " +
+                    i.count * i.price + " грн");
+            });
+            this.packages.filter(function (i) { return i.count > 0; }).forEach(function (i) {
+                emailBody = emailBody.concat("<br>&nbsp;&nbsp;" +
+                    i.description.join(" ") + " - " +
+                    i.count + " шт / " +
+                    i.price + " грн/шт / " +
+                    i.count * i.price + " грн");
+            });
+            this.others.filter(function (i) { return i.count > 0; }).forEach(function (i) {
+                emailBody = emailBody.concat("<br>&nbsp;&nbsp;" +
+                    i.description.join(" ") + " - " +
+                    i.count + " шт / " +
+                    i.price + " грн/шт / " +
+                    i.count * i.price + " грн");
+            });
+        }
+        emailBody = emailBody.concat("<br><br>Ціна за пакувальеі матеріали: " + this.packagesPrice + " грн");
+        emailBody = emailBody.concat("<br>Ціна за місяць: " + this.monthPay + " грн <br><br><br>");
+        emailBody = emailBody.concat("<br>Ціна загальна: " + this.finalPrice + " грн");
+        return emailBody;
+    };
     MainComponent.prototype.sendMail = function () {
         var url = "https://api.elasticemail.com/v2/email/send";
         var api = "27bf6e11-fe44-45ed-b8c4-e291737221fc";
         var to = "qwertyihor11@gmail.com";
         var from = "boxer.co.ua@gmail.com";
         var subject = "Бронювання боксу (" + Date.now + ")";
-        var bodyHtml = "from angular <br/>";
+        //let bodyHtml = "from angular <br/>";
+        var bodyHtml = this.collectBodyForEmail();
         var isTransactional = false;
+        debugger;
         url = url.concat("?apikey=" + api);
         url = url.concat("&subject=" + subject);
         url = url.concat("&from=" + from);
         url = url.concat("&to=" + to);
-        url = url.concat("&bodyHtml=" + bodyHtml);
+        //url = url.concat("&bodyHTML=" + bodyHtml.toString());
         url = url.concat("&isTransactional=" + isTransactional);
-        this.http.post(url, null, null).subscribe(function (i) { console.log(i); });
+        var data = {
+            "bodyHTML": bodyHtml
+        };
+        this.http.post(url, data, null).subscribe(function (i) { console.log(i); });
         return true;
     };
     __decorate([
