@@ -57,6 +57,8 @@ var MainComponent = (function () {
                 if (element.id === id) {
                     element.classList.add('active_btn');
                     this.boxSize = id.split('m')[0];
+                    this.boxSizeStr = this.boxSize === 1 ? this.boxSize + "м<sup>3</sup>" : this.boxSize + "м<sup>2</sup>";
+                    this.boxSizeStrM = this.boxSize == 1 ? "3" : "2";
                 }
             }
         }
@@ -195,55 +197,72 @@ var MainComponent = (function () {
             this.periodPay = Math.round(12 * this.boxSize * this.daysCount);
             this.monthPay = Math.round(30 * this.periodPay / this.daysCount);
         }
+        var date = new Date(this.dateFrom);
+        var newDate = date.setDate(date.getDate() + this.daysCount);
+        var dateTo = new Date(newDate);
+        var fromMonth = this.dateFrom.getMonth() + Number(1);
+        var toMonth = dateTo.getMonth() + Number(1);
+        this.dateFromStr = this.dateFrom.getDate() + "/" +
+            fromMonth + "/" + this.dateFrom.getFullYear();
+        this.dateToStr = dateTo.getDate() + "/" +
+            toMonth + "/" + dateTo.getFullYear();
     };
     MainComponent.prototype.collectBodyForEmail = function () {
         var emailBody = "";
-        emailBody = emailBody.concat("Ім'я - " + this.name);
-        emailBody = emailBody.concat("<br>Прізвище - " + this.surname);
-        emailBody = emailBody.concat("<br>Телефон - " + this.mobileNumber);
-        emailBody = emailBody.concat("<br>Email - " + this.email);
-        emailBody = emailBody.concat("<br>Коментар - " + this.comments);
-        emailBody = emailBody.concat("<br><br>Замовлення:");
-        emailBody = emailBody.concat("<br> - термін зберігання - ");
-        emailBody = emailBody.concat("<br> - починаючи з [" + this.dateFrom + "]  до [" + this.dateFrom + this.daysCount + "]");
-        emailBody = emailBody.concat("<br> - розмір боксу - ");
-        emailBody = emailBody.concat("<br><br>Пакувальні матеріали:");
+        var date = new Date(this.dateFrom);
+        var newDate = date.setDate(date.getDate() + this.daysCount);
+        var dateTo = new Date(newDate);
+        var fromMonth = this.dateFrom.getMonth() + Number(1);
+        var toMonth = dateTo.getMonth() + Number(1);
+        emailBody = emailBody.concat("Ім'я:  <b>" + this.name + "</b>");
+        emailBody = emailBody.concat("<br>Прізвище:  <b>" + this.surname + "</b>");
+        emailBody = emailBody.concat("<br>Телефон:  <b>" + this.mobileNumber + "</b>");
+        emailBody = emailBody.concat("<br>Email:  <b>" + this.email + "</b>");
+        emailBody = emailBody.concat("<br>Коментар:  <b>" + this.comments + "</b>");
+        emailBody = emailBody.concat("<h3>Замовлення:</h3>");
+        emailBody = emailBody.concat("&nbsp;&nbsp;- Термін зберігання: <b>" + this.daysCount + "</b>");
+        emailBody = emailBody.concat("<br>&nbsp;&nbsp;- Починаючи з <b>[" +
+            this.dateFromStr + "]</b>  до <b>[" + this.dateToStr + "]</b>");
+        emailBody = emailBody.concat("<br>&nbsp;&nbsp;- Розмір боксу: <b>" + this.boxSizeStr + "</b>");
         if (this.showPackageMaterialsOnBooking) {
+            emailBody = emailBody.concat("<h3>Пакувальні матеріали:</h3>");
             this.boxes.filter(function (i) { return i.count > 0; }).forEach(function (i) {
-                emailBody = emailBody.concat("<br>" +
-                    i.description.join(" ") + " - " +
-                    i.count + " шт //" +
-                    i.price + " грн//шт // " +
-                    i.count * i.price + " грн");
+                emailBody = emailBody.concat("<br>&nbsp;&nbsp;- " +
+                    i.description.join(" ") + ": " +
+                    i.count + " шт | " +
+                    i.price + " грн/шт | <b>" +
+                    i.count * i.price + " грн</b>");
             });
             this.locksAndShelves.filter(function (i) { return i.count > 0; }).forEach(function (i) {
-                emailBody = emailBody.concat("<br>&nbsp;&nbsp;" +
-                    i.description.join(" ") + " - " +
-                    i.count + " шт / " +
-                    i.price + " грн/шт / " +
-                    i.count * i.price + " грн");
+                emailBody = emailBody.concat("<br>&nbsp;&nbsp;- " +
+                    i.description.join(" ") + ": " +
+                    i.count + " шт | " +
+                    i.price + " грн/шт | <b>" +
+                    i.count * i.price + " грн</b>");
             });
             this.packages.filter(function (i) { return i.count > 0; }).forEach(function (i) {
-                emailBody = emailBody.concat("<br>&nbsp;&nbsp;" +
-                    i.description.join(" ") + " - " +
-                    i.count + " шт / " +
-                    i.price + " грн/шт / " +
-                    i.count * i.price + " грн");
+                emailBody = emailBody.concat("<br>&nbsp;&nbsp;- " +
+                    i.description.join(" ") + ": " +
+                    i.count + " шт | " +
+                    i.price + " грн/шт | <b>" +
+                    i.count * i.price + " грн</b>");
             });
             this.others.filter(function (i) { return i.count > 0; }).forEach(function (i) {
-                emailBody = emailBody.concat("<br>&nbsp;&nbsp;" +
-                    i.description.join(" ") + " - " +
-                    i.count + " шт / " +
-                    i.price + " грн/шт / " +
-                    i.count * i.price + " грн");
+                emailBody = emailBody.concat("<br>&nbsp;&nbsp;- " +
+                    i.description.join(" ") + ": " +
+                    i.count + " шт | " +
+                    i.price + " грн/шт | <b>" +
+                    i.count * i.price + " грн</b>");
             });
         }
-        emailBody = emailBody.concat("<br><br>Ціна за пакувальеі матеріали: " + this.packagesPrice + " грн");
-        emailBody = emailBody.concat("<br>Ціна за місяць: " + this.monthPay + " грн <br><br><br>");
-        emailBody = emailBody.concat("<br>Ціна загальна: " + this.finalPrice + " грн");
+        emailBody = emailBody.concat("<h3>Ціна за пакувальні матеріали: <i>" + this.packagesPrice + " грн</i></h3>");
+        emailBody = emailBody.concat("<h3>Ціна за місяць: <i>" + this.monthPay + " грн</i></h3>");
+        emailBody = emailBody.concat("<h3>Ціна за весь період (без матеріалів): <i>" + this.periodPay + " грн</i></h3>");
+        emailBody = emailBody.concat("<h3>Ціна за весь період (з матеріалами): <i>" + this.finalPrice + " грн</i></h3>");
         return emailBody;
     };
-    MainComponent.prototype.sendMail = function () {
+    MainComponent.prototype.sendMail = function (event) {
+        //event.preventDefault();
         var url = "https://api.elasticemail.com/v2/email/send";
         var api = "27bf6e11-fe44-45ed-b8c4-e291737221fc";
         var to = "qwertyihor11@gmail.com";
@@ -251,18 +270,23 @@ var MainComponent = (function () {
         var subject = "Бронювання боксу (" + Date.now + ")";
         //let bodyHtml = "from angular <br/>";
         var bodyHtml = this.collectBodyForEmail();
-        var isTransactional = false;
-        debugger;
-        url = url.concat("?apikey=" + api);
-        url = url.concat("&subject=" + subject);
-        url = url.concat("&from=" + from);
-        url = url.concat("&to=" + to);
-        //url = url.concat("&bodyHTML=" + bodyHtml.toString());
-        url = url.concat("&isTransactional=" + isTransactional);
-        var data = {
-            "bodyHTML": bodyHtml
-        };
-        this.http.post(url, data, null).subscribe(function (i) { console.log(i); });
+        var isTransactional = true;
+        // url = url.concat("?apikey=" + api);
+        // url = url.concat("&subject=" + subject);
+        // url = url.concat("&from=" + from);
+        // url = url.concat("&to=" + to);
+        // url = url.concat("&bodyText=" + bodyHtml.toString());
+        // url = url.concat("&isTransactional=" + isTransactional);
+        var headers = new http_1.Headers();
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        var body = new http_1.URLSearchParams();
+        body.append('apikey', api);
+        body.append('subject', subject);
+        body.append('from', from);
+        body.append('to', to);
+        body.append('bodyHTML', bodyHtml);
+        body.append('isTransactional', 'false');
+        this.http.post(url, body, headers).subscribe(function (i) { console.log(i); });
         return true;
     };
     __decorate([

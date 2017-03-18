@@ -163,13 +163,13 @@
                             <p class="box_size_text">розмір боксу</p>
                             <div #sizeBtns id='boxSizeBtns' class="btn-toolbar text-center box_size_btns">
                                 <button type="button" id='1m_btn' (click)='onBtnSizeClick($event.currentTarget)' class="btn btn-default one_m_btn">1м<sup>3</sup></button>
-                                <button type="button" id='2.5m_btn' (click)='onBtnSizeClick($event.currentTarget)' class="btn btn-default two_m_btn">2.5м<sup>3</sup></button>
-                                <button type="button" id='3m_btn' (click)='onBtnSizeClick($event.currentTarget)' class="btn btn-default">3м<sup>3</sup></button>
-                                <button type="button" id='4m_btn' (click)='onBtnSizeClick($event.currentTarget)' class="btn btn-default">4м<sup>3</sup></button>
-                                <button type="button" id='5m_btn' (click)='onBtnSizeClick($event.currentTarget)' class="btn btn-default">5м<sup>3</sup></button>
-                                <button type="button" id='6m_btn' (click)='onBtnSizeClick($event.currentTarget)' class="btn btn-default">6м<sup>3</sup></button>
-                                <button type="button" id='7m_btn' (click)='onBtnSizeClick($event.currentTarget)' class="btn btn-default">7м<sup>3</sup></button>
-                                <button type="button" id='12m_btn' (click)='onBtnSizeClick($event.currentTarget)' class="btn btn-default twelve_m_btn">12м<sup>3</sup></button>
+                                <button type="button" id='2.5m_btn' (click)='onBtnSizeClick($event.currentTarget)' class="btn btn-default two_m_btn">2.5м<sup>2</sup></button>
+                                <button type="button" id='3m_btn' (click)='onBtnSizeClick($event.currentTarget)' class="btn btn-default">3м<sup>2</sup></button>
+                                <button type="button" id='4m_btn' (click)='onBtnSizeClick($event.currentTarget)' class="btn btn-default">4м<sup>2</sup></button>
+                                <button type="button" id='5m_btn' (click)='onBtnSizeClick($event.currentTarget)' class="btn btn-default">5м<sup>2</sup></button>
+                                <button type="button" id='6m_btn' (click)='onBtnSizeClick($event.currentTarget)' class="btn btn-default">6м<sup>2</sup></button>
+                                <button type="button" id='7m_btn' (click)='onBtnSizeClick($event.currentTarget)' class="btn btn-default">7м<sup>2</sup></button>
+                                <button type="button" id='12m_btn' (click)='onBtnSizeClick($event.currentTarget)' class="btn btn-default twelve_m_btn">12м<sup>2</sup></button>
                             </div>
                             <br>
                         </div>
@@ -181,8 +181,7 @@
                         <div class="row dates">
                             <div class="text-left">
                                 <label class="calculator_text_color_blue" for="datePickerFrom">перший день оренди</label>
-                                <p-calendar class="date_picker" id='datePickerFrom' [(ngModel)]="dateFrom" readonlyInput="readonlyInput" dateFormat="dd/mm/yy"
-                                    inputStyleClass='calendar_input'></p-calendar>
+                                <p-calendar class="date_picker" id='datePickerFrom' [(ngModel)]="dateFrom" readonlyInput="readonlyInput" dateFormat="dd/mm/yy" inputStyleClass='calendar_input'></p-calendar>
                             </div>
                         </div>
                         <div class="row">
@@ -224,8 +223,7 @@
                 </div>
                 <div class="row">
                     <div class="booking_btn_wrapper text-center">
-                        <button class="btn btn-default" [ngClass]="this.boxSize >= 1 && this.daysCount >= 7 ? '' : 'hide'" data-toggle="modal" data-target="#bookingModal"
-                            (click)='openBookingModal()'>
+                        <button class="btn btn-default" [ngClass]="this.boxSize >= 1 && this.daysCount >= 7 ? '' : 'hide'" data-toggle="modal" data-target="#bookingModal" (click)='openBookingModal()'>
                                 <label>забронювати</label>
                         </button>
                     </div>
@@ -298,96 +296,102 @@
                 <button type="button" class="close" data-dismiss="modal"><span class="close_btn">&times;</span></button>
             </div>
             <div class="modal-body caviar_regular">
-                <div class="row">
-                    <div class="col-xs-6 left_part">
-                        <div class="row title">ІМ’Я</div>
-                        <div class="row">
-                            <div class="name_field">
-                                <input type="text" class="form-control" id="name" name="name" [(ngModel)]="name">
-                                <!--<input type="text" class="form-control" id="name" name="name" required [(ngModel)]="Name" #name='ngModel' [ngClass]="!name.valid ? 'alert_input' : ''">-->
+                <form id="bookingForm" name="BookingForm" #bookingForm="ngForm">
+                    <div class="row">
+                        <div class="col-xs-6 left_part">
+                            <div class="row title">ІМ’Я</div>
+                            <div class="row">
+                                <div class="name_field">
+                                    <input type="text" [ngClass]="Name.valid || Name.pristine ? '' : 'alert_input'" title="Це поле є обов'язковим" class="form-control" id="name" name="Name" required [(ngModel)]="name" #Name="ngModel">
+                                </div>
+                            </div>
+                            <div class="row title">ТЕЛЕФОН</div>
+                            <div class="row">
+                                <div class="tel_field">
+                                    <input type="text" [ngClass]="number.valid || number.pristine ? '' : 'alert_input'" title="Це поле є обов'язковим" class="form-control" id="number" name="number" required pattern="((\+380|0)([0-9]{9}))?$" placeholder="+380931010101" [(ngModel)]="mobileNumber"
+                                        #number="ngModel">
+                                </div>
                             </div>
                         </div>
-                        <div class="row title">ТЕЛЕФОН</div>
-                        <div class="row">
-                            <div class="tel_field">
-                                <input class="form-control" [(ngModel)]='mobileNumber' type="text" />
+                        <div class="col-xs-6 right_part">
+                            <div class="row title">ПРІЗВИЩЕ</div>
+                            <div class="row">
+                                <div class="name_field">
+                                    <input type="text" [ngClass]="Surname.valid || Surname.pristine ? '' : 'alert_input'" title="Це поле є обов'язковим" class="form-control" id="Surname" name="Surname" required [(ngModel)]="surname" #Surname="ngModel">
+                                </div>
+                            </div>
+                            <div class="row title">EMAIL</div>
+                            <div class="row">
+                                <div class="tel_field">
+                                    <input type="email" [ngClass]="Email.valid || Email.pristine ? '' : 'alert_input'" placeholder="some@email.com" title="Це поле є обов'язковим" class="form-control" id="Email" name="Email" required [(ngModel)]="email" #Email="ngModel" pattern="(?!(^[.-].*|[^@]*[.-]@|.*\.{2,}.*)|^.{254}.)([a-zA-Z0-9!#$%&'*+\/=?^_`{|}~.-]+@)(?!-.*|.*-\.)([a-zA-Z0-9-]{1,63}\.)+[a-zA-Z]{2,15}">
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xs-6 right_part">
-                        <div class="row title">ПРІЗВИЩЕ</div>
-                        <div class="row">
-                            <div class="name_field">
-                                <input class="form-control" [(ngModel)]='surname' type="text" />
-                            </div>
-                        </div>
-                        <div class="row title">EMAIL</div>
-                        <div class="row">
-                            <div class="tel_field">
-                                <input class="form-control" [(ngModel)]='email' type="text" />
-                            </div>
+                    <div class="row">
+                        <span class="comment_title col-xs-12">КОМЕНТАР</span>
+                    </div>
+                    <div class="row">
+                        <div class="comment_textarea">
+                            <textarea class='form-control' name="Comments" [(ngModel)]='comments' rows="6" cols="10"></textarea>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <span class="comment_title col-xs-12">КОМЕНТАР</span>
-                </div>
-                <div class="row">
-                    <div class="comment_textarea">
-                        <textarea class='form-control' [(ngModel)]='comments' rows="6" cols="10"></textarea>
-                    </div>
-                </div>
-                <div class="row">
-                    <span class="your_booking_text">Ваше замовлення</span>
-                    <div class="order_details">
-                        <span>Термін зберігання</span>
-                        <span>Починаючи з до</span>
-                        <span>Розмір боксу</span>                 
-                        <div *ngIf="showPackageMaterialsOnBooking" class="row package_matirials_info">
-                             <div>Пакувальі матеріали:</div>
-                             <div *ngIf="countBoxes > 0">
-                                 <span>
+                    <div class="row">
+                        <div class="order_details">
+                            <span class="your_booking_text furore_regular">Ваше замовлення</span>
+                            <div class="booking_desc">Термін зберігання
+                                <div class="circle_count badge">{{daysCount}} днів</div>
+                            </div>
+                            <div class="booking_desc">Починаючи з <span class="date_periods">&nbsp;{{dateFromStr}}&nbsp;</span> до <span class="date_periods">&nbsp;{{dateToStr}}&nbsp;</span></div>
+                            <div class="booking_desc">Розмір боксу
+                                <div class="circle_count badge">{{boxSize}}м<sup>{{boxSizeStrM}}</sup></div>
+                            </div>
+
+                            <div *ngIf="showPackageMaterialsOnBooking" class="row package_matirials_info">
+                                <div class="booking_desc">Пакувальі матеріали:</div>
+                                <div *ngIf="countBoxes > 0">
+                                    <span class="package_desc">
                                      Коробки &nbsp;
                                  </span>
-                                 <div class="circle_count badge">{{countBoxes}}</div>
-                             </div>
-                             <div *ngIf="countLocksAndShelves > 0">
-                                 <span>
+                                    <div class="circle_count badge">{{countBoxes}}</div>
+                                </div>
+                                <div *ngIf="countLocksAndShelves > 0">
+                                    <span class="package_desc">
                                      Замки/стелажі &nbsp;
                                  </span>
-                                 <div class="circle_count badge">{{countLocksAndShelves}}</div>
-                             </div>
-                             <div *ngIf="countPackages > 0">
-                                 <span>
+                                    <div class="circle_count badge">{{countLocksAndShelves}}</div>
+                                </div>
+                                <div *ngIf="countPackages > 0">
+                                    <span class="package_desc">
                                      Плівки/пакети &nbsp;
                                  </span>
-                                 <div class="circle_count badge">{{countPackages}}</div>
-                             </div>
-                             <div *ngIf="countOthers > 0">
-                                 <span>
+                                    <div class="circle_count badge">{{countPackages}}</div>
+                                </div>
+                                <div *ngIf="countOthers > 0">
+                                    <span class="package_desc">
                                      Інші матеріали &nbsp;
                                  </span>
-                                 <div class="circle_count badge">{{countOthers}}</div>
-                             </div>
+                                    <div class="circle_count badge">{{countOthers}}</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="row text-right">
-                    <div class="col-md-12 final_price">
-                        Загальна сума
+                    <div class="row text-right">
+                        <div class="col-md-12 final_price_text">
+                            <u>Загальна сума</u>
+                        </div>
                     </div>
-                </div>
-                <div class="row text-right">
-                    <div class="col-md-12 final_price">
-                       {{finalPrice}}&nbsp;грн
+                    <div class="row text-right">
+                        <div class="col-md-12 final_price">
+                            {{finalPrice}}&nbsp;грн
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="booking_btn_wrapper text-center">
-                        <button (click)="sendMail()" class="btn btn-default" data-dismiss="modal"><label>забронювати</label></button>
+                    <div class="row">
+                        <div class="booking_btn_wrapper text-center">
+                            <button type="button" class="btn btn-default" data-dismiss="modal" [disabled]="!bookingForm.form.valid" (click)="sendMail($event)">забронювати</button>
+                        </div>
                     </div>
-                </div>
-
+                </form>
             </div>
         </div>
 
@@ -396,7 +400,7 @@
 
 <!-- Packages Modal -->
 <div id="packagesModal" class="modal fade packages_modal" role="dialog" data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-md">
 
         <!-- Modal content-->
         <div class="modal-content">
@@ -417,7 +421,7 @@
                         <div class="tab-content clearfix">
                             <div class="tab-pane active" id='boxes'>
                                 <ul class="list-group">
-                                    <li [id]='item.id' class="list-group-item" *ngFor="let item of boxes">
+                                    <li [id]='item.id' class="list-group-item" *ngFor="let item of boxes;let odd=odd; let even=even;" [ngClass]="{ odd: odd, even: even }">
                                         <div class="row">
                                             <div class="col-md-3 text-center">
                                                 <img class="package-img" [src]="item.imgSrc" alt="">
@@ -447,7 +451,7 @@
                             </div>
                             <div class="tab-pane" id='locksAndShelves'>
                                 <ul class="list-group">
-                                    <li [id]='item.id' class="list-group-item" *ngFor="let item of locksAndShelves">
+                                    <li [id]='item.id' class="list-group-item" *ngFor="let item of locksAndShelves;let odd=odd; let even=even;" [ngClass]="{ odd: odd, even: even }">
                                         <div class="row">
                                             <div class="col-md-3 text-center">
                                                 <img class="package-img" [src]="item.imgSrc" alt="">
@@ -477,7 +481,7 @@
                             </div>
                             <div class="tab-pane" id='packages'>
                                 <ul class="list-group">
-                                    <li [id]='item.id' class="list-group-item" *ngFor="let item of packages">
+                                    <li [id]='item.id' class="list-group-item" *ngFor="let item of packages;let odd=odd; let even=even;" [ngClass]="{ odd: odd, even: even }">
                                         <div class="row">
                                             <div class="col-md-3 text-center">
                                                 <img class="package-img" [src]="item.imgSrc" alt="">
@@ -507,7 +511,7 @@
                             </div>
                             <div class="tab-pane" id='others'>
                                 <ul class="list-group">
-                                    <li [id]='item.id' class="list-group-item" *ngFor="let item of others">
+                                    <li [id]='item.id' class="list-group-item" *ngFor="let item of others;let odd=odd; let even=even;" [ngClass]="{ odd: odd, even: even }">
                                         <div class="row">
                                             <div class="col-md-3 text-center">
                                                 <img class="package-img" [src]="item.imgSrc" alt="">

@@ -1,7 +1,7 @@
 import { NgModule, OnInit, ViewChildren, ElementRef } from '@angular/core';
 import { NgModel, FormsModule } from '@angular/forms';
 import { Component } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Headers, URLSearchParams } from '@angular/http';
 
 import { CommonService } from './common.service'
 import { PackageModel } from './package.model'
@@ -21,8 +21,12 @@ export class MainComponent implements OnInit {
     monthPay: number = 0;
     periodPay: number = 0;
     boxSize: number = 0;
+    boxSizeStr: string;
+    boxSizeStrM: string;
 
     dateFrom: Date = new Date();
+    dateFromStr: string;
+    dateToStr: string;
 
     boxImgSrcFull: string;
 
@@ -94,6 +98,8 @@ export class MainComponent implements OnInit {
                 if (element.id === id) {
                     element.classList.add('active_btn');
                     this.boxSize = id.split('m')[0];
+                    this.boxSizeStr = this.boxSize === 1 ? this.boxSize + "м<sup>3</sup>" : this.boxSize + "м<sup>2</sup>";
+                    this.boxSizeStrM = this.boxSize == 1 ? "3" : "2";
                 }
             }
         }
@@ -250,58 +256,78 @@ export class MainComponent implements OnInit {
             this.periodPay = Math.round(12 * this.boxSize * this.daysCount);
             this.monthPay = Math.round(30 * this.periodPay / this.daysCount);
         }
+
+        let date = new Date(this.dateFrom);
+        let newDate = date.setDate(date.getDate() + this.daysCount);
+        let dateTo = new Date(newDate);
+        let fromMonth = this.dateFrom.getMonth() + Number(1);
+        let toMonth = dateTo.getMonth() + Number(1);
+
+        this.dateFromStr = this.dateFrom.getDate() + "/" +
+            fromMonth + "/" + this.dateFrom.getFullYear();
+        this.dateToStr = dateTo.getDate() + "/" +
+            toMonth + "/" + dateTo.getFullYear();
     }
 
     collectBodyForEmail(): string {
         let emailBody = "";
-        emailBody = emailBody.concat("Ім'я - " + this.name);
-        emailBody = emailBody.concat("<br>Прізвище - " + this.surname);
-        emailBody = emailBody.concat("<br>Телефон - " + this.mobileNumber);
-        emailBody = emailBody.concat("<br>Email - " + this.email);
-        emailBody = emailBody.concat("<br>Коментар - " + this.comments);
-        emailBody = emailBody.concat("<br><br>Замовлення:");
-        emailBody = emailBody.concat("<br> - термін зберігання - ");
-        emailBody = emailBody.concat("<br> - починаючи з [" + this.dateFrom + "]  до [" + this.dateFrom + this.daysCount + "]");
-        emailBody = emailBody.concat("<br> - розмір боксу - ");
-        emailBody = emailBody.concat("<br><br>Пакувальні матеріали:");
+        let date = new Date(this.dateFrom);
+        let newDate = date.setDate(date.getDate() + this.daysCount);
+        let dateTo = new Date(newDate);
+        let fromMonth = this.dateFrom.getMonth() + Number(1);
+        let toMonth = dateTo.getMonth() + Number(1);
+
+        emailBody = emailBody.concat("Ім'я:  <b>" + this.name + "</b>");
+        emailBody = emailBody.concat("<br>Прізвище:  <b>" + this.surname + "</b>");
+        emailBody = emailBody.concat("<br>Телефон:  <b>" + this.mobileNumber + "</b>");
+        emailBody = emailBody.concat("<br>Email:  <b>" + this.email + "</b>");
+        emailBody = emailBody.concat("<br>Коментар:  <b>" + this.comments + "</b>");
+        emailBody = emailBody.concat("<h3>Замовлення:</h3>");
+        emailBody = emailBody.concat("&nbsp;&nbsp;- Термін зберігання: <b>" + this.daysCount + "</b>");
+        emailBody = emailBody.concat("<br>&nbsp;&nbsp;- Починаючи з <b>[" +
+            this.dateFromStr + "]</b>  до <b>[" + this.dateToStr + "]</b>");
+        emailBody = emailBody.concat("<br>&nbsp;&nbsp;- Розмір боксу: <b>" + this.boxSizeStr + "</b>");
         if (this.showPackageMaterialsOnBooking) {
+            emailBody = emailBody.concat("<h3>Пакувальні матеріали:</h3>");
             this.boxes.filter(i => i.count > 0).forEach(i => {
-                emailBody = emailBody.concat("<br>" +
-                    i.description.join(" ") + " - " +
-                    i.count + " шт //" +
-                    i.price + " грн//шт // " +
-                    i.count * i.price + " грн");
+                emailBody = emailBody.concat("<br>&nbsp;&nbsp;- " +
+                    i.description.join(" ") + ": " +
+                    i.count + " шт | " +
+                    i.price + " грн/шт | <b>" +
+                    i.count * i.price + " грн</b>");
             });
             this.locksAndShelves.filter(i => i.count > 0).forEach(i => {
-                emailBody = emailBody.concat("<br>&nbsp;&nbsp;" +
-                    i.description.join(" ") + " - " +
-                    i.count + " шт / " +
-                    i.price + " грн/шт / " +
-                    i.count * i.price + " грн");
+                emailBody = emailBody.concat("<br>&nbsp;&nbsp;- " +
+                    i.description.join(" ") + ": " +
+                    i.count + " шт | " +
+                    i.price + " грн/шт | <b>" +
+                    i.count * i.price + " грн</b>");
             });
             this.packages.filter(i => i.count > 0).forEach(i => {
-                emailBody = emailBody.concat("<br>&nbsp;&nbsp;" +
-                    i.description.join(" ") + " - " +
-                    i.count + " шт / " +
-                    i.price + " грн/шт / " +
-                    i.count * i.price + " грн");
+                emailBody = emailBody.concat("<br>&nbsp;&nbsp;- " +
+                    i.description.join(" ") + ": " +
+                    i.count + " шт | " +
+                    i.price + " грн/шт | <b>" +
+                    i.count * i.price + " грн</b>");
             });
             this.others.filter(i => i.count > 0).forEach(i => {
-                emailBody = emailBody.concat("<br>&nbsp;&nbsp;" +
-                    i.description.join(" ") + " - " +
-                    i.count + " шт / " +
-                    i.price + " грн/шт / " +
-                    i.count * i.price + " грн");
+                emailBody = emailBody.concat("<br>&nbsp;&nbsp;- " +
+                    i.description.join(" ") + ": " +
+                    i.count + " шт | " +
+                    i.price + " грн/шт | <b>" +
+                    i.count * i.price + " грн</b>");
             });
         }
-        emailBody = emailBody.concat("<br><br>Ціна за пакувальеі матеріали: " + this.packagesPrice + " грн");
-        emailBody = emailBody.concat("<br>Ціна за місяць: " + this.monthPay + " грн <br><br><br>");
-        emailBody = emailBody.concat("<br>Ціна загальна: " + this.finalPrice + " грн");
-
+        emailBody = emailBody.concat("<h3>Ціна за пакувальні матеріали: <i>" + this.packagesPrice + " грн</i></h3>");
+        emailBody = emailBody.concat("<h3>Ціна за місяць: <i>" + this.monthPay + " грн</i></h3>");
+        emailBody = emailBody.concat("<h3>Ціна за весь період (без матеріалів): <i>" + this.periodPay + " грн</i></h3>");
+        emailBody = emailBody.concat("<h3>Ціна за весь період (з матеріалами): <i>" + this.finalPrice + " грн</i></h3>");
         return emailBody;
     }
 
-    sendMail(): boolean {
+    sendMail(event: Event): boolean {
+        //event.preventDefault();
+
         let url = "https://api.elasticemail.com/v2/email/send";
         let api = "27bf6e11-fe44-45ed-b8c4-e291737221fc";
         let to = "qwertyihor11@gmail.com";
@@ -309,20 +335,27 @@ export class MainComponent implements OnInit {
         let subject = "Бронювання боксу (" + Date.now + ")";
         //let bodyHtml = "from angular <br/>";
         let bodyHtml = this.collectBodyForEmail();
-        let isTransactional = false;
-        debugger;
-        url = url.concat("?apikey=" + api);
-        url = url.concat("&subject=" + subject);
-        url = url.concat("&from=" + from);
-        url = url.concat("&to=" + to);
-        //url = url.concat("&bodyHTML=" + bodyHtml.toString());
-        url = url.concat("&isTransactional=" + isTransactional);
+        let isTransactional = true;
+        // url = url.concat("?apikey=" + api);
+        // url = url.concat("&subject=" + subject);
+        // url = url.concat("&from=" + from);
+        // url = url.concat("&to=" + to);
+        // url = url.concat("&bodyText=" + bodyHtml.toString());
+        // url = url.concat("&isTransactional=" + isTransactional);
 
-        let data = {
-            "bodyHTML" : bodyHtml
-        };
+        var headers = new Headers();
 
-        this.http.post(url, data, null).subscribe(i => { console.log(i) })
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+
+        let body = new URLSearchParams();
+        body.append('apikey', api);
+        body.append('subject', subject);
+        body.append('from', from);
+        body.append('to', to);
+        body.append('bodyHTML', bodyHtml);
+        body.append('isTransactional', 'false');
+
+        this.http.post(url, body, headers).subscribe(i => { console.log(i) })
         return true;
     }
 }
