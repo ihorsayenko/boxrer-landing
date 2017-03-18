@@ -32,18 +32,21 @@ export class CommonService {
             .then(resp => {return resp.json().PackageMaterials.Boxes as PackageModel[]})
             .catch(this.handleError);
     }
+    
     getPackageLocksAndShelves(): Promise<PackageModel[]> {
         return this.http.get(this.storageFileUrl)
             .toPromise()
             .then(resp => { return resp.json().PackageMaterials.LocksAndShelves as PackageModel[]})
             .catch(this.handleError);
     }
+
     getPackagePackages(): Promise<PackageModel[]> {
         return this.http.get(this.storageFileUrl)
             .toPromise()
             .then(resp => { return resp.json().PackageMaterials.Packages as PackageModel[]})
             .catch(this.handleError);
     }
+
     getPackageOthers(): Promise<PackageModel[]> {
         return this.http.get(this.storageFileUrl)
             .toPromise()
@@ -55,12 +58,6 @@ export class CommonService {
         let body = res.json();
 
         return body as CommonModal;
-    }
-    private mapPackageNodel(res: Response) {
-
-        res.json().PackageMaterials.Boxes
-
-       return 
     }
 
     private handleError(error: Response | any) {

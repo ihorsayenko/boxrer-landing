@@ -1,3 +1,4 @@
+
 /* -----------------Fonts---------------*/
 
 @font-face {
@@ -122,6 +123,15 @@ nav {
 .nav_text_blue,
 nav .furore_regular a {
     color: #283278;
+}
+
+.nav_tabs .nav_item {
+    margin-left: 2em;
+}
+
+.nav_tabs .nav_item:last-child {
+    margin-left: 0.5em;
+    margin-right: 0.5em;
 }
 
 nav .nav_tabs {
@@ -416,6 +426,10 @@ input.undefined.ui-inputtext.ui-corner-all.ui-state-default.ui-widget.ui-state-f
     font-size: 14px;
 }
 
+.package_materials_link:focus {
+    outline: none;
+}
+
 .prices_text {
     color: #253072;
 }
@@ -509,6 +523,10 @@ footer .footer {
     margin: 0.5em 0.5em 0 0;
 }
 
+.footer_content a {
+    outline: none;
+}
+
 
 /*Contacts*/
 
@@ -578,6 +596,63 @@ map_section .nav-tabs li a:hover {
     width: 100%;
 }
 
+.contact_us:focus {
+    outline: none;
+}
+
+.partner {
+    margin-top: 10px;
+}
+
+.partner_text {
+    margin-top: 10px;
+}
+
+.partner .partner_img {
+    padding-left: 0;
+}
+
+
+/*Package gallery section*/
+.packages_wrapper{
+    margin-top: 2em;
+}
+.packages_wrapper .nav.nav-tabs{
+  border: none !important; 
+  margin-left: 3em; 
+  text-transform: uppercase;
+}
+.packages_wrapper .nav.nav-tabs li{
+  margin-left: 2em; 
+}
+
+.packages_wrapper li.active a{
+    background-color: transparent !important;
+}
+
+.container_flex {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+}
+
+.flex_item {
+    flex: 0 0 200px;
+    height: 240px;
+    margin: 2em 0 0 1.7em;
+    order: 0;
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.25);
+    align-self: baseline;
+}
+
+.container_flex .package_img {
+    width: 120px;
+}
+
+.container_flex .package_desc {
+    font-size: 12px;
+}
+
 
 /*Question section*/
 
@@ -612,28 +687,32 @@ map_section .nav-tabs li a:hover {
 
 /*--------------Modals---------------------*/
 
-
-/*Booking modal*/
-
-.booking_modal {
-    top: 20%;
-}
-
-.booking_modal .close_btn {
+.close_btn {
     color: #ffffff;
 }
 
-.booking_modal .modal-content {
+.modal-content {
     border-radius: 0;
 }
 
-.booking_modal .modal-header {
+.modal-header {
     border: none;
     background-color: #4a5187;
     height: 30px;
     color: #ffffff;
     font-size: 14px;
     padding: 5px 15px 0 25px;
+}
+
+
+/*Booking modal*/
+
+.booking_modal {
+    top: 10%;
+}
+
+.booking_modal .modal-dialog {
+    max-width: 500px;
 }
 
 .modal-body div[class*=field],
@@ -745,21 +824,8 @@ map_section .nav-tabs li a:hover {
     top: 5%;
 }
 
-.packages_modal .close_btn {
-    color: #ffffff;
-}
-
-.packages_modal .modal-content {
-    border-radius: 0;
-}
-
-.packages_modal .modal-header {
-    border: none;
-    background-color: #4a5187;
-    height: 30px;
-    color: #ffffff;
-    font-size: 14px;
-    padding: 5px 15px 0 25px;
+.packages_modal .modal-dialog {
+    max-width: 500px;
 }
 
 .package_tabs .nav-tabs {
@@ -788,6 +854,10 @@ map_section .nav-tabs li a:hover {
 .package_desc {
     list-style-type: none;
     padding: 0;
+}
+
+.inputs {
+    padding-left: 35px;
 }
 
 .counters.input-group {

@@ -77,14 +77,14 @@
     display: none;
     cursor: pointer;
     font-family: Arial, sans-serif;
-    z-index: 9999;
+    z-index: 100;
     width: 29px;
     height: 25px;
-    border-radius: 32px;
+    border-radius: 100%;
     text-align: center;
     padding: 7px 0 0 3px;
-    background: black;
-    box-shadow: 0 0 20px rgba(200, 235, 248, 0.98), inset 0px 11px 24px -8px rgba(255, 255, 255, 0.4);
+    background: #4a5187;
+    /*box-shadow: 0 0 20px rgba(200, 235, 248, 0.98), inset 0px 11px 24px -8px rgba(255, 255, 255, 0.4);*/
 }
 
 #slider .arrows:hover {

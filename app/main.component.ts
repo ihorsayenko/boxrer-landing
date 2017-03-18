@@ -78,9 +78,9 @@ export class MainComponent implements OnInit {
     ngOnInit(): void {
         //this.storage.getData().then(item => this.Items = item.QuestionItems as any);
         this.common.getPackageBoxes().then(i => { this.boxes = i; this.boxesEtalon = (JSON.parse(JSON.stringify(i))) as PackageModel[]; });
-        this.common.getPackageLocksAndShelves().then(i => { this.locksAndShelves = i; this.locksAndShelvesEtalon = i; });
-        this.common.getPackagePackages().then(i => { this.packages = i; this.packagesEtalon = i; });
-        this.common.getPackageOthers().then(i => { this.others = i; this.othersEtalon = i; });
+        this.common.getPackageLocksAndShelves().then(i => { this.locksAndShelves = i; this.locksAndShelvesEtalon = (JSON.parse(JSON.stringify(i))) as PackageModel[];});
+        this.common.getPackagePackages().then(i => { this.packages = i; this.packagesEtalon = (JSON.parse(JSON.stringify(i))) as PackageModel[]; });
+        this.common.getPackageOthers().then(i => { this.others = i; this.othersEtalon = (JSON.parse(JSON.stringify(i))) as PackageModel[]; });
     }
 
     initVariables(items: any) {
@@ -326,28 +326,20 @@ export class MainComponent implements OnInit {
     }
 
     sendMail(event: Event): boolean {
-        //event.preventDefault();
-
         let url = "https://api.elasticemail.com/v2/email/send";
         let api = "27bf6e11-fe44-45ed-b8c4-e291737221fc";
         let to = "qwertyihor11@gmail.com";
         let from = "boxer.co.ua@gmail.com";
         let subject = "Бронювання боксу (" + Date.now + ")";
-        //let bodyHtml = "from angular <br/>";
         let bodyHtml = this.collectBodyForEmail();
         let isTransactional = true;
-        // url = url.concat("?apikey=" + api);
-        // url = url.concat("&subject=" + subject);
-        // url = url.concat("&from=" + from);
-        // url = url.concat("&to=" + to);
-        // url = url.concat("&bodyText=" + bodyHtml.toString());
-        // url = url.concat("&isTransactional=" + isTransactional);
 
-        var headers = new Headers();
+        let headers = new Headers();
 
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
 
         let body = new URLSearchParams();
+
         body.append('apikey', api);
         body.append('subject', subject);
         body.append('from', from);

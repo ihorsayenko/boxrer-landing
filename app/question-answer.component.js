@@ -10,31 +10,31 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var common_service_1 = require('./common.service');
-var QuestionAnswerComponnent = (function () {
-    function QuestionAnswerComponnent(storage) {
+var QuestionAnswerComponent = (function () {
+    function QuestionAnswerComponent(storage) {
         this.storage = storage;
         this.isOpen = false;
     }
-    QuestionAnswerComponnent.prototype.ngOnInit = function () {
+    QuestionAnswerComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.storage.getData().then(function (item) { return _this.Items = item.QuestionItems; });
     };
-    QuestionAnswerComponnent.prototype.toggle = function (id) {
+    QuestionAnswerComponent.prototype.toggle = function (id) {
         if (this.openItemId !== undefined && this.openItemId !== id && this.isOpen) {
             this.isOpen = !this.isOpen;
         }
         this.openItemId = id;
         this.isOpen = !this.isOpen;
     };
-    QuestionAnswerComponnent = __decorate([
+    QuestionAnswerComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
             selector: 'qiestion-answer',
             templateUrl: '../question-answer.html'
         }), 
         __metadata('design:paramtypes', [common_service_1.CommonService])
-    ], QuestionAnswerComponnent);
-    return QuestionAnswerComponnent;
+    ], QuestionAnswerComponent);
+    return QuestionAnswerComponent;
 }());
-exports.QuestionAnswerComponnent = QuestionAnswerComponnent;
+exports.QuestionAnswerComponent = QuestionAnswerComponent;
 //# sourceMappingURL=question-answer.component.js.map

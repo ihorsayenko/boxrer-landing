@@ -8,7 +8,7 @@ import { CommonService } from './common.service';
     templateUrl: '../question-answer.html'
 })
 
-export class QuestionAnswerComponnent implements OnInit {
+export class QuestionAnswerComponent implements OnInit {
 
     Items: any[];
     isOpen: Boolean = false;

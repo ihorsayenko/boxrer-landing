@@ -36,6 +36,10 @@ var AppModule = (function () {
                 http_1.HttpModule,
                 http_1.JsonpModule,
                 router_1.RouterModule.forRoot([
+                    // {
+                    //     path: 'booking'             
+                    //     //component: AppComponent
+                    // },
                     {
                         path: 'boxer',
                         component: main_component_1.MainComponent
@@ -46,7 +50,7 @@ var AppModule = (function () {
                     },
                     {
                         path: 'question',
-                        component: question_answer_component_1.QuestionAnswerComponnent
+                        component: question_answer_component_1.QuestionAnswerComponent
                     },
                     {
                         path: 'gallery',
@@ -63,7 +67,7 @@ var AppModule = (function () {
                 contacts_component_1.ContactsComponent,
                 main_component_1.MainComponent,
                 package_gallery_component_1.PackageGalleryComponent,
-                question_answer_component_1.QuestionAnswerComponnent
+                question_answer_component_1.QuestionAnswerComponent
             ],
             bootstrap: [app_component_1.AppComponent],
             providers: [common_service_1.CommonService]

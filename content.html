@@ -224,7 +224,7 @@
                 <div class="row">
                     <div class="booking_btn_wrapper text-center">
                         <button class="btn btn-default" [ngClass]="this.boxSize >= 1 && this.daysCount >= 7 ? '' : 'hide'" data-toggle="modal" data-target="#bookingModal" (click)='openBookingModal()'>
-                                <label>забронювати</label>
+                                забронювати
                         </button>
                     </div>
                 </div>
@@ -347,7 +347,7 @@
                                 <div class="circle_count badge">{{boxSize}}м<sup>{{boxSizeStrM}}</sup></div>
                             </div>
 
-                            <div *ngIf="showPackageMaterialsOnBooking" class="row package_matirials_info">
+                            <div *ngIf="showPackageMaterialsOnBooking" class="">
                                 <div class="booking_desc">Пакувальі матеріали:</div>
                                 <div *ngIf="countBoxes > 0">
                                     <span class="package_desc">
@@ -388,7 +388,7 @@
                     </div>
                     <div class="row">
                         <div class="booking_btn_wrapper text-center">
-                            <button type="button" class="btn btn-default" data-dismiss="modal" [disabled]="!bookingForm.form.valid" (click)="sendMail($event)">забронювати</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal" [disabled]="!bookingForm.form.valid" (click)="sendMail($event)">надіслати</button>
                         </div>
                     </div>
                 </form>
@@ -400,7 +400,7 @@
 
 <!-- Packages Modal -->
 <div id="packagesModal" class="modal fade packages_modal" role="dialog" data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog modal-md">
+    <div class="modal-dialog">
 
         <!-- Modal content-->
         <div class="modal-content">
@@ -426,14 +426,14 @@
                                             <div class="col-md-3 text-center">
                                                 <img class="package-img" [src]="item.imgSrc" alt="">
                                             </div>
-                                            <div class="col-md-6 text-left">
+                                            <div class="col-md-5 text-left">
                                                 <ul class="package_desc">
                                                     <li [id]="'desc_' + i" class="" *ngFor='let desc of item.description; let i = index;'>
                                                         {{desc}}
                                                     </li>
                                                 </ul>
                                             </div>
-                                            <div class="col-md-3 text-center">
+                                            <div class="col-md-4 text-center inputs">
                                                 <div class="counters input-group">
                                                     <span class="input-group-btn">   
                                                         <button type="button" [disabled]="item.count <= 0 ? true: null" class="btn btn_minus" (click)="onCountMinus(item)">&#45;</button>
@@ -456,14 +456,14 @@
                                             <div class="col-md-3 text-center">
                                                 <img class="package-img" [src]="item.imgSrc" alt="">
                                             </div>
-                                            <div class="col-md-6 text-left">
+                                            <div class="col-md-5 text-left">
                                                 <ul class="package_desc">
                                                     <li [id]="'desc_' + i" class="" *ngFor='let desc of item.description; let i = index;'>
                                                         {{desc}}
                                                     </li>
                                                 </ul>
                                             </div>
-                                            <div class="col-md-3 text-center">
+                                            <div class="col-md-4 text-center inputs">
                                                 <div class="counters input-group">
                                                     <span class="input-group-btn">   
                                                         <button type="button" [disabled]="item.count <= 0 ? true: null" class="btn btn_minus" (click)="onCountMinus(item)">&#45;</button>
@@ -486,14 +486,14 @@
                                             <div class="col-md-3 text-center">
                                                 <img class="package-img" [src]="item.imgSrc" alt="">
                                             </div>
-                                            <div class="col-md-6 text-left">
+                                            <div class="col-md-5 text-left">
                                                 <ul class="package_desc">
                                                     <li [id]="'desc_' + i" class="" *ngFor='let desc of item.description; let i = index;'>
                                                         {{desc}}
                                                     </li>
                                                 </ul>
                                             </div>
-                                            <div class="col-md-3 text-center">
+                                            <div class="col-md-4 text-center inputs">
                                                 <div class="counters input-group">
                                                     <span class="input-group-btn">   
                                                         <button type="button" [disabled]="item.count <= 0 ? true: null" class="btn btn_minus" (click)="onCountMinus(item)">&#45;</button>
@@ -516,14 +516,14 @@
                                             <div class="col-md-3 text-center">
                                                 <img class="package-img" [src]="item.imgSrc" alt="">
                                             </div>
-                                            <div class="col-md-6 text-left">
+                                            <div class="col-md-5 text-left">
                                                 <ul class="package_desc">
                                                     <li [id]="'desc_' + i" class="" *ngFor='let desc of item.description; let i = index;'>
                                                         {{desc}}
                                                     </li>
                                                 </ul>
                                             </div>
-                                            <div class="col-md-3 text-center">
+                                            <div class="col-md-4 text-center inputs">
                                                 <div class="counters input-group">
                                                     <span class="input-group-btn">   
                                                         <button type="button" [disabled]="item.count <= 0 ? true: null" class="btn btn_minus" (click)="onCountMinus(item)">&#45;</button>

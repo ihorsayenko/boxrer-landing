@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { ContactsComponent } from './contacts.component';
 import { MainComponent } from './main.component';
 import { PackageGalleryComponent } from './package-gallery.component';
-import { QuestionAnswerComponnent } from './question-answer.component';
+import { QuestionAnswerComponent } from './question-answer.component';
 
 import { InputTextModule } from 'primeng/primeng';
 import { SliderModule } from 'primeng/primeng';
@@ -26,6 +26,10 @@ import { CommonService } from './common.service';
         HttpModule,
         JsonpModule,
         RouterModule.forRoot([
+            // {
+            //     path: 'booking'             
+            //     //component: AppComponent
+            // },
             {
                 path: 'boxer',
                 component: MainComponent
@@ -36,7 +40,7 @@ import { CommonService } from './common.service';
             },
             {
                 path: 'question',
-                component: QuestionAnswerComponnent
+                component: QuestionAnswerComponent
             },
             {
                 path: 'gallery',
@@ -54,7 +58,7 @@ import { CommonService } from './common.service';
         ContactsComponent,
         MainComponent,
         PackageGalleryComponent,
-        QuestionAnswerComponnent
+        QuestionAnswerComponent
     ],
     bootstrap: [AppComponent],
     providers: [CommonService]

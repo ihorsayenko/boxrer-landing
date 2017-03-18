@@ -56,10 +56,6 @@ var CommonService = (function () {
         var body = res.json();
         return body;
     };
-    CommonService.prototype.mapPackageNodel = function (res) {
-        res.json().PackageMaterials.Boxes;
-        return;
-    };
     CommonService.prototype.handleError = function (error) {
         // In a real world app, we might use a remote logging infrastructure
         var errMsg;

@@ -37,9 +37,9 @@ var MainComponent = (function () {
         var _this = this;
         //this.storage.getData().then(item => this.Items = item.QuestionItems as any);
         this.common.getPackageBoxes().then(function (i) { _this.boxes = i; _this.boxesEtalon = (JSON.parse(JSON.stringify(i))); });
-        this.common.getPackageLocksAndShelves().then(function (i) { _this.locksAndShelves = i; _this.locksAndShelvesEtalon = i; });
-        this.common.getPackagePackages().then(function (i) { _this.packages = i; _this.packagesEtalon = i; });
-        this.common.getPackageOthers().then(function (i) { _this.others = i; _this.othersEtalon = i; });
+        this.common.getPackageLocksAndShelves().then(function (i) { _this.locksAndShelves = i; _this.locksAndShelvesEtalon = (JSON.parse(JSON.stringify(i))); });
+        this.common.getPackagePackages().then(function (i) { _this.packages = i; _this.packagesEtalon = (JSON.parse(JSON.stringify(i))); });
+        this.common.getPackageOthers().then(function (i) { _this.others = i; _this.othersEtalon = (JSON.parse(JSON.stringify(i))); });
     };
     MainComponent.prototype.initVariables = function (items) {
         this.imgs = items;
@@ -262,21 +262,13 @@ var MainComponent = (function () {
         return emailBody;
     };
     MainComponent.prototype.sendMail = function (event) {
-        //event.preventDefault();
         var url = "https://api.elasticemail.com/v2/email/send";
         var api = "27bf6e11-fe44-45ed-b8c4-e291737221fc";
         var to = "qwertyihor11@gmail.com";
         var from = "boxer.co.ua@gmail.com";
         var subject = "Бронювання боксу (" + Date.now + ")";
-        //let bodyHtml = "from angular <br/>";
         var bodyHtml = this.collectBodyForEmail();
         var isTransactional = true;
-        // url = url.concat("?apikey=" + api);
-        // url = url.concat("&subject=" + subject);
-        // url = url.concat("&from=" + from);
-        // url = url.concat("&to=" + to);
-        // url = url.concat("&bodyText=" + bodyHtml.toString());
-        // url = url.concat("&isTransactional=" + isTransactional);
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
         var body = new http_1.URLSearchParams();
