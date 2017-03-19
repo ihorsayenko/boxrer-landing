@@ -10,12 +10,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
+var router_1 = require('@angular/router');
 var common_service_1 = require('./common.service');
 var AppComponent = (function () {
-    function AppComponent(storage, http) {
+    function AppComponent(storage, http, router) {
         this.storage = storage;
         this.http = http;
+        this.router = router;
     }
+    AppComponent.prototype.navigate = function (item) {
+        debugger;
+        this.router.navigateByUrl('/boxer');
+        // switch (item) {
+        //     case 'booking': {
+        //         document.getElementById(item+ "Nav").click();
+        //         break;
+        //     }
+        //     case 'gallery': {
+        //         //statements; 
+        //         break;
+        //     }
+        // }
+        document.getElementById(item + "Nav").click();
+        return false;
+    };
     AppComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.storage.getData().then(function (item) { return _this.initVariables(item); });
@@ -70,7 +88,7 @@ var AppComponent = (function () {
             templateUrl: '../landing.html',
             providers: [common_service_1.CommonService]
         }), 
-        __metadata('design:paramtypes', [common_service_1.CommonService, http_1.Http])
+        __metadata('design:paramtypes', [common_service_1.CommonService, http_1.Http, router_1.Router])
     ], AppComponent);
     return AppComponent;
 }());

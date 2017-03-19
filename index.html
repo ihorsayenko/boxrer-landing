@@ -23,6 +23,37 @@
         System.import('app').catch(function(err) {
             console.error(err);
         });
+        $(document).ready(function() {
+            $(document).on('click', 'a.page_nav', function(e) {
+                //e.preventDefault();
+                debugger;
+                let pageElem = $($(e.target).attr('href'));
+                if (pageElem[0]) {
+                    $('html, body').animate({
+                        scrollTop: pageElem.offset().top - 50
+                    }, 800, function() {
+
+                        // Add hash (#) to URL when done scrolling (default click behavior)
+                        // window.location.hash = $(e.target).attr('href');
+                    });
+
+                    return false;
+                } else {
+                    $('a#mainPage').trigger('click');
+                    pageElem = $($(e.target).attr('href'));
+                    // $('html, body').animate({
+                    //     scrollTop: pageElem.offset().top - 50
+                    // }, 800, function() {
+
+                    //     // Add hash (#) to URL when done scrolling (default click behavior)
+                    //     // window.location.hash = $(e.target).attr('href');
+                    // });
+
+                }
+
+
+            });
+        });
     </script>
 </head>
 

@@ -944,3 +944,13 @@ map_section .nav-tabs li a:hover {
 .success_modal .success_text {
     margin-bottom: 2.5em;
 }
+
+.answer {
+    opacity: 1;
+    transition: opacity 2s linear;
+}
+
+.answer.hiden {
+    opacity: 0;
+    transition: visibility 0s 2s, opacity 2s linear;
+}

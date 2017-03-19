@@ -1,10 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { Http, Headers, URLSearchParams } from '@angular/http';
+import { Router } from '@angular/router';
 
 import { CommonService } from './common.service';
 
 import { CommonModal } from './common.model'
+
+declare var $: JQueryStatic;
+
 
 @Component({
     moduleId: module.id,
@@ -14,7 +18,7 @@ import { CommonModal } from './common.model'
 })
 
 export class AppComponent implements OnInit {
-    constructor(private storage: CommonService, private http: Http) { }
+    constructor(private storage: CommonService, private http: Http, private router: Router) { }
 
     humidity: Number;
     temperature: Number;
@@ -25,6 +29,23 @@ export class AppComponent implements OnInit {
     email: string;
     comments: string;
 
+    navigate(item: string): boolean {
+        debugger;
+        this.router.navigateByUrl('/boxer');
+        // switch (item) {
+        //     case 'booking': {
+        //         document.getElementById(item+ "Nav").click();
+        //         break;
+        //     }
+        //     case 'gallery': {
+        //         //statements; 
+        //         break;
+        //     }
+        // }
+
+        document.getElementById(item + "Nav").click();
+        return false;
+    }
 
     ngOnInit(): void {
         this.storage.getData().then(item => this.initVariables(item));
@@ -78,7 +99,7 @@ export class AppComponent implements OnInit {
                 document.getElementById("errorModalBtn").click();
             }
         });
-        
+
         return true;
     }
 }
