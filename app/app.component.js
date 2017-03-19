@@ -29,19 +29,21 @@ var AppComponent = (function () {
         window.scrollTo(0, document.getElementById(id).offsetTop);
     };
     AppComponent.prototype.contactUs = function (event) {
-        debugger;
+        var currentDate = new Date(Date.now());
         var url = "https://api.elasticemail.com/v2/email/send";
         var api = "27bf6e11-fe44-45ed-b8c4-e291737221fc";
         var to = "qwertyihor11@gmail.com";
         var from = "boxer.co.ua@gmail.com";
-        var subject = "Бронювання боксу (" + Date.now + ")";
+        var subject = "Зв'яжіться з нами  [" +
+            currentDate.getDate() + "/" + Number(currentDate.getMonth()) + Number(1) + "/" +
+            currentDate.getFullYear() + "-" + currentDate.toTimeString().split(" GMT")[0] + "]";
         var emailBody = "";
         var isTransactional = true;
         emailBody = emailBody.concat("Ім'я:  <b>" + this.name + "</b>");
         emailBody = emailBody.concat("<br>Прізвище:  <b>" + this.surname + "</b>");
         emailBody = emailBody.concat("<br>Телефон:  <b>" + this.mobileNumber + "</b>");
         emailBody = emailBody.concat("<br>Email:  <b>" + this.email + "</b>");
-        emailBody = emailBody.concat("<br>Коментар:  <b>" + this.comments + "</b>");
+        emailBody = emailBody.concat("<br>Коментар:  <b>" + this.comments + "</b><br>");
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
         var body = new http_1.URLSearchParams();
@@ -51,7 +53,14 @@ var AppComponent = (function () {
         body.append('to', to);
         body.append('bodyHTML', emailBody);
         body.append('isTransactional', 'false');
-        this.http.post(url, body, headers).subscribe(function (i) { console.log(i); });
+        this.http.post(url, body, headers).subscribe(function (resp) {
+            if (resp.json().success) {
+                document.getElementById("successModalBtn").click();
+            }
+            else {
+                document.getElementById("errorModalBtn").click();
+            }
+        });
         return true;
     };
     AppComponent = __decorate([

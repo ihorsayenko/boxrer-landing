@@ -201,4 +201,54 @@
     </div>
 </div>
 
+
+<!-- Success Modal -->
+<div id="successModal" class="modal fade success_modal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header furore_regular">
+                <span>ваші дані</span>
+                <button type="button" class="close" data-dismiss="modal"><span class="close_btn">&times;</span></button>
+            </div>
+            <div class="modal-body text-center caviar_regular">
+                <div class="row">
+                    <img class="success_img" src="./img/checked.png">
+                </div>
+                <div class="row caviar_regular success_text">
+                    <span>ДЯКУЄМО! ВАШУ ЗАЯВКУ <br>
+                        БУЛО НАДІСЛАНО. НАШ МЕНЕДЖЕР ЗВ’ЯЖИТЬСЯ З <br>
+                        ВАМИ НАЙБЛИЖЧИМ ЧАСОМ
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<button type="button" id="successModalBtn" class="hidden" data-toggle="modal" data-target="#successModal"></button>
+
+<!-- Error Modal -->
+<div id="errorModal" class="modal fade success_modal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header furore_regular">
+                <span>ваші дані</span>
+                <button type="button" class="close" data-dismiss="modal"><span class="close_btn">&times;</span></button>
+            </div>
+            <div class="modal-body text-center caviar_regular">
+                <div class="row">
+                    <img class="success_img" src="./img/error.png">
+                </div>
+                <div class="row caviar_regular success_text">
+                    <span>СТАЛАСЬ ПОМИЛКА <br>
+                        СКОНТАКТУЙТЕ БУДЬ ЛАСКА З АДМІНІСТРАТОРОМ <br>
+                        ДЯКУЄМО!
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<button type="button" id="errorModalBtn" class="hidden" data-toggle="modal" data-target="#errorModal"></button>
 <!-------------------------------------------------------- End ------------------------------------------------------------------------------------>

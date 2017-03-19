@@ -14,7 +14,8 @@ var http_1 = require('@angular/http');
 var common_service_1 = require('./common.service');
 var MainComponent = (function () {
     function MainComponent(http, common) {
-        var _this = this;
+        this.http = http;
+        this.common = common;
         this.daysCount = 0;
         this.minSlide = 7;
         this.maxSlide = 360;
@@ -29,10 +30,22 @@ var MainComponent = (function () {
         this.showPackages = false;
         this.showOthers = false;
         this.finalPrice = 0;
-        this.http = http;
-        this.common = common;
-        common.getBoxImgs().then(function (items) { return _this.initVariables(items); });
     }
+    MainComponent.prototype.resetVariables = function () {
+        this.name = "";
+        this.surname = "";
+        this.mobileNumber = "";
+        this.email = "";
+        this.comments = "";
+        this.daysCount = 0;
+        this.periodPay = 0;
+        this.monthPay = 0;
+        this.dateFrom = new Date();
+        this.activeSizeBtb.classList.remove('active_btn');
+        this.activeTermBtb.classList.remove('active_btn');
+        this.boxImgSrcFull = this.imgs[0].imgsrc;
+        this.closePackageModal();
+    };
     MainComponent.prototype.ngOnInit = function () {
         var _this = this;
         //this.storage.getData().then(item => this.Items = item.QuestionItems as any);
@@ -40,10 +53,7 @@ var MainComponent = (function () {
         this.common.getPackageLocksAndShelves().then(function (i) { _this.locksAndShelves = i; _this.locksAndShelvesEtalon = (JSON.parse(JSON.stringify(i))); });
         this.common.getPackagePackages().then(function (i) { _this.packages = i; _this.packagesEtalon = (JSON.parse(JSON.stringify(i))); });
         this.common.getPackageOthers().then(function (i) { _this.others = i; _this.othersEtalon = (JSON.parse(JSON.stringify(i))); });
-    };
-    MainComponent.prototype.initVariables = function (items) {
-        this.imgs = items;
-        this.boxImgSrcFull = this.imgs[0].imgsrc;
+        this.common.getBoxImgs().then(function (items) { _this.imgs = items; _this.boxImgSrcFull = _this.imgs[0].imgsrc; });
     };
     MainComponent.prototype.onBtnSizeClick = function (elem) {
         var id = elem.id;
@@ -56,6 +66,7 @@ var MainComponent = (function () {
             else {
                 if (element.id === id) {
                     element.classList.add('active_btn');
+                    this.activeSizeBtb = element;
                     this.boxSize = id.split('m')[0];
                     this.boxSizeStr = this.boxSize === 1 ? this.boxSize + "м<sup>3</sup>" : this.boxSize + "м<sup>2</sup>";
                     this.boxSizeStrM = this.boxSize == 1 ? "3" : "2";
@@ -262,13 +273,18 @@ var MainComponent = (function () {
         return emailBody;
     };
     MainComponent.prototype.sendMail = function (event) {
+        var _this = this;
+        var currentDate = new Date(Date.now());
         var url = "https://api.elasticemail.com/v2/email/send";
         var api = "27bf6e11-fe44-45ed-b8c4-e291737221fc";
         var to = "qwertyihor11@gmail.com";
         var from = "boxer.co.ua@gmail.com";
-        var subject = "Бронювання боксу (" + Date.now + ")";
+        var subject = "Бронювання боксу [" +
+            currentDate.getDate() + "/" + Number(currentDate.getMonth()) + Number(1) + "/" +
+            currentDate.getFullYear() + "-" + currentDate.toTimeString().split(" GMT")[0] + "]";
         var bodyHtml = this.collectBodyForEmail();
         var isTransactional = true;
+        debugger;
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
         var body = new http_1.URLSearchParams();
@@ -278,7 +294,15 @@ var MainComponent = (function () {
         body.append('to', to);
         body.append('bodyHTML', bodyHtml);
         body.append('isTransactional', 'false');
-        this.http.post(url, body, headers).subscribe(function (i) { console.log(i); });
+        this.http.post(url, body, headers).subscribe(function (resp) {
+            if (resp.json().success) {
+                document.getElementById("successModalBtn").click();
+                _this.resetVariables();
+            }
+            else {
+                document.getElementById("errorModalBtn").click();
+            }
+        });
         return true;
     };
     __decorate([

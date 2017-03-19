@@ -36,11 +36,10 @@ export class MainComponent implements OnInit {
     email: string;
     comments: string;
 
+    activeSizeBtb: ElementRef;
     activeTermBtb: ElementRef;
 
-    http: Http;
     imgs: any;
-    common: CommonService;
 
     boxes: PackageModel[];
     boxesEtalon: PackageModel[];
@@ -69,23 +68,34 @@ export class MainComponent implements OnInit {
     @ViewChildren('sizeBtns') boxSizeBtns: ElementRef;
     @ViewChildren('termsBtns') termsBtns: ElementRef;
 
-    constructor(http: Http, common: CommonService) {
-        this.http = http;
-        this.common = common;
-        common.getBoxImgs().then(items => this.initVariables(items));
+    constructor(private http: Http, private common: CommonService) {
+    }
+
+    resetVariables(): void {
+        this.name = ""
+        this.surname = "";
+        this.mobileNumber = "";
+        this.email = "";
+        this.comments = "";
+        this.daysCount = 0;
+        this.periodPay = 0;
+        this.monthPay = 0;
+        this.dateFrom = new Date();
+
+        this.activeSizeBtb.classList.remove('active_btn');
+        this.activeTermBtb.classList.remove('active_btn');
+        this.boxImgSrcFull = this.imgs[0].imgsrc;
+
+        this.closePackageModal();
     }
 
     ngOnInit(): void {
         //this.storage.getData().then(item => this.Items = item.QuestionItems as any);
         this.common.getPackageBoxes().then(i => { this.boxes = i; this.boxesEtalon = (JSON.parse(JSON.stringify(i))) as PackageModel[]; });
-        this.common.getPackageLocksAndShelves().then(i => { this.locksAndShelves = i; this.locksAndShelvesEtalon = (JSON.parse(JSON.stringify(i))) as PackageModel[];});
+        this.common.getPackageLocksAndShelves().then(i => { this.locksAndShelves = i; this.locksAndShelvesEtalon = (JSON.parse(JSON.stringify(i))) as PackageModel[]; });
         this.common.getPackagePackages().then(i => { this.packages = i; this.packagesEtalon = (JSON.parse(JSON.stringify(i))) as PackageModel[]; });
         this.common.getPackageOthers().then(i => { this.others = i; this.othersEtalon = (JSON.parse(JSON.stringify(i))) as PackageModel[]; });
-    }
-
-    initVariables(items: any) {
-        this.imgs = items;
-        this.boxImgSrcFull = this.imgs[0].imgsrc;
+        this.common.getBoxImgs().then(items => { this.imgs = items; this.boxImgSrcFull = this.imgs[0].imgsrc; });
     }
 
     onBtnSizeClick(elem: ElementRef): void {
@@ -97,6 +107,7 @@ export class MainComponent implements OnInit {
             } else {
                 if (element.id === id) {
                     element.classList.add('active_btn');
+                    this.activeSizeBtb = element;
                     this.boxSize = id.split('m')[0];
                     this.boxSizeStr = this.boxSize === 1 ? this.boxSize + "м<sup>3</sup>" : this.boxSize + "м<sup>2</sup>";
                     this.boxSizeStrM = this.boxSize == 1 ? "3" : "2";
@@ -326,14 +337,17 @@ export class MainComponent implements OnInit {
     }
 
     sendMail(event: Event): boolean {
+        let currentDate = new Date(Date.now());
         let url = "https://api.elasticemail.com/v2/email/send";
         let api = "27bf6e11-fe44-45ed-b8c4-e291737221fc";
         let to = "qwertyihor11@gmail.com";
         let from = "boxer.co.ua@gmail.com";
-        let subject = "Бронювання боксу (" + Date.now + ")";
+        let subject = "Бронювання боксу [" +
+            currentDate.getDate() + "/" + Number(currentDate.getMonth()) + Number(1) + "/" +
+            currentDate.getFullYear() + "-" + currentDate.toTimeString().split(" GMT")[0] + "]";
         let bodyHtml = this.collectBodyForEmail();
         let isTransactional = true;
-
+        debugger;
         let headers = new Headers();
 
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
@@ -347,7 +361,14 @@ export class MainComponent implements OnInit {
         body.append('bodyHTML', bodyHtml);
         body.append('isTransactional', 'false');
 
-        this.http.post(url, body, headers).subscribe(i => { console.log(i) })
+        this.http.post(url, body, headers).subscribe(resp => {
+            if (resp.json().success) {
+                document.getElementById("successModalBtn").click();
+                this.resetVariables();
+            } else {
+                document.getElementById("errorModalBtn").click();
+            }
+        });
         return true;
     }
 }

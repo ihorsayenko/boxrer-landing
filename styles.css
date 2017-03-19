@@ -1,4 +1,3 @@
-
 /* -----------------Fonts---------------*/
 
 @font-face {
@@ -614,19 +613,22 @@ map_section .nav-tabs li a:hover {
 
 
 /*Package gallery section*/
-.packages_wrapper{
+
+.packages_wrapper {
     margin-top: 2em;
 }
-.packages_wrapper .nav.nav-tabs{
-  border: none !important; 
-  margin-left: 3em; 
-  text-transform: uppercase;
-}
-.packages_wrapper .nav.nav-tabs li{
-  margin-left: 2em; 
+
+.packages_wrapper .nav.nav-tabs {
+    border: none !important;
+    margin-left: 3em;
+    text-transform: uppercase;
 }
 
-.packages_wrapper li.active a{
+.packages_wrapper .nav.nav-tabs li {
+    margin-left: 2em;
+}
+
+.packages_wrapper li.active a {
     background-color: transparent !important;
 }
 
@@ -650,7 +652,7 @@ map_section .nav-tabs li a:hover {
 }
 
 .container_flex .package_desc {
-    font-size: 12px;
+    font-size: 10px;
 }
 
 
@@ -905,4 +907,40 @@ map_section .nav-tabs li a:hover {
 
 .odd {
     background-color: #ECECEC;
+}
+
+
+/*Contact us modal*/
+
+.contact_us_modal {
+    top: 20%;
+}
+
+.contact_us_modal .modal-dialog {
+    width: 500px;
+}
+
+
+/*Success modal*/
+
+.success_modal {
+    top: 20%;
+}
+
+.success_modal .modal-dialog {
+    width: 400px;
+}
+
+.success_modal .modal-body {
+    color: #6d6e70;
+    font-size: 14px;
+}
+
+.success_modal .success_img {
+    margin-top: 2em;
+    margin-bottom: 1.5em;
+}
+
+.success_modal .success_text {
+    margin-bottom: 2.5em;
 }

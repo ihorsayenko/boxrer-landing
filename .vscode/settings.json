@@ -10,5 +10,6 @@
     },
     "editor.minimap.enabled": true,
     "workbench.iconTheme": "vscode-icons",
-    "editor.formatOnSave": false
+    "editor.formatOnSave": false,
+    "vsicons.presets.angular": true
 }
